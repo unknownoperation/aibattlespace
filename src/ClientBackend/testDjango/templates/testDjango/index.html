@@ -1,0 +1,11 @@
+{% if developersList %}
+    <ul>
+        <h><b>Hello World</b></h>
+        <h>Developers:</h>
+        {% for developer in developersList %}
+            <li><b>{{ developer }}</b></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No developers are available.</p>
+{% endif %}
