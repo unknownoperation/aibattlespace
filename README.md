@@ -14,7 +14,7 @@ Features
 --------
 - There is a choice of the form of competition
 - You can observe the actions of AI
-- You can download your own AI
+- You can upload your own AI
 
 >Note that the features can be extended over time
 
