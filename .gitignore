@@ -33,3 +33,5 @@
 *.user
 *.db
 *.opendb
+
+*node_modules/*

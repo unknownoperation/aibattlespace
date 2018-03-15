@@ -1,3 +1,4 @@
+
 AI BattleSpace
 =================
 
@@ -13,7 +14,7 @@ Features
 --------
 - There is a choice of the form of competition
 - You can observe the actions of AI
-- You can download your own AI
+- You can upload your own AI
 
 >Note that the features can be extended over time
 
@@ -28,6 +29,29 @@ Rules of commits
 **added feature 1*  
 **fixed some code*  
 **refactored some scope*  
+
+Program installation
+-------------------------
+### Backend
+Python -  version 3.5.1    
+Django - version 2.0.2  
+IDE: JetBrains PyCharm 2017.3.3 Professional   
+
+### Frontend
+JavaScript 2.0     
+Graphic Library: WebGL    
+Framework: Angular.js    
+
+### Server
+С++ 14    
+IDE:  Visual Studio 2017    
+
+Requirements
+-----------------
+***OS***: Windows 7, 8, 10  
+***HDD or SDD***: 40MB free space minimum, 100MB recommended  
+***RAM***: 1GB  
+***Processor***: Intel Core i5, i7  
 
 Repository
 ----------
