@@ -5,7 +5,7 @@
 
 void GAME_SERVER::InitSession (void)
 {
-   SetConnection();
+   SetConnection("tcp://127.0.0.1:8000");
 
    game = new GAME_BASE();
 }
