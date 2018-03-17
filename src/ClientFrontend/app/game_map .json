@@ -2,7 +2,11 @@
   "colours"   :
     {
         "background" : [0, 255, 0],
-        "barrier"    : [0, 0, 0]
+        "barrier"    : [0, 0, 0],
+		"freespace"  : [255,255,255],
+		"player_1"   : [255,0,0],
+		"player_2"   : [0,0,255],
+		"chips"      : [255,0,255]
     }, 
   
    "cells" :

@@ -20,12 +20,13 @@ class parser {
         this.objXml.open("GET", "./game_map .json", false);
         this.objXml.send(null);
 
-        this.result = JSON.parse(this.objXml.responseText);
-        return this.result;
-    }
+        this.squares = JSON.parse(this.objXml.responseText);
 
-    get_map_from_json() {
-        return this.parser();
+        this.objXml = new XMLHttpRequest();
+        this.objXml.open("GET", "./objects.json", false);
+        this.objXml.send(null);
+
+        this.objects = JSON.parse(this.objXml.responseText);
     }
 }
 
@@ -35,7 +36,6 @@ class Graphics2d {
 // Start here
 //
     constructor() {
-        this.parser = new parser();
         this.canvas = document.querySelector('#glcanvas');
         this.window_width_aspect = this.canvas.width / window.innerWidth;
         this.window_height_aspect = this.canvas.height / window.innerHeight;
@@ -90,17 +90,14 @@ class Graphics2d {
             alert('Unable to initialize WebGL. Your browser or machine may not support it.');
             return;
         }
-
-        // Draw the scene
         this.drawScene(this.gl, this.programInfo, this.buffers);
-
-
     }
 
     resizeDisplay() {
         this.canvas.width = window.innerWidth * this.window_width_aspect;
         this.canvas.height = window.innerHeight * this.window_height_aspect;
         this.drawScene(this.gl, this.programInfo, this.buffers);
+        return;
     }
 
 //
@@ -149,7 +146,10 @@ class Graphics2d {
 //
 
     drawScene(gl, programInfo, buffers) {
-        this.squares = this.parser.get_map_from_json();
+        this.parser = new parser();
+        this.parser.parser();
+        this.squares = this.parser.squares;
+        this.objects = this.parser.objects;
         gl.clearColor(this.squares.colours.background[0],
             this.squares.colours.background[1],
             this.squares.colours.background[2], 1.0);  // Clear to black, fully opaque
@@ -173,8 +173,11 @@ class Graphics2d {
         let aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
         const zNear = 0.1;
         const zFar = 100.0;
-        const projectionMatrix = mat4.create();
 
+        this.projectionMatrix = mat4.create();
+        // Set the drawing position to the "identity" point, which is
+        // the center of the scene.
+        this.modelViewMatrix = mat4.create();
 
         this.matrix_of_squares = [];
         for (let i = 0; i < this.squares.field.height; i++)
@@ -192,29 +195,38 @@ class Graphics2d {
         for (let i = 0; i < this.squares.field.height; i++)
             for (let j = 0; j < this.squares.field.width; j++)
                 if (!this.matrix_of_squares[i][j].type)
-                    this.matrix_of_squares[i][j].set_cell("freespace", [1,1,1], i, j);
+                    this.matrix_of_squares[i][j].set_cell("freespace", this.squares.colours.freespace, i, j);
+
+        for (let i = 0; i < this.objects.chips.length; i++) {
+            this.matrix_of_squares[this.objects.chips[i].position[0]][this.objects.chips[i].position[1]]
+                .set_cell("chips",this.squares.colours.chips,this.objects.chips[i].position[0],this.objects.chips[i].position[1]);
+        }
+
+        this.matrix_of_squares[this.objects.players[0].position[0]][this.objects.players[0].position[1]]
+            .set_cell("player_1",this.squares.colours.player_1,
+                this.objects.players[0].position[0],this.objects.players[0].position[1]);
+
+        this.matrix_of_squares[this.objects.players[1].position[0]][this.objects.players[1].position[1]]
+            .set_cell("player_2",this.squares.colours.player_2,
+                this.objects.players[1].position[0],this.objects.players[1].position[1]);
         // note: glmatrix.js always has the first argument
         // as the destination to receive the result.
-        mat4.perspective(projectionMatrix,
+        mat4.perspective(this.projectionMatrix,
             fieldOfView,
             aspect,
             zNear,
             zFar);
 
-        // Set the drawing position to the "identity" point, which is
-        // the center of the scene.
-        let modelViewMatrix = mat4.create();
+
 
         // Now move the drawing position a bit to where we want to
         // start drawing the square.
 
-        mat4.translate(modelViewMatrix,     // destination matrix
-            modelViewMatrix,     // matrix to translate
+        mat4.translate(this.modelViewMatrix,     // destination matrix
+            this. modelViewMatrix,     // matrix to translate
             [-1.0, -1.0, -5]);  // amount to translate
         for (let i = 0; i < this.squares.field.height; i++) {
             for (let j = 0; j < this.squares.field.width; j++) {
-
-                modelViewMatrix = mat4.create();
                 if (j != 0)
                     this.addX = 2 / this.squares.field.width * (j);
                 else
@@ -223,9 +235,9 @@ class Graphics2d {
                     this.addY = 2 / this.squares.field.height * (i);
                 else
                     this.addY = 0;
-                modelViewMatrix = mat4.create();
-                mat4.translate(modelViewMatrix,     // destination matrix
-                    modelViewMatrix, [-1.0 + this.addX, -1.0 + this.addY, -5.0]);
+                this.modelViewMatrix = mat4.create();
+                mat4.translate(this.modelViewMatrix,     // destination matrix
+                    this.modelViewMatrix, [-1.0 + this.addX, -1.0 + this.addY, -5.0]);
 
 
                 // Tell WebGL how to pull out the positions from the position
@@ -258,11 +270,11 @@ class Graphics2d {
                 gl.uniformMatrix4fv(
                     programInfo.uniformLocations.projectionMatrix,
                     false,
-                    projectionMatrix);
+                    this.projectionMatrix);
                 gl.uniformMatrix4fv(
                     programInfo.uniformLocations.modelViewMatrix,
                     false,
-                    modelViewMatrix);
+                    this.modelViewMatrix);
                 {
                     const offset = 0;
                     const vertexCount = 4;
@@ -270,6 +282,7 @@ class Graphics2d {
                 }
             }
         }
+        return;
     }
 
 //
@@ -331,9 +344,13 @@ let graphics = new Graphics2d();
 
 function main() {
     graphics.main();
+    renderloop();
     window.addEventListener('resize', resizeCanvas, false);
 }
-
+function renderloop() {
+    graphics.main();
+    window.setTimeout(this.renderloop, 1000/60);
+}
 function resizeCanvas() {
     graphics.resizeDisplay();
 }
