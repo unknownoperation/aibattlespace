@@ -46,6 +46,11 @@ Framework: Angular.js
 С++ 14    
 IDE:  Visual Studio 2017    
 
+Using ports
+----------
+**Server** 127.0.0.1:8000
+**Backend** 127.0.0.1:8080
+
 Requirements
 -----------------
 ***OS***: Windows 7, 8, 10  
