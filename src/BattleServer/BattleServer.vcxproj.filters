@@ -8,7 +8,7 @@
       <Filter>3rd-party\jsoncpp</Filter>
     </ClCompile>
     <ClCompile Include="src\connector.cpp" />
-    <ClCompile Include="src\game_base.cpp" />
+    <ClCompile Include="src\game_implementation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\connector.h" />
@@ -20,6 +20,7 @@
     <ClInclude Include="..\..\3rd-party\src\jsoncpp\json\json-forwards.h">
       <Filter>3rd-party\jsoncpp</Filter>
     </ClInclude>
+    <ClInclude Include="src\game_implementation.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="3rd-party">
