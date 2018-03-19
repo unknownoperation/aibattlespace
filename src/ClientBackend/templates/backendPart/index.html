@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en" ng-app>
+  <head>
+    <meta charset="utf-8">
+    <title>HTML File</title>
+  </head>
+
+  <body onload="main()">
+    <p>Hello World</p>
+    <canvas id="glcanvas" width="640" height="480">
+      Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
+    </canvas>
+    {% load staticfiles %}
+    <script src="{% static "backendPart/gl-matrix.js" %}"></script>
+    <script src="{% static "backendPart/main.js" %}"></script>
+  </body>
+</html>
