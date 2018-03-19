@@ -28,23 +28,41 @@ Rules of commits
 *them with a newline character*  
 **added feature 1*  
 **fixed some code*  
-**refactored some scope*  
+**refactored some scope*
 
 Program installation
 -------------------------
+Load project from git server:
+```
+git clone https://github.com/unknownoperation/aibattlespace.git
+```
+Install [Python 3.5.1](https://www.python.org/downloads/release/python-351/)
+
+Run in command line:
+```
+pip install django==2.0.2
+```
+Install [Visual Studio 2017 Community](https://www.visualstudio.com/ru/thank-you-downloading-visual-studio/?sku=Community&rel=15)
+
+Add path to required dll's in Debugging/Enviroment for each configuration and platform
+PATH=%PATH%;..\..\3rd-party\lib\nanomsg\Win32\Debug\ 
+PATH=%PATH%;..\..\3rd-party\lib\nanomsg\Win32\Release\ 
+PATH=%PATH%;..\..\3rd-party\lib\nanomsg\x64\Debug\ 
+PATH=%PATH%;..\..\3rd-party\lib\nanomsg\x64\Release\
+
+Program components
+-------------------
 ### Backend
 Python -  version 3.5.1    
 Django - version 2.0.2  
-IDE: JetBrains PyCharm 2017.3.3 Professional   
 
 ### Frontend
-JavaScript 2.0     
+JavaScript 2.0    
 Graphic Library: WebGL    
-Framework: Angular.js    
 
 ### Server
 С++ 14    
-IDE:  Visual Studio 2017    
+IDE:  Visual Studio 2017 Community   
 
 Using ports
 ----------
@@ -54,9 +72,13 @@ Using ports
 Requirements
 -----------------
 ***OS***: Windows 7, 8, 10  
-***HDD or SDD***: 40MB free space minimum, 100MB recommended  
-***RAM***: 1GB  
+***HDD or SDD***: 200MB free space minimum, 300MB recommended  
+***RAM***: 4GB  
 ***Processor***: Intel Core i5, i7  
+
+Build and Run
+--------------
+Run {YourPath}/aibattlespace/run.bat
 
 Repository
 ----------
