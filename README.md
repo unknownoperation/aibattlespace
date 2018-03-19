@@ -78,7 +78,7 @@ Requirements
 
 Build and Run
 --------------
-Run {YourPath}/aibattlespace/run.bat
+Run {YourPath}/aibattlespace/run.bat and {YourPath}/aibattlespace/builds/run_game_server.bat
 
 Repository
 ----------
