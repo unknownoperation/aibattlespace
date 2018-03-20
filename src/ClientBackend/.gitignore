@@ -1,15 +1,6 @@
-# All files
-*
-
-# Except
-# 1) python code
-!ClientBackend/*.py
-!testDjango/*.py
-
-# 2) html page templates
-!testDjango/templates/testDjango/*.html
-
-# gitignore file
-!.gitignore
-# Even if they are in subdirectories
-!*/
+# Compiled Python scripts
+/.idea
+/venv
+*/__pycache__
+# Data base
+db.sqlite3
