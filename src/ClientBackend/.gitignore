@@ -1,0 +1,6 @@
+# Compiled Python scripts
+/.idea
+/venv
+*/__pycache__
+# Data base
+db.sqlite3
