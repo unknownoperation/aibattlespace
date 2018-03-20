@@ -1,3 +1,2 @@
-#ignore all except gitignore
-*
-!.gitignore
+/Win32
+/x64
