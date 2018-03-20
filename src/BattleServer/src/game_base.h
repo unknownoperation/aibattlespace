@@ -4,11 +4,9 @@
 
 class GAME_BASE {
 public:
-   GAME_BASE  () {}
-   ~GAME_BASE () {}
+   virtual ~GAME_BASE() {}
 
-
-   void GetGameFrameJSON (Json::Value & scene);
-   void RenderNextFrame  (void);
+   virtual void GetInitialData(Json::Value & data) = 0;
+   virtual void GetGameFrameJSON (Json::Value & scene) = 0;
+   virtual void RenderNextFrame  (void) = 0;
 };
-

@@ -1,0 +1,33 @@
+{
+	"chips":                       
+    [
+		  {
+			  "position":[0, 3]
+		  },
+		  {
+			  "position":[7, 7]
+		  },
+		  {
+			  "position":[9, 3]
+		  },
+		  {
+			  "position":[0, 9]
+		  },
+		  {
+			  "position":[5, 0]
+		  }
+		],
+  
+	
+	"players":                       
+    [
+		  {
+			  "ID" : 1,
+			  "position":[5, 0]
+		  },
+		  {
+			  "ID" : 2,
+			  "position":[5, 6]
+		  }
+		]
+}
