@@ -1,6 +1,7 @@
 #include <iostream>
-
 #include <json/json.h>
+
+#define NN_STATIC_LIB
 #include <nn.h>
 #include <pipeline.h>
 
