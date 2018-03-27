@@ -21,7 +21,7 @@ Features
 Rules of commits
 ----------------
 ### Format
->*A short description of the commit, starts with verb in past form staring with capital letter*  
+>*A short description of the commit, starts with verb in past form starting with capital letter*  
 **enumeration of all features in commit, each starts with verb in past form*
 *starting with lowercase letter, separating them with a newline character*  
 **added feature 1*  
