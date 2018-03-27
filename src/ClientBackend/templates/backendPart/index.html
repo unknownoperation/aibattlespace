@@ -3,18 +3,33 @@
   <head>
     <meta charset="utf-8">
     <title>HTML File</title>
-  </head>
-
+  
+	</head>
+	
   <body onload="main()">
     <p>Hello World</p>
+	
     <canvas id="glcanvas" width="640" height="480">
       Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
     </canvas>
-    {% load staticfiles %}
+	
+	<form name = "Send_Data" enctype="multipart/form-data">
+		<b>Name:</b>
+		<textarea name = "Name" rows = 1 cols = 20></textarea>
+		<br><br>   
+		<b>File: </b>
+		<input type = "file" name = "FileName" multiple>
+		<br><br>
+		<input type = "button" value ="Send" onClick="Complete();">
+		<input type = "reset" value = "Reset">
+	</form>
+    
+	{% load staticfiles %}
     <script src="{% static "backendPart/cell.js" %}"></script>
     <script src="{% static "backendPart/parser.js" %}"></script>
     <script src="{% static "backendPart/graphics2d.js" %}"></script>
     <script src="{% static "backendPart/gl-matrix.js" %}"></script>
     <script src="{% static "backendPart/main.js" %}"></script>
+	
   </body>
 </html>
