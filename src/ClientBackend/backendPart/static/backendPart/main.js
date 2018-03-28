@@ -2,7 +2,6 @@
 var graphics = new Graphics2d();
 
 function main() {
-    alert("ti loh");
     graphics.main();
     renderloop();
     window.addEventListener('resize', resizeCanvas, false);
