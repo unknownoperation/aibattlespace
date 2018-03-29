@@ -52,6 +52,17 @@ class Graphics2d {
     resizeDisplay() {
         this.canvas.width = window.innerWidth * this.window_width_aspect;
         this.canvas.height = window.innerHeight * this.window_height_aspect;
+		this.canvas.width = window.innerWidth * this.window_width_aspect;
+		if(this.canvas.width < 300)
+			this.canvas.width = 300;
+		if(this.canvas.width > 1024)
+			this.canvas.width = 1024;
+        this.canvas.height = window.innerHeight * this.window_height_aspect;
+		if(this.canvas.height<300)
+			this.canvas.height = 300;
+		if(this.canvas.height > 640)
+			this.canvas.height = 640;
+        this.drawScene(this.gl, this.programInfo, this.buffers);
         this.drawScene(this.gl, this.programInfo, this.buffers);
         return;
     }
@@ -92,7 +103,7 @@ class Graphics2d {
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-        const fieldOfView = 45 * Math.PI / 180 * (gl.canvas.clientWidth / gl.canvas.clientHeight); 
+        const fieldOfView = 45 * Math.PI / 180 * (gl.canvas.clientHeight / gl.canvas.clientWidth); 
         let aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
         const zNear = 0.1;
         const zFar = 100.0;
