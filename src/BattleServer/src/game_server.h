@@ -1,6 +1,7 @@
 #pragma once
 
 #include "connector.h"
+#include "two_way_connector.h" 
 
 class GAME_BASE;
 
@@ -13,4 +14,5 @@ public:
 
 private:
    GAME_BASE * game;
+   TWO_WAY_CONNECTOR ai_connector;
 };

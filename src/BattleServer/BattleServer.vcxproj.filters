@@ -9,6 +9,7 @@
     </ClCompile>
     <ClCompile Include="src\connector.cpp" />
     <ClCompile Include="src\game_implementation.cpp" />
+    <ClCompile Include="src\two_way_connector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\connector.h" />
@@ -21,6 +22,7 @@
       <Filter>3rd-party\jsoncpp</Filter>
     </ClInclude>
     <ClInclude Include="src\game_implementation.h" />
+    <ClInclude Include="src\two_way_connector.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="3rd-party">
