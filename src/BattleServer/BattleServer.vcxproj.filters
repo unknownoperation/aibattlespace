@@ -2,16 +2,16 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\BattleServer.cpp" />
-    <ClCompile Include="src\сonnector.cpp" />
     <ClCompile Include="src\game_server.cpp" />
     <ClCompile Include="..\..\3rd-party\src\jsoncpp\jsoncpp.cpp">
       <Filter>3rd-party\jsoncpp</Filter>
     </ClCompile>
-    <ClCompile Include="src\connector.cpp" />
     <ClCompile Include="src\game_implementation.cpp" />
+    <ClCompile Include="..\common\two_way_connector.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\connector.h" />
     <ClInclude Include="src\game_base.h" />
     <ClInclude Include="src\game_server.h" />
     <ClInclude Include="..\..\3rd-party\src\jsoncpp\json\json.h">
@@ -21,6 +21,9 @@
       <Filter>3rd-party\jsoncpp</Filter>
     </ClInclude>
     <ClInclude Include="src\game_implementation.h" />
+    <ClInclude Include="..\common\two_way_connector.h">
+      <Filter>common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="3rd-party">
@@ -28,6 +31,9 @@
     </Filter>
     <Filter Include="3rd-party\jsoncpp">
       <UniqueIdentifier>{5bb7892a-adef-44ac-8395-50f29d42589a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{fc72040e-f6a8-4ad2-b936-804cf85a3ced}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
