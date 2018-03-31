@@ -3,7 +3,8 @@
 #include <string>
 #include <vector>
 #include "two_way_connector.h"
-#include "field_base.h"
+
+class FIELD_BASE;
 
 class PLAYER_BASE : private TWO_WAY_CONNECTOR {
 public:

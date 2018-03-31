@@ -6,15 +6,25 @@
 
 #include "two_way_connector.h"
 
-bool TWO_WAY_CONNECTOR::SetConnection(const std::string& url)
+bool TWO_WAY_CONNECTOR::SetConnection(const std::string& url, CONNECTION_TYPE connection_type)
 {
    if ((socket = nn_socket(AF_SP, NN_PAIR)) < 0) {
       error("nn_socket");
       return false;
    }
-   if (nn_connect(socket, url.c_str()) < 0) {
-      error("nn_connect");
-      return false;
+   switch (connection_type) {
+   case CONNECTION_TYPE::bind:
+      if (nn_bind(socket, url.c_str()) < 0) {
+         error("nn_bind");
+         return false;
+      }
+      break;
+   case CONNECTION_TYPE::connect:
+      if (nn_connect(socket, url.c_str()) < 0) {
+         error("nn_connect");
+         return false;
+      }
+      break;
    }
 
    int to = 300000;
@@ -42,11 +52,11 @@ int TWO_WAY_CONNECTOR::SendData(const Json::Value& data)
 Json::Value TWO_WAY_CONNECTOR::ReceiveData(void)
 {
    char *msg = nullptr;
-   std::string data;
    int result = nn_recv(socket, &msg, NN_MSG, 0);
+   Json::Value data;
 
    if (result > 0) {
-      data = msg;
+      Json::Reader().parse(msg, data);
       nn_freemsg(msg);
    }
 

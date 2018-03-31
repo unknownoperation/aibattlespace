@@ -20,21 +20,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\3rd-party\src\jsoncpp\jsoncpp.cpp" />
+    <ClCompile Include="..\common\two_way_connector.cpp" />
     <ClCompile Include="src\BattleServer.cpp" />
-    <ClCompile Include="src\connector.cpp" />
     <ClCompile Include="src\game_implementation.cpp" />
     <ClCompile Include="src\game_server.cpp" />
-    <ClCompile Include="src\two_way_connector.cpp" />
-    <ClCompile Include="src\сonnector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\3rd-party\src\jsoncpp\json\json-forwards.h" />
     <ClInclude Include="..\..\3rd-party\src\jsoncpp\json\json.h" />
-    <ClInclude Include="src\connector.h" />
+    <ClInclude Include="..\common\two_way_connector.h" />
     <ClInclude Include="src\game_base.h" />
     <ClInclude Include="src\game_implementation.h" />
     <ClInclude Include="src\game_server.h" />
-    <ClInclude Include="src\two_way_connector.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -117,7 +114,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../3rd-party/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../common;../../3rd-party/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Ws2_32.lib;mswsock.lib;advapi32.lib;nanomsg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);../../3rd-party/lib/nanomsg/Win32/Debug/nanomsg.lib</AdditionalDependencies>
@@ -129,7 +126,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../3rd-party/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../common;../../3rd-party/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Ws2_32.lib;mswsock.lib;advapi32.lib;nanomsg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);../../3rd-party/lib/nanomsg/x64/Debug/nanomsg.lib</AdditionalDependencies>
@@ -143,7 +140,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../3rd-party/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../common;../../3rd-party/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -159,7 +156,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../3rd-party/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../common;../../3rd-party/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

@@ -8,8 +8,8 @@
 
 void GAME_SERVER::InitSession (void)
 {
-   SetConnection("tcp://127.0.0.1:8001");
-   ai_connector.SetConnection("tcp://127.0.0.1:8000");
+   backend_connector.SetConnection("tcp://127.0.0.1:8001", TWO_WAY_CONNECTOR::CONNECTION_TYPE::bind);
+   ai_connector[0].SetConnection("tcp://127.0.0.1:8000", TWO_WAY_CONNECTOR::CONNECTION_TYPE::bind);
 
    game = new GAME_IMPLEMENTATION();
 }
@@ -18,8 +18,8 @@ void GAME_SERVER::ReleaseSession (void)
 {
    delete game;
 
-   ReleaseConnection();
-   ai_connector.ReleaseConnection();
+   backend_connector.ReleaseConnection();
+   ai_connector[0].ReleaseConnection();
 }
 
 void GAME_SERVER::ServerLoop (void)
@@ -27,19 +27,19 @@ void GAME_SERVER::ServerLoop (void)
 	Json::Value init;
 
 	game->GetInitialData(init);
-	SendGameFrameJSON(init);
-   ai_connector.SendData(init);
-   init = ai_connector.ReceiveData();
+   backend_connector.SendData(init);
+   ai_connector[0].SendData(init);
+   init = ai_connector[0].ReceiveData();
    while (true) {
       Json::Value json;
 
       game->RenderNextFrame();
       game->GetGameFrameJSON(json);
 
-      SendGameFrameJSON(json);
-      ai_connector.SendData(json);
-      json = ai_connector.ReceiveData();
-      std::cout << "Received from AI" << std::endl << json.asString() << std::endl;
+      backend_connector.SendData(json);
+      ai_connector[0].SendData(json);
+      json = ai_connector[0].ReceiveData();
+      std::cout << "Received from AI" << std::endl << Json::StyledWriter().write(json) << std::endl;
       Sleep(2000);
    }
 }

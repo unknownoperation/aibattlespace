@@ -20,17 +20,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\3rd-party\src\jsoncpp\jsoncpp.cpp" />
+    <ClCompile Include="..\..\common\two_way_connector.cpp" />
     <ClCompile Include="src\AILib.cpp" />
     <ClCompile Include="src\field_implementation.cpp" />
-    <ClCompile Include="src\two_way_connector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\3rd-party\src\jsoncpp\json\json-forwards.h" />
     <ClInclude Include="..\..\..\3rd-party\src\jsoncpp\json\json.h" />
+    <ClInclude Include="..\..\common\two_way_connector.h" />
     <ClInclude Include="src\AILib.h" />
     <ClInclude Include="src\field_base.h" />
     <ClInclude Include="src\field_implementation.h" />
-    <ClInclude Include="src\two_way_connector.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -116,7 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../../3rd-party/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../common;../../../3rd-party/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -131,7 +131,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../../3rd-party/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../common;../../../3rd-party/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -148,7 +148,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../../3rd-party/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../common;../../../3rd-party/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -167,7 +167,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../../3rd-party/include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../common;../../../3rd-party/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
