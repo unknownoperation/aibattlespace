@@ -6,10 +6,12 @@
     <ClCompile Include="..\..\3rd-party\src\jsoncpp\jsoncpp.cpp">
       <Filter>3rd-party\jsoncpp</Filter>
     </ClCompile>
-    <ClCompile Include="src\game_implementation.cpp" />
-    <ClCompile Include="..\common\two_way_connector.cpp">
+    <ClCompile Include="src\field.cpp" />
+    <ClCompile Include="src\game_pick.cpp" />
+    <ClCompile Include="..\Common\two_way_connector.cpp">
       <Filter>common</Filter>
     </ClCompile>
+    <ClCompile Include="src\game_common.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game_base.h" />
@@ -20,8 +22,10 @@
     <ClInclude Include="..\..\3rd-party\src\jsoncpp\json\json-forwards.h">
       <Filter>3rd-party\jsoncpp</Filter>
     </ClInclude>
-    <ClInclude Include="src\game_implementation.h" />
-    <ClInclude Include="..\common\two_way_connector.h">
+    <ClInclude Include="src\field.h" />
+    <ClInclude Include="src\game_common.h" />
+    <ClInclude Include="src\game_pick.h" />
+    <ClInclude Include="..\Common\two_way_connector.h">
       <Filter>common</Filter>
     </ClInclude>
   </ItemGroup>

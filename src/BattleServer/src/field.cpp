@@ -1,43 +1,64 @@
-#include "field_implementation.h"
+#include <time.h>
+#include <stack>
+#include <iostream>
+#include <assert.h>
 
-void FIELD_IMPLEMENTATION::GenerateGameMap(int height, int width)
+#include "field.h"
+
+
+struct CELL {
+   CELL_TYPE type;
+   bool isVisited;
+   int position;
+
+   CELL(CELL_TYPE newType, int pos) : type(newType), isVisited(false), position(pos) {}
+};
+
+
+CELL_TYPE FIELD::Get (int i, int j) const
 {
-    std::srand(time(0));
+   assert(i + j * width < field.size());
+   return field[i + j * width];
+}
+
+void FIELD::GenerateGameMap(int h, int w)
+{
+    std::srand(30);
 
     std::vector <CELL> lab;
     int spaceCount = 0;
 
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
             if (i % 2 == 0 || j % 2 == 0) {
-                lab.push_back(CELL(CELL_TYPE::barrier, i * width + j));
+                lab.push_back(CELL(CELL_TYPE::barrier, i * w + j));
             } else {
-                lab.push_back(CELL(CELL_TYPE::space, i * width + j));
+                lab.push_back(CELL(CELL_TYPE::space, i * w + j));
                 spaceCount++;
             }
         }
     }
 
-    lab[width + 1].isVisited = true;
+    lab[w + 1].isVisited = true;
     int count                = 1;
-    int pos                  = width + 1;
+    int pos                  = w + 1;
 
     std::stack<CELL> cellStack;
     
     while (count != spaceCount) {
         std::vector<int> freeCellIdx;
         
-        if (((pos / width) - ((pos + 2) / width) == 0 && !lab[pos + 2].isVisited)) {
+        if (((pos / w) - ((pos + 2) / w) == 0 && !lab[pos + 2].isVisited)) {
             freeCellIdx.push_back(pos + 2);
         }
-        if (((pos / width) - ((pos - 2) / width) == 0 && !lab[pos - 2].isVisited)) {
+        if (((pos / w) - ((pos - 2) / w) == 0 && !lab[pos - 2].isVisited)) {
             freeCellIdx.push_back(pos - 2);
         }
-        if ((pos + 2 * width < width * (height - 1) && !lab[pos + 2 * width].isVisited)) {
-            freeCellIdx.push_back(pos + 2 * width);
+        if ((pos + 2 * w < w * (h - 1) && !lab[pos + 2 * w].isVisited)) {
+            freeCellIdx.push_back(pos + 2 * w);
         }
-        if ((pos - 2 * width > width && !lab[pos - 2 * width].isVisited)) {
-            freeCellIdx.push_back(pos - 2 * width);
+        if ((pos - 2 * w > w && !lab[pos - 2 * w].isVisited)) {
+            freeCellIdx.push_back(pos - 2 * w);
         }
         if (freeCellIdx.size() != 0) {
             cellStack.push(lab[pos]);
@@ -47,10 +68,10 @@ void FIELD_IMPLEMENTATION::GenerateGameMap(int height, int width)
                 lab[pos + 1].type = CELL_TYPE::space;
             } else if (nextPos == pos - 2) {
                 lab[pos - 1].type = CELL_TYPE::space;
-            } else if (nextPos == pos - 2 * width) {
-                lab[pos - width].type = CELL_TYPE::space;
-            } else if (nextPos == pos + 2 * width) {
-                lab[pos + width].type = CELL_TYPE::space;
+            } else if (nextPos == pos - 2 * w) {
+                lab[pos - w].type = CELL_TYPE::space;
+            } else if (nextPos == pos + 2 * w) {
+                lab[pos + w].type = CELL_TYPE::space;
             }
 
             pos = nextPos;
@@ -67,9 +88,9 @@ void FIELD_IMPLEMENTATION::GenerateGameMap(int height, int width)
         freeCellIdx.clear();
     }
 
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            switch (lab[width * i + j].type) {
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            switch (lab[w * i + j].type) {
             case CELL_TYPE::barrier:
                 std::cout << "1 ";
                 break;
