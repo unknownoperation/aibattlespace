@@ -8,11 +8,15 @@
 	
   <body onload="main()">
     <p>Hello World</p>
-	
-    <canvas id="glcanvas" width="640" height="480">
-      Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
-    </canvas>
-	
+	<div class="container" style="position:relative">
+		<canvas id="glcanvas"  style="position:absolute; top:150px; left:0; z-index:1" width="640" height="480">
+		  Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
+		</canvas>
+		<canvas id="text" style="position:absolute; top:150px; left:0; z-index:2" width="640" height="480">
+			Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
+		</canvas>
+	</div>
+
 	<form name = "Send_Data" enctype="multipart/form-data">
 		<b>Name:</b>
 		<textarea name = "Name" rows = 1 cols = 20></textarea>

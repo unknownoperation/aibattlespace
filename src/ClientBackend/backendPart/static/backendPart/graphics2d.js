@@ -1,10 +1,13 @@
 class Graphics2d {
 
     constructor() {
+        // получаем ссылку на canvas с текстом
+        this.textCanvas = document.getElementById("text");
+        this.ctx = this.textCanvas.getContext("2d");
         this.canvas = document.querySelector('#glcanvas');
+        this.gl = this.canvas.getContext('webgl');
         this.window_width_aspect = this.canvas.width / window.innerWidth;
         this.window_height_aspect = this.canvas.height / window.innerHeight;
-        this.gl = this.canvas.getContext('webgl');
         this.vsSource = `
             attribute vec4 aVertexPosition;
             uniform mat4 uModelViewMatrix;
@@ -18,7 +21,6 @@ class Graphics2d {
         this.fsSource = `
             precision highp float;  
             uniform vec3 color;
-            
             void main() {
                    gl_FragColor = vec4(color.r,color.g,color.b, 1.0);
             }
@@ -34,7 +36,7 @@ class Graphics2d {
             uniformLocations: {
                 projectionMatrix: this.gl.getUniformLocation(this.shaderProgram, 'uProjectionMatrix'),
                 modelViewMatrix: this.gl.getUniformLocation(this.shaderProgram, 'uModelViewMatrix'),
-                color: this.gl.getUniformLocation(this.shaderProgram, 'color')
+                color: this.gl.getUniformLocation(this.shaderProgram, 'color'),
             },
         };
 
@@ -102,6 +104,7 @@ class Graphics2d {
         gl.depthFunc(gl.LEQUAL);            
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+        this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 
         const fieldOfView = 45 * Math.PI / 180 * (gl.canvas.clientHeight / gl.canvas.clientWidth); 
         let aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
@@ -146,8 +149,6 @@ class Graphics2d {
             aspect,
             zNear,
             zFar);
-
-
         mat4.translate(this.modelViewMatrix,   
             this. modelViewMatrix,     
             [-1.0, -1.0, -5]);  
@@ -196,6 +197,25 @@ class Graphics2d {
                     const vertexCount = 4;
                     gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
                 }
+            }
+        }
+        //this.objects.game_stage = "compliting";
+        switch(this.objects.game_stage) {
+            case "running": {
+                this.ctx.fillText("state: " + this.objects.game_stage, 300, 40);
+                this.ctx.fillText("player " + this.objects.players[0].ID, 50, 350);
+                this.ctx.fillText("points " + this.objects.players[0].points, 50, 360);
+                this.ctx.fillText("player " + this.objects.players[1].ID, 550, 350);
+                this.ctx.fillText("points " + this.objects.players[1].points, 550, 360);
+                break;
+            }
+            case "compliting":
+            {
+                this.ctx.fillStyle = "rgba(127,127,127,0.5)";
+                this.ctx.fillRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
+                this.ctx.fillStyle = "rgba(255,0,0,1)";
+                for(let i = 0; i < this.objects.winner.length;i++)
+                    this.ctx.fillText("Player " + this.objects.winner[0] + " wins", 260, 240+10*i);
             }
         }
         return;
