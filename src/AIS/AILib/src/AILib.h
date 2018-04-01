@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "two_way_connector.h"
+#include "game_common.h"
 
 class FIELD_BASE;
 
@@ -13,38 +14,12 @@ public:
 
    FIELD_BASE* GetField();
    void GetData();
-   enum class DIRECTION {
-      up = 0,
-      right,
-      down,
-      left
-   };
-   const std::vector<std::string> directions = {
-   "UP",
-   "RIGHT",
-   "DOWN",
-   "LEFT"
-   };
    class UNIT_RESPONSE {
    public:
       int id;
       DIRECTION direction;
    };
    void SendData(std::vector<UNIT_RESPONSE> data);
-   enum class GAME_STAGE {
-      connecting = 0,
-      starting,
-      running,
-      result,
-      compliting
-   };
-   const std::vector<std::string> stages{
-      "connecting",
-      "starting",
-      "running",
-      "result",
-      "compliting"
-   };
    GAME_STAGE GetGameStage();
 private:
    std::string serverAdress;
