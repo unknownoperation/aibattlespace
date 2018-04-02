@@ -1,3 +1,8 @@
+#include <stack>
+#include <iostream>
+#include <time.h>
+#include <vector>
+
 #include "field_generator.h"
 
 
@@ -95,6 +100,6 @@ void GenerateGameMap(int h, int w, FIELD & fld)
 
 
     for (CELL & i : lab) {
-       field.push_back(i.type);
+       fld.field.push_back(i.type);
     }
 }

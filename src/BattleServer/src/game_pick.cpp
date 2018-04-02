@@ -2,6 +2,7 @@
 #include <algorithm>
 
 #include "game_pick.h"
+#include "field_generator.h"
 
 
 PLAYER::PLAYER(std::vector<PNT> startPos, int id)
@@ -17,7 +18,7 @@ PLAYER::PLAYER(std::vector<PNT> startPos, int id)
 GAME_IMPLEMENTATION::GAME_IMPLEMENTATION()
 {
    // Create game map
-   gameMap.GenerateGameMap(FIELD_SIZE, FIELD_SIZE);
+   GenerateGameMap(FIELD_SIZE, FIELD_SIZE, gameMap);
    // Initialize players and their unit positions
    std::vector<PNT> startPos1{ PNT(1, 1) }; // 1 1 move to define
    PLAYER player1 = PLAYER(startPos1, 1);
@@ -39,36 +40,13 @@ void GAME_IMPLEMENTATION::GetInitialData(Json::Value & data)  // TODO: use funct
    data["field"]["height"] = 10;
    data["field"]["width"] = 10;
 
-   data["obstruction"][0]["type"] = "barrier";
-   data["obstruction"][0]["position"][0] = 1;
-   data["obstruction"][0]["position"][1] = 1;
-   data["obstruction"][1]["type"] = "barrier";
-   data["obstruction"][1]["position"][0] = 1;
-   data["obstruction"][1]["position"][1] = 2;
-   data["obstruction"][2]["type"] = "barrier";
-   data["obstruction"][2]["position"][0] = 1;
-   data["obstruction"][2]["position"][1] = 4;
-   data["obstruction"][3]["type"] = "barrier";
-   data["obstruction"][3]["position"][0] = 1;
-   data["obstruction"][3]["position"][1] = 6;
-   data["obstruction"][4]["type"] = "barrier";
-   data["obstruction"][4]["position"][0] = 1;
-   data["obstruction"][4]["position"][1] = 7;
-   data["obstruction"][5]["type"] = "barrier";
-   data["obstruction"][5]["position"][0] = 1;
-   data["obstruction"][5]["position"][1] = 8;
-   data["obstruction"][6]["type"] = "barrier";
-   data["obstruction"][6]["position"][0] = 2;
-   data["obstruction"][6]["position"][1] = 1;
-   data["obstruction"][7]["type"] = "barrier";
-   data["obstruction"][7]["position"][0] = 2;
-   data["obstruction"][7]["position"][1] = 2;
-   data["obstruction"][8]["type"] = "barrier";
-   data["obstruction"][8]["position"][0] = 3;
-   data["obstruction"][8]["position"][1] = 4;
-   data["obstruction"][9]["type"] = "barrier";
-   data["obstruction"][9]["position"][0] = 3;
-   data["obstruction"][9]["position"][1] = 6;
+   int gameMapSize = gameMap.height * gameMap.width;
+   for (int i = 0; i < gameMapSize; i++)
+   {
+      data["obstruction"][i]["type"] = "barrier";
+      data["obstruction"][i]["position"][0] = GetDirStr(DIRECTION(gameMap.Get(i, 0)));
+      data["obstruction"][i]["position"][1] = GetDirStr(DIRECTION(gameMap.Get(i, 0)));
+   }
 
    data["key"] = "57fa30ff";
 }
@@ -78,23 +56,12 @@ void GAME_IMPLEMENTATION::GetGameFrameJSON(Json::Value & scene) // TODO: use fun
    scene["time"] = time;
    scene["game_stage"] = stages[gameStage];
 
-   scene["chips"][0]["position"][0] = 0;
-   scene["chips"][0]["position"][1] = 3;
-   scene["chips"][1]["position"][0] = 7;
-   scene["chips"][1]["position"][1] = 7;
-   scene["chips"][2]["position"][0] = 9;
-   scene["chips"][2]["position"][1] = 3;
-   scene["chips"][3]["position"][0] = 0;
-   scene["chips"][3]["position"][1] = 9;
-   scene["chips"][4]["position"][0] = 5;
-   scene["chips"][4]["position"][1] = 0;
+   for (int i = 0; i < chips.size(); ++i)
+   {
+      scene["chips"][i]["position"][0] = chips[i].x;
+      scene["chips"][i]["position"][1] = chips[i].y;
+   }
 
-   scene["players"][0]["ID"] = 1;
-   scene["players"][0]["position"][0] = 5;
-   scene["players"][0]["position"][1] = 0;
-   scene["players"][1]["ID"] = 2;
-   scene["players"][1]["position"][0] = 5;
-   scene["players"][1]["position"][1] = 6;
 }
 
 std::vector<std::vector<DIRECTION>> GAME_IMPLEMENTATION::ParseJsonFromAI (void) // TODO: check this
@@ -104,13 +71,13 @@ std::vector<std::vector<DIRECTION>> GAME_IMPLEMENTATION::ParseJsonFromAI (void) 
    // AI1
    for (unsigned int i = 0; i < jsonFromAi[0]["AI"].size(); ++i)
    {
-      moveDirs[i].push_back(GetDir(jsonFromAi[0]["AI"][i]["direction"].asCString()));
+      moveDirs[i].push_back(GetDirEnum(jsonFromAi[0]["AI"][i]["direction"].asCString()));
    }
 
    // AI2
    for (unsigned int i = 0; i < jsonFromAi[1]["AI"].size(); ++i)
    {
-      moveDirs[i].push_back(GetDir(jsonFromAi[1]["AI"][i]["direction"].asCString()));
+      moveDirs[i].push_back(GetDirEnum(jsonFromAi[1]["AI"][i]["direction"].asCString()));
    }
    return moveDirs;
 }

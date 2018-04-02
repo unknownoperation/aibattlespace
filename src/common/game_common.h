@@ -17,7 +17,7 @@
    std::string GetDirStr(const DIRECTION & dir);
 
 
-   enum class GAME_STAGE {
+   enum GAME_STAGE {
       connecting = 0,
       starting,
       running,

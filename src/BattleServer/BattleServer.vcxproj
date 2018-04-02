@@ -20,20 +20,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\3rd-party\src\jsoncpp\jsoncpp.cpp" />
+    <ClCompile Include="..\common\field.cpp" />
+    <ClCompile Include="..\common\game_common.cpp" />
     <ClCompile Include="..\Common\two_way_connector.cpp" />
     <ClCompile Include="src\BattleServer.cpp" />
-    <ClCompile Include="src\field.cpp" />
-    <ClCompile Include="src\game_common.cpp" />
+    <ClCompile Include="src\field_generator.cpp" />
     <ClCompile Include="src\game_pick.cpp" />
     <ClCompile Include="src\game_server.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\3rd-party\src\jsoncpp\json\json-forwards.h" />
     <ClInclude Include="..\..\3rd-party\src\jsoncpp\json\json.h" />
+    <ClInclude Include="..\common\field.h" />
+    <ClInclude Include="..\common\game_common.h" />
     <ClInclude Include="..\Common\two_way_connector.h" />
-    <ClInclude Include="src\field.h" />
+    <ClInclude Include="src\field_generator.h" />
     <ClInclude Include="src\game_base.h" />
-    <ClInclude Include="src\game_common.h" />
     <ClInclude Include="src\game_pick.h" />
     <ClInclude Include="src\game_server.h" />
   </ItemGroup>
