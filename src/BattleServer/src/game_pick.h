@@ -14,13 +14,6 @@ const static int WINNIG_SCORE = 3;
 const static int FIELD_SIZE = 10;
 const static int POINTS_PER_CHIP = 1;
 
-class UNIT : public PNT {
-public:
-   UNIT(PNT point, int id);
-   void Move(DIRECTION dir, FIELD gameMap);
-private:
-   int id;
-};
 
 class PLAYER {
 public:

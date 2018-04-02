@@ -1,9 +1,4 @@
-#include <time.h>
-#include <stack>
-#include <iostream>
-#include <assert.h>
-
-#include "field.h"
+#include "field_generator.h"
 
 
 struct CELL {
@@ -15,14 +10,10 @@ struct CELL {
 };
 
 
-CELL_TYPE FIELD::Get (int i, int j) const
-{
-   assert(i + j * width < field.size());
-   return field[i + j * width];
-}
 
-void FIELD::GenerateGameMap(int h, int w)
+void GenerateGameMap(int h, int w, FIELD & fld) 
 {
+   
     std::srand(30);
 
     std::vector <CELL> lab;

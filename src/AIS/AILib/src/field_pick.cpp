@@ -1,37 +1,38 @@
-#include "json_manager.h"
+#include <json\json.h>
 
-void JSON_MANAGER::ParseinitialData(const Json::Value & data)
+#include "field_pick.h"
+
+void FIELD_MANAGER::ParseinitialData(const Json::Value & data)
 {
-	basic_field.resize(data["field"]["height"].asInt());
-	for (int i = 0; i < basic_field.size(); ++i) {
-		basic_field[i].resize(data["field"]["width"].asInt());
-		for (int j = 0; j < basic_field[i].size(); ++j) {
-			basic_field[i][j] = CELL_TYPE::space;
-		}
-	}
-	for (int i = 0; i < data["obstruction"].size(); ++i) {
-		basic_field[data["obstruction"][i]["position"][0].asInt()][data["obstruction"][i]["position"][1].asInt()] = CELL_TYPE::barrier;
-	}
-	field = basic_field;
+  /* field.resize(data["field"]["height"].asInt());
+   for (int i = 0; i < field.size(); ++i) {
+      field[i].resize(data["field"]["width"].asInt());
+      for (int j = 0; j < field[i].size(); ++j) {
+         field[i][j] = CELL_TYPE::space;
+      }
+   }
+   for (unsigned int i = 0; i < data["obstruction"].size(); ++i) {
+      field[data["obstruction"][i]["position"][0].asInt()][data["obstruction"][i]["position"][1].asInt()] = CELL_TYPE::barrier;
+   }*/
+   // fix from [][] to []
 }
 
-void JSON_MANAGER::ParseData(const Json::Value & data)
+void FIELD_MANAGER::ParseData(const Json::Value & data)
 {
-	field = basic_field;
-	time = data["time"].asDouble();
-	for (int i = 0; i < data["chips"].size(); ++i) {
-		field[data["chips"]["position"][0].asInt()][data["chips"]["position"][1].asInt()] = CELL_TYPE::chips;
-	}
-	units.clear();
-	for (int i = 0; i < data["players"].size(); ++i) {
-		units.push_back(UNIT{
-			data["players"][i]["ID"].asInt(),
-			data["players"][i]["position"][0].asInt(),
-			data["players"][i]["position"][1].asInt() });
-	}
+   time = data["time"].asDouble();
+   for (unsigned int i = 0; i < data["chips"].size(); ++i) {
+      field.Get(data["chips"]["position"][0].asInt(), data["chips"]["position"][1].asInt()) = CELL_TYPE::chip;
+   }
+   units.clear();
+   for (unsigned int i = 0; i < data["players"].size(); ++i) {
+      units.push_back(UNIT(
+         PNT(data["players"][i]["position"][0].asInt(),
+         data["players"][i]["position"][1].asInt()),
+         data["players"][i]["ID"].asInt()));
+   }
 }
 
-Json::Value JSON_MANAGER::GetData()
+Json::Value FIELD_MANAGER::GetData()
 {
-	return Json::Value();
+   return Json::Value();
 }

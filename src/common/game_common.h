@@ -12,10 +12,12 @@
       none
    };
 
-   DIRECTION GetDir (const std::string & str);
+   DIRECTION GetDirEnum(const std::string & str);
+
+   std::string GetDirStr(const DIRECTION & dir);
 
 
-   enum GAME_STAGE {
+   enum class GAME_STAGE {
       connecting = 0,
       starting,
       running,
@@ -40,4 +42,18 @@
     enum class CELL_TYPE {
        space = 0,
        barrier,
+       chip
     };
+
+    class FIELD;
+
+class UNIT : public PNT {
+public:
+   UNIT(PNT point, int id);
+   void Move(DIRECTION dir, FIELD gameMap);
+private:
+   int id;
+};
+
+
+

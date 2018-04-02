@@ -3,12 +3,6 @@
 
 #include "game_pick.h"
 
-UNIT::UNIT(PNT point, int id)
-{
-   x = point.x;
-   y = point.y;
-   id = id;
-}
 
 PLAYER::PLAYER(std::vector<PNT> startPos, int id)
 {
@@ -121,33 +115,6 @@ std::vector<std::vector<DIRECTION>> GAME_IMPLEMENTATION::ParseJsonFromAI (void) 
    return moveDirs;
 }
 
-void UNIT::Move(DIRECTION dir, FIELD gameMap) // TODO check maybe need to invert Y
-{
-   PNT newCoord = PNT(this->x, this->y);
-   switch (dir)
-   {
-
-   case DIRECTION::up:
-      newCoord.y++;
-      break;
-   case DIRECTION::down:
-      newCoord.y--;
-      break;
-   case DIRECTION::left:
-      newCoord.x--;
-      break;
-   case DIRECTION::right:
-      newCoord.x++;
-      break;
-   case DIRECTION::none:
-      break;
-   }
-   if (!gameMap.isBarrier(newCoord)) // do movement if possible
-   {
-      this->x = newCoord.x; // Refactor
-      this->y = newCoord.y;
-   }
-}
 
 void PLAYER::Move(std::vector<DIRECTION> dirs, FIELD gameMap)
 {
