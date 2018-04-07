@@ -21,11 +21,9 @@ Features
 Rules of commits
 ----------------
 ### Format
-
->*A short content of the commit*  
-**enumeration of all features in commit*  
-*using past form and separating*   
-*them with a newline character*  
+>*A short description of the commit, starts with verb in past form starting with capital letter*  
+**enumeration of all features in commit, each starts with verb in past form*
+*starting with lowercase letter, separating them with a newline character*  
 **added feature 1*  
 **fixed some code*  
 **refactored some scope*
@@ -44,16 +42,12 @@ pip install django==2.0.2
 ```
 Install [Visual Studio 2017 Community](https://www.visualstudio.com/ru/thank-you-downloading-visual-studio/?sku=Community&rel=15)
 
-Add path to required dll's in Debugging/Enviroment for each configuration and platform
-PATH=%PATH%;..\..\3rd-party\lib\nanomsg\Win32\Debug\ 
-PATH=%PATH%;..\..\3rd-party\lib\nanomsg\Win32\Release\ 
-PATH=%PATH%;..\..\3rd-party\lib\nanomsg\x64\Debug\ 
-PATH=%PATH%;..\..\3rd-party\lib\nanomsg\x64\Release\
+Add path to python.exe to Environment Variables on Windows
 
 Program components
 -------------------
 ### Backend
-Python -  version 3.5.1    
+[Python](https://www.python.org/downloads/release/python-351/)  -  version 3.5.1
 Django - version 2.0.2  
 
 ### Frontend
@@ -62,7 +56,7 @@ Graphic Library: WebGL
 
 ### Server
 С++ 14    
-IDE:  Visual Studio 2017 Community   
+IDE:  [Visual Studio 2017 Community](https://www.visualstudio.com/ru/thank-you-downloading-visual-studio/?sku=Community&rel=15)
 
 Using ports
 ----------
@@ -78,11 +72,13 @@ Requirements
 
 Build and Run
 --------------
-Run {YourPath}/aibattlespace/run.bat and {YourPath}/aibattlespace/builds/run_game_server.bat
+<p>Rebuild all projects in BattleServer solution</p>
+<p>Run {YourPath}/aibattlespace/builds/run_game_server.bat</p>
+<p>Run {YourPath}/aibattlespace/src/ClientBackend/run_backend.bat</p>
 
 Repository
 ----------
-| Github | [https://github.com/unknownoperation/aibattlespace] |
+Github repository: [aibattlespace](https://github.com/unknownoperation/aibattlespace)
 
 Development team
 ----------------
@@ -93,5 +89,3 @@ Development team
 - Yulya Sidorina
 - Ekaterina Priymak 
 - Sofia Kevlia
-
-
