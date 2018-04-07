@@ -19,58 +19,56 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\3rd-party\src\jsoncpp\jsoncpp.cpp" />
-    <ClCompile Include="..\common\field.cpp" />
-    <ClCompile Include="..\common\game_common.cpp" />
-    <ClCompile Include="..\Common\two_way_connector.cpp" />
-    <ClCompile Include="src\BattleServer.cpp" />
-    <ClCompile Include="src\field_generator.cpp" />
-    <ClCompile Include="src\game_pick.cpp" />
-    <ClCompile Include="src\game_server.cpp" />
+    <ClCompile Include="..\..\..\3rd-party\src\jsoncpp\jsoncpp.cpp" />
+    <ClCompile Include="..\..\common\field.cpp" />
+    <ClCompile Include="..\..\common\game_common.cpp" />
+    <ClCompile Include="..\..\common\two_way_connector.cpp" />
+    <ClCompile Include="src\AILib.cpp" />
+    <ClCompile Include="src\field_pick.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\3rd-party\src\jsoncpp\json\json-forwards.h" />
-    <ClInclude Include="..\..\3rd-party\src\jsoncpp\json\json.h" />
-    <ClInclude Include="..\common\field.h" />
-    <ClInclude Include="..\common\game_common.h" />
-    <ClInclude Include="..\Common\two_way_connector.h" />
-    <ClInclude Include="src\field_generator.h" />
-    <ClInclude Include="src\game_base.h" />
-    <ClInclude Include="src\game_pick.h" />
-    <ClInclude Include="src\game_server.h" />
+    <ClInclude Include="..\..\..\3rd-party\src\jsoncpp\json\json-forwards.h" />
+    <ClInclude Include="..\..\..\3rd-party\src\jsoncpp\json\json.h" />
+    <ClInclude Include="..\..\common\field.h" />
+    <ClInclude Include="..\..\common\game_common.h" />
+    <ClInclude Include="..\..\common\two_way_connector.h" />
+    <ClInclude Include="src\AILib.h" />
+    <ClInclude Include="src\field_base.h" />
+    <ClInclude Include="src\field_pick.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{A4225C26-19A0-4D5D-B51E-5F341E44E454}</ProjectGuid>
-    <RootNamespace>BattleServer</RootNamespace>
+    <ProjectGuid>{8EF4109E-BEA1-42A8-A775-0E7637D125BA}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>AILib</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -90,84 +88,96 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\builds\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>..\..\builds\$(Platform)\$(Configuration)\</IntDir>
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>../../3rd-party/lib/nanomsg/x64/Debug;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>..\..\builds\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>..\..\builds\$(Platform)\$(Configuration)\</IntDir>
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>../../3rd-party/lib/nanomsg/x64/Release;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\..\builds\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>..\..\builds\$(Platform)\$(Configuration)\</IntDir>
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>../../3rd-party/lib/nanomsg/Win32/Debug;$(LibraryPath)</LibraryPath>
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\..\builds\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\builds\$(Platform)\$(Configuration)\AILIB</IntDir>
+    <LibraryPath>..\..\..\3rd-party\lib\nanomsg\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\..\builds\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\builds\$(Platform)\$(Configuration)\AILIB</IntDir>
+    <LibraryPath>..\..\..\3rd-party\lib\nanomsg\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\..\builds\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>..\..\builds\$(Platform)\$(Configuration)\</IntDir>
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>../../3rd-party/lib/nanomsg/Win32/Release;$(LibraryPath)</LibraryPath>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\..\builds\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\builds\$(Platform)\$(Configuration)\AILIB</IntDir>
+    <LibraryPath>..\..\..\3rd-party\lib\nanomsg\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\..\builds\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\builds\$(Platform)\$(Configuration)\AILIB</IntDir>
+    <LibraryPath>..\..\..\3rd-party\lib\nanomsg\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../3rd-party/include;../Common;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../3rd-party/include;../../Common;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Ws2_32.lib;mswsock.lib;advapi32.lib;nanomsg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);../../3rd-party/lib/nanomsg/Win32/Debug/nanomsg.lib</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../3rd-party/include;../Common;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../3rd-party/include;../../Common;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Ws2_32.lib;mswsock.lib;advapi32.lib;nanomsg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);../../3rd-party/lib/nanomsg/x64/Debug/nanomsg.lib</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../3rd-party/include;../Common;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../3rd-party/include;../../Common;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>Ws2_32.lib;mswsock.lib;advapi32.lib;nanomsg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);../../3rd-party/lib/nanomsg/Win32/Release/nanomsg.lib</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../3rd-party/include;../Common;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../3rd-party/include;../../Common;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>Ws2_32.lib;mswsock.lib;advapi32.lib;nanomsg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);../../3rd-party/lib/nanomsg/x64/Release/nanomsg.lib</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

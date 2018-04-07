@@ -51,7 +51,7 @@ def getGameMapJson(request):
     readed, data = readFromSocket(blockSize)
     if not readed:
         data = readDirectlyFromFile(fileName)
-    return HttpResponse(data, content_type='application/json')
+    return HttpResponse(json.dumps(data), content_type='application/json')
 
 
 def getObjectsJson(request):
@@ -61,4 +61,4 @@ def getObjectsJson(request):
     readed, data = readFromSocket(blockSize)
     if not readed:
         data = readDirectlyFromFile(fileName)
-    return HttpResponse(data, content_type='application/json')
+    return HttpResponse(json.dumps(data), content_type='application/json')
