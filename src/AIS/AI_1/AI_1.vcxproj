@@ -80,25 +80,25 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\..\..\builds\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>..\..\..\builds\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir>..\..\..\builds\$(Platform)\$(Configuration)\AI1</IntDir>
     <LibraryPath>..\..\..\builds\$(Platform)\$(Configuration)\;..\..\..\3rd-party\lib\nanomsg\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\..\..\builds\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>..\..\..\builds\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir>..\..\..\builds\$(Platform)\$(Configuration)\AI1</IntDir>
     <LibraryPath>..\..\..\builds\$(Platform)\$(Configuration)\;..\..\..\3rd-party\lib\nanomsg\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\..\..\builds\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>..\..\..\builds\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir>..\..\..\builds\$(Platform)\$(Configuration)\AI1</IntDir>
     <LibraryPath>..\..\..\builds\$(Platform)\$(Configuration)\;..\..\..\3rd-party\lib\nanomsg\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\..\..\builds\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>..\..\..\builds\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir>..\..\..\builds\$(Platform)\$(Configuration)\AI1</IntDir>
     <LibraryPath>..\..\..\builds\$(Platform)\$(Configuration)\;..\..\..\3rd-party\lib\nanomsg\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -108,7 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../common;../AILib/src;../../../3rd-party/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../AILib/src;../../Common;../../../3rd-party/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -123,7 +123,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../common;../AILib/src;../../../3rd-party/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../AILib/src;../../Common;../../../3rd-party/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -140,7 +140,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../common;../AILib/src;../../../3rd-party/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../AILib/src;../../Common;../../../3rd-party/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -159,7 +159,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../common;../AILib/src;../../../3rd-party/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../AILib/src;../../Common;../../../3rd-party/include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

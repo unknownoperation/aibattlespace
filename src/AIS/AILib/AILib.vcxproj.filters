@@ -2,18 +2,23 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\AILib.cpp" />
-    <ClCompile Include="src\field_implementation.cpp" />
     <ClCompile Include="..\..\..\3rd-party\src\jsoncpp\jsoncpp.cpp">
       <Filter>3rd-party\jsoncpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\common\two_way_connector.cpp">
       <Filter>common</Filter>
     </ClCompile>
+    <ClCompile Include="src\field_pick.cpp" />
+    <ClCompile Include="..\..\common\game_common.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\field.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AILib.h" />
     <ClInclude Include="src\field_base.h" />
-    <ClInclude Include="src\field_implementation.h" />
     <ClInclude Include="..\..\..\3rd-party\src\jsoncpp\json\json.h">
       <Filter>3rd-party\jsoncpp</Filter>
     </ClInclude>
@@ -21,6 +26,13 @@
       <Filter>3rd-party\jsoncpp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\common\two_way_connector.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\field_pick.h" />
+    <ClInclude Include="..\..\common\game_common.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\field.h">
       <Filter>common</Filter>
     </ClInclude>
   </ItemGroup>
