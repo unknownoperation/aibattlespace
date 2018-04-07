@@ -1,20 +1,21 @@
 #pragma once
-#include <vector>
 
-   enum DIRECTION {
+#include <vector>
+#include <string>
+
+
+   enum class DIRECTION {
       up = 0,
       right,
       down,
       left,
-			none
+      none
    };
-   const std::vector<std::string> directions = {
-		 "UP",
-		 "RIGHT",
-		 "DOWN",
-		 "LEFT",
-		 "NONE"
-   };
+
+   DIRECTION GetDirEnum(const std::string & str);
+
+   std::string GetDirStr(const DIRECTION & dir);
+
 
    enum GAME_STAGE {
       connecting = 0,
@@ -31,14 +32,28 @@
       "compliting"
    };
 
-	 class POINT {
-	 public:
-		 POINT();
-		 POINT(int x, int y) { this->x = x; this->y = y; }
-		 int x, y;
-	 };
+    class PNT {
+    public:
+       PNT() : x(0), y(0) {}
+       PNT(int newX, int newY) : x(newX), y(newY) {}
+       int x, y;
+    };
 
-	 enum CELL_TYPE {
-		 space = 0,
-		 barrier // Oganes deleted chip and added to elements of game by vector
-	 };
+    enum class CELL_TYPE {
+       space = 0,
+       barrier,
+       chip
+    };
+
+    class FIELD;
+
+class UNIT : public PNT {
+public:
+   UNIT(PNT point, int id);
+   void Move(DIRECTION dir, FIELD gameMap);
+private:
+   int id;
+};
+
+
+
