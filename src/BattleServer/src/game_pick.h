@@ -27,10 +27,10 @@ private:
    int id;
 };
 
-class GAME_IMPLEMENTATION : public GAME_BASE {
+class GAME_PICK : public GAME_BASE {
 public:
-   GAME_IMPLEMENTATION();
-   ~GAME_IMPLEMENTATION() {}
+   GAME_PICK();
+   ~GAME_PICK() {}
 
    void GetInitialData(Json::Value & data) override;
    void GetGameFrameJSON(Json::Value & scene) override;

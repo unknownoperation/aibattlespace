@@ -15,27 +15,27 @@ PLAYER::PLAYER(std::vector<PNT> startPos, int id)
    }
 }
 
-GAME_IMPLEMENTATION::GAME_IMPLEMENTATION()
+GAME_PICK::GAME_PICK()
 {
-   // Create game map
-   GenerateGameMap(FIELD_SIZE, FIELD_SIZE, gameMap);
-   // Initialize players and their unit positions
-   std::vector<PNT> startPos1{ PNT(1, 1) }; // 1 1 move to define
-   PLAYER player1 = PLAYER(startPos1, 1);
-   players.push_back(player1);
-
-   std::vector<PNT> startPos2{ PNT(9, 9) }; // 9 9 move to define
-   PLAYER player2 = PLAYER(startPos2, 2);
-   players.push_back(player2);
-   // Start timer
-   // ...
-   // Generate chips maybe not ?
-   GenerateChips();
-   // set game stage
-   gameStage = GAME_STAGE::connecting;
+  // // Create game map
+  // GenerateGameMap(FIELD_SIZE, FIELD_SIZE, gameMap);
+  // // Initialize players and their unit positions
+  // std::vector<PNT> startPos1{ PNT(1, 1) }; // 1 1 move to define
+  // PLAYER player1 = PLAYER(startPos1, 1);
+  // players.push_back(player1);
+  //
+  // std::vector<PNT> startPos2{ PNT(9, 9) }; // 9 9 move to define
+  // PLAYER player2 = PLAYER(startPos2, 2);
+  // players.push_back(player2);
+  // // Start timer
+  // // ...
+  // // Generate chips maybe not ?
+  // GenerateChips();
+  // // set game stage
+  // gameStage = GAME_STAGE::connecting;
 }
 
-void GAME_IMPLEMENTATION::GetInitialData(Json::Value & data)  // TODO: use functions from json_manager
+void GAME_PICK::GetInitialData(Json::Value & data)  // TODO: use functions from json_manager
 {
    data["field"]["height"] = 10;
    data["field"]["width"] = 10;
@@ -51,20 +51,114 @@ void GAME_IMPLEMENTATION::GetInitialData(Json::Value & data)  // TODO: use funct
    data["key"] = "57fa30ff";
 }
 
-void GAME_IMPLEMENTATION::GetGameFrameJSON(Json::Value & scene) // TODO: use functions from json_manager
+void GAME_PICK::GetGameFrameJSON(Json::Value & scene) // TODO: use functions from json_manager
 {
-   scene["time"] = time;
+   /*scene["time"] = time;
    scene["game_stage"] = stages[gameStage];
 
    for (int i = 0; i < chips.size(); ++i)
    {
       scene["chips"][i]["position"][0] = chips[i].x;
       scene["chips"][i]["position"][1] = chips[i].y;
-   }
+   }*/
 
+   /////////////////////////////////////////////////////////////////////////
+   // temporary
+
+   static std::string jsn1("{             \
+      \"time\": 12345,               \
+                                   \
+      \"game_stage\" : \"running\",    \
+                                   \
+      \"chips\" :                    \
+      [                            \
+   {                               \
+      \"position\":[0, 3]            \
+   },                              \
+        {                          \
+           \"position\":[7, 7]       \
+        },                         \
+        {                          \
+           \"position\":[9, 3]       \
+        },                         \
+        {                          \
+           \"position\":[0, 9]       \
+        },                         \
+        {                          \
+           \"position\":[5, 0]       \
+        }                          \
+      ],                           \
+                                   \
+                                   \
+      \"players\":                   \
+      [                            \
+      {                            \
+         \"ID\" : 1,                 \
+            \"position\" : [5, 0],   \
+            \"points\" : 30          \
+      },                           \
+        {                          \
+           \"ID\" : 2,               \
+           \"position\" : [5, 6],    \
+           \"points\" : 5            \
+        }                          \
+      ]                            \
+}                                  ");
+
+   static std::string jsn2("{             \
+      \"time\": 12345,               \
+                                   \
+      \"game_stage\" : \"running\",    \
+                                   \
+      \"chips\" :                    \
+      [                            \
+   {                               \
+      \"position\":[0, 3]            \
+   },                              \
+        {                          \
+           \"position\":[0, 0]       \
+        },                         \
+        {                          \
+           \"position\":[1, 1]       \
+        },                         \
+        {                          \
+           \"position\":[2, 2]       \
+        },                         \
+        {                          \
+           \"position\":[3, 3]       \
+        }                          \
+      ],                           \
+                                   \
+                                   \
+      \"players\":                   \
+      [                            \
+      {                            \
+         \"ID\" : 1,                 \
+            \"position\" : [5, 0],   \
+            \"points\" : 30          \
+      },                           \
+        {                          \
+           \"ID\" : 2,               \
+           \"position\" : [5, 6],    \
+           \"points\" : 5            \
+        }                          \
+      ]                            \
+}                                  ");
+
+   static bool state = true;
+
+   scene.clear();
+   Json::Reader rd;
+
+   if (state) {
+      rd.parse(jsn1, scene);
+   }  else{
+      rd.parse(jsn2, scene);
+   }
+   state = !state;
 }
 
-std::vector<std::vector<DIRECTION>> GAME_IMPLEMENTATION::ParseJsonFromAI (void) // TODO: check this
+std::vector<std::vector<DIRECTION>> GAME_PICK::ParseJsonFromAI (void) // TODO: check this
 {
    std::vector<std::vector<DIRECTION>> moveDirs; // We have to get directions of movement of every unit of 2 players
    // Parse Jsons
@@ -122,7 +216,7 @@ double EvalDistancesFromUnitsToPoint(std::vector<PLAYER> players, PNT point)
    return dist;
 }
 
-void GAME_IMPLEMENTATION::GenerateChips(void)
+void GAME_PICK::GenerateChips(void)
 {
    struct POINT_DISTANCE
    {
@@ -154,7 +248,7 @@ void GAME_IMPLEMENTATION::GenerateChips(void)
       chips.push_back(freeCells[i].point);
 }
 
-void GAME_IMPLEMENTATION::RenderNextFrame(void)
+void GAME_PICK::RenderNextFrame(void)
 {
    // Get data from AI with JSON
    std::vector<std::vector<DIRECTION>> moveDirs = ParseJsonFromAI();
