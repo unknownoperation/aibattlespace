@@ -41,6 +41,10 @@ class Graphics2d {
         };
 
         this.buffers = this.initBuffers(this.gl);
+        this.objXml = new XMLHttpRequest();
+        this.objXml.open("GET", "game_map .json", false);
+        this.objXml.send(null);
+        this.squares = JSON.parse(this.objXml.responseText);
     }
 
     main() {
@@ -94,7 +98,6 @@ class Graphics2d {
     drawScene(gl, programInfo, buffers) {
         this.parser = new parser();
         this.parser.parser();
-        this.squares = this.parser.squares;
         this.objects = this.parser.objects;
         gl.clearColor(this.squares.colours.background[0],
             this.squares.colours.background[1],
@@ -216,6 +219,7 @@ class Graphics2d {
                 this.ctx.fillStyle = "rgba(255,0,0,1)";
                 for(let i = 0; i < this.objects.winner.length;i++)
                     this.ctx.fillText("Player " + this.objects.winner[0] + " wins", 260, 240+10*i);
+                break;
             }
         }
         return;
