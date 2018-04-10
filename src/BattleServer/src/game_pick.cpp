@@ -17,22 +17,22 @@ PLAYER::PLAYER(std::vector<PNT> startPos, int id)
 
 GAME_PICK::GAME_PICK()
 {
-  // // Create game map
-  // GenerateGameMap(FIELD_SIZE, FIELD_SIZE, gameMap);
-  // // Initialize players and their unit positions
-  // std::vector<PNT> startPos1{ PNT(1, 1) }; // 1 1 move to define
-  // PLAYER player1 = PLAYER(startPos1, 1);
-  // players.push_back(player1);
-  //
-  // std::vector<PNT> startPos2{ PNT(9, 9) }; // 9 9 move to define
-  // PLAYER player2 = PLAYER(startPos2, 2);
-  // players.push_back(player2);
-  // // Start timer
-  // // ...
-  // // Generate chips maybe not ?
-  // GenerateChips();
-  // // set game stage
-  // gameStage = GAME_STAGE::connecting;
+   // // Create game map
+   GenerateGameMap(FIELD_SIZE, FIELD_SIZE, gameMap);
+   // // Initialize players and their unit positions
+   std::vector<PNT> startPos1{ PNT(1, 1) }; // 1 1 move to define
+   PLAYER player1 = PLAYER(startPos1, 1);
+   players.push_back(player1);
+   //
+   // std::vector<PNT> startPos2{ PNT(9, 9) }; // 9 9 move to define
+   // PLAYER player2 = PLAYER(startPos2, 2);
+   // players.push_back(player2);
+   // // Start timer
+   // // ...
+   // // Generate chips maybe not ?
+   // GenerateChips();
+   // // set game stage
+   gameStage = GAME_STAGE::connecting;
 }
 
 void GAME_PICK::GetInitialData(Json::Value & data)  // TODO: use functions from json_manager
@@ -163,16 +163,18 @@ std::vector<std::vector<DIRECTION>> GAME_PICK::ParseJsonFromAI (void) // TODO: c
    std::vector<std::vector<DIRECTION>> moveDirs; // We have to get directions of movement of every unit of 2 players
    // Parse Jsons
    // AI1
-   for (unsigned int i = 0; i < jsonFromAi[0]["AI"].size(); ++i)
+   moveDirs.resize(2);
+   std::string tmp = Json::StyledWriter().write(jsonFromAi[0]);
+   for (unsigned int i = 0; i < jsonFromAi[0]["players"].size(); ++i)
    {
-      moveDirs[i].push_back(GetDirEnum(jsonFromAi[0]["AI"][i]["direction"].asCString()));
+      moveDirs[i].push_back(GetDirEnum(jsonFromAi[0]["players"][i]["direction"].asCString()));
    }
 
    // AI2
-   for (unsigned int i = 0; i < jsonFromAi[1]["AI"].size(); ++i)
+   /* for (unsigned int i = 0; i < jsonFromAi[1]["players"].size(); ++i)
    {
-      moveDirs[i].push_back(GetDirEnum(jsonFromAi[1]["AI"][i]["direction"].asCString()));
-   }
+      moveDirs[i].push_back(GetDirEnum(jsonFromAi[1]["players"][i]["direction"].asCString()));
+   } */
    return moveDirs;
 }
 
@@ -281,5 +283,5 @@ void GAME_PICK::RenderNextFrame(void)
    }
 
    // Generate chips
-   GenerateChips();
+   // GenerateChips();
 }

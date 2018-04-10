@@ -40,7 +40,8 @@ void GenerateGameMap(int h, int w, FIELD & fld)
     int pos                  = w + 1;
 
     std::stack<CELL> cellStack;
-    
+    cellStack.push(CELL(CELL_TYPE::space, 0));
+    /* doesn't work
     while (count != spaceCount) {
         std::vector<int> freeCellIdx;
         
@@ -83,7 +84,7 @@ void GenerateGameMap(int h, int w, FIELD & fld)
 
         freeCellIdx.clear();
     }
-
+    
     for (int i = 0; i < h; i++) {
         for (int j = 0; j < w; j++) {
             switch (lab[w * i + j].type) {
@@ -97,7 +98,7 @@ void GenerateGameMap(int h, int w, FIELD & fld)
         }
         std::cout << std::endl;
     }
-
+    */
 
     for (CELL & i : lab) {
        fld.field.push_back(i.type);

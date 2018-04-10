@@ -35,7 +35,7 @@ public:
    void GetInitialData(Json::Value & data) override;
    void GetGameFrameJSON(Json::Value & scene) override;
    void RenderNextFrame(void) override;
-    void GenerateChips(void);
+   void GenerateChips(void);
 private:
    std::vector<std::vector<DIRECTION>> ParseJsonFromAI (void);
 

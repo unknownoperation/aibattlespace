@@ -4,24 +4,20 @@
 
 void FIELD_MANAGER::ParseinitialData(const Json::Value & data)
 {
-  /* field.resize(data["field"]["height"].asInt());
-   for (int i = 0; i < field.size(); ++i) {
-      field[i].resize(data["field"]["width"].asInt());
-      for (int j = 0; j < field[i].size(); ++j) {
-         field[i][j] = CELL_TYPE::space;
-      }
-   }
+   std::string tmp = Json::StyledWriter().write(data);
+   field.resize(data["field"]["height"].asInt() * data["field"]["width"].asInt());
+   field.width = data["field"]["width"].asInt();
+   field.height = data["field"]["height"].asInt();
    for (unsigned int i = 0; i < data["obstruction"].size(); ++i) {
-      field[data["obstruction"][i]["position"][0].asInt()][data["obstruction"][i]["position"][1].asInt()] = CELL_TYPE::barrier;
-   }*/
-   // fix from [][] to []
+      field.Get(data["obstruction"][i]["position"][0].asInt(), data["obstruction"][i]["position"][1].asInt()) = CELL_TYPE::barrier;
+   }
 }
 
 void FIELD_MANAGER::ParseData(const Json::Value & data)
 {
    time = data["time"].asDouble();
    for (unsigned int i = 0; i < data["chips"].size(); ++i) {
-      field.Get(data["chips"]["position"][0].asInt(), data["chips"]["position"][1].asInt()) = CELL_TYPE::chip;
+      field.Get(data["chips"][i]["position"][0].asInt(), data["chips"][i]["position"][1].asInt()) = CELL_TYPE::chip;
    }
    units.clear();
    for (unsigned int i = 0; i < data["players"].size(); ++i) {
