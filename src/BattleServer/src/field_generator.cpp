@@ -18,7 +18,10 @@ struct CELL {
 
 void GenerateGameMap(int h, int w, FIELD & fld) 
 {
-   
+	  if (h % 2 == 0) {
+		    h++; // h must be odd
+	  }
+
     std::srand(30);
 
     std::vector <CELL> lab;
@@ -41,7 +44,7 @@ void GenerateGameMap(int h, int w, FIELD & fld)
 
     std::stack<CELL> cellStack;
     cellStack.push(CELL(CELL_TYPE::space, 0));
-    /* doesn't work
+    
     while (count != spaceCount) {
         std::vector<int> freeCellIdx;
         
@@ -84,21 +87,23 @@ void GenerateGameMap(int h, int w, FIELD & fld)
 
         freeCellIdx.clear();
     }
-    
-    for (int i = 0; i < h; i++) {
-        for (int j = 0; j < w; j++) {
-            switch (lab[w * i + j].type) {
-            case CELL_TYPE::barrier:
-                std::cout << "1 ";
-                break;
-            case CELL_TYPE::space:
-                std::cout << "0 ";
-                break;
-            }
-        }
-        std::cout << std::endl;
-    }
-    */
+
+		bool printMap = false;
+		if (printMap) {
+				for (int i = 0; i < h; i++) {
+						for (int j = 0; j < w; j++) {
+								switch (lab[w * i + j].type) {
+								case CELL_TYPE::barrier:
+									std::cout << "1 ";
+									break;
+								case CELL_TYPE::space:
+									std::cout << "0 ";
+									break;
+								}
+						}
+						std::cout << std::endl;
+				}
+		}
 
     for (CELL & i : lab) {
        fld.field.push_back(i.type);
