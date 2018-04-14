@@ -16,9 +16,12 @@ void FIELD_MANAGER::ParseinitialData(const Json::Value & data)
 void FIELD_MANAGER::ParseData(const Json::Value & data)
 {
    time = data["time"].asDouble();
+
+   chips.clear();
    for (unsigned int i = 0; i < data["chips"].size(); ++i) {
-      field.Get(data["chips"][i]["position"][0].asInt(), data["chips"][i]["position"][1].asInt()) = CELL_TYPE::chip;
+	   chips.push_back(PNT(data["chips"][i]["position"][0].asInt(), data["chips"][i]["position"][1].asInt()));
    }
+   
    units.clear();
    for (unsigned int i = 0; i < data["players"].size(); ++i) {
       units.push_back(UNIT(
