@@ -90,24 +90,26 @@ void GenerateGameMap(int h, int w, FIELD & fld)
         freeCellIdx.clear();
     }
 
-		bool printMap = true;
-		if (printMap) {
-				for (int i = 0; i < h; i++) {
-						for (int j = 0; j < w; j++) {
-								switch (lab[w * i + j].type) {
-								case CELL_TYPE::barrier:
-									std::cout << "0 ";
-									break;
-								case CELL_TYPE::space:
-									std::cout << "  ";
-									break;
-								}
-						}
-						std::cout << std::endl;
+   bool printMap = true;
+   if (printMap) {
+      for (int i = 0; i < h; i++) {
+		   for (int j = 0; j < w; j++) {
+				switch (lab[w * i + j].type) {
+				case CELL_TYPE::barrier:
+					std::cout << "0 ";
+					break;
+				case CELL_TYPE::space:
+					std::cout << "  ";
+					break;
 				}
-		}
+		   }
+		   std::cout << std::endl;
+      }
+   }
 
-    for (CELL & i : lab) {
-       fld.field.push_back(i.type);
-    }
+   for (CELL & i : lab) {
+      fld.field.push_back(i.type);
+   }
+   fld.height = h;
+   fld.width = w; // must be w, but AI exe aborts when set non zero
 }

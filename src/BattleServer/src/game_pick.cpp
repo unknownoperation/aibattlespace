@@ -37,15 +37,18 @@ GAME_PICK::GAME_PICK()
 
 void GAME_PICK::GetInitialData(Json::Value & data)  // TODO: use functions from json_manager
 {
-   data["field"]["height"] = 10;
-   data["field"]["width"] = 10;
+   data["field"]["height"] = gameMap.height;
+   data["field"]["width"] = gameMap.width;
 
    int gameMapSize = gameMap.height * gameMap.width;
-   for (int i = 0; i < gameMapSize; i++)
+   for (int i = 0, j = 0; i < gameMapSize; i++)
    {
-      data["obstruction"][i]["type"] = "barrier";
-      data["obstruction"][i]["position"][0] = GetDirStr(DIRECTION(gameMap.Get(i, 0)));
-      data["obstruction"][i]["position"][1] = GetDirStr(DIRECTION(gameMap.Get(i, 0)));
+      if (gameMap.Get(i, 0) == CELL_TYPE::barrier) {
+         data["obstruction"][j]["type"] = "barrier";
+         data["obstruction"][j]["position"][0] = i % gameMap.width;
+         data["obstruction"][j]["position"][1] = i / gameMap.width;
+         j++;
+      }
    }
 
    data["key"] = "57fa30ff";
@@ -134,8 +137,8 @@ void GAME_PICK::GetGameFrameJSON(Json::Value & scene) // TODO: use functions fro
       [                            \
       {                            \
          \"ID\" : 1,                 \
-            \"position\" : [5, 0],   \
-            \"points\" : 30          \
+            \"position\" : [5, 5],   \
+            \"points\" : 35          \
       },                           \
         {                          \
            \"ID\" : 2,               \
@@ -168,8 +171,9 @@ std::vector<std::vector<DIRECTION>> GAME_PICK::ParseJsonFromAI (void) // TODO: c
    for (unsigned int i = 0; i < jsonFromAi[0]["players"].size(); ++i)
    {
       moveDirs[i].push_back(GetDirEnum(jsonFromAi[0]["players"][i]["direction"].asCString()));
+		printf("Direction %s\n", jsonFromAi[0]["players"][i]["direction"].asCString());
    }
-
+	 
    // AI2
    /* for (unsigned int i = 0; i < jsonFromAi[1]["players"].size(); ++i)
    {
@@ -235,11 +239,18 @@ void GAME_PICK::GenerateChips(void)
          if (gameMap.isSpace(cell.point))
             freeCells.push_back(cell);
       }
+
    // Compute distance from units of every player to free cells
    for (POINT_DISTANCE cell : freeCells)
    {
-      cell.distance = EvalDistancesFromUnitsToPoint(players, cell.point);
+      cell.distance = EvalDistancesFromUnitsToPoint(players, cell.point); // Not works
    }
+   typedef std::vector<POINT_DISTANCE>::iterator POINT_DISTANCE_ITERATOR;
+   for (POINT_DISTANCE_ITERATOR cell = freeCells.begin(); cell < freeCells.end(); ++cell)
+   {
+      (*cell).distance = EvalDistancesFromUnitsToPoint(players, (*cell).point); // Works
+   }
+
    // Find the biggest distances
    std::sort(freeCells.begin(), freeCells.end(),
       [](POINT_DISTANCE first, POINT_DISTANCE second) { return first.distance > second.distance; });
@@ -255,9 +266,13 @@ void GAME_PICK::RenderNextFrame(void)
    // Get data from AI with JSON
    std::vector<std::vector<DIRECTION>> moveDirs = ParseJsonFromAI();
 
+	 printf("Player 1 OLD pos x=%d y=%d\n", players[0].units[0].x, players[0].units[0].y);
+
    // Move players
    for (int i = 0; i < players.size(); ++i)
       players[i].Move(moveDirs[i], gameMap);
+
+	 printf("Player 1 NEW pos x=%d y=%d\n", players[0].units[0].x, players[0].units[0].y);
 
    // Check for reaching chip by player
    for (int i = 0; i < players.size(); ++i)
@@ -267,6 +282,8 @@ void GAME_PICK::RenderNextFrame(void)
             players[i].IncScore(POINTS_PER_CHIP);
             chips.erase(chip); // delete reached chip from chips
          }
+
+	 printf("Player 1 score %d\n", players[0].GetScore());
 
    // Check if there are winners
    for (PLAYER_ITERATOR player = players.begin(); player < players.end(); ++player)
@@ -283,5 +300,5 @@ void GAME_PICK::RenderNextFrame(void)
    }
 
    // Generate chips
-   // GenerateChips();
+   GenerateChips();
 }

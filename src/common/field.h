@@ -17,7 +17,7 @@ public:
    bool isSpace   (PNT & point);
    bool isBarrier (PNT & point);
    void resize(int sz) { field.resize(sz); }
-   size_t  size(void) { return field.size(); }
+   size_t size(void) { return field.size(); }
 
 
    std::vector<CELL_TYPE> field;
