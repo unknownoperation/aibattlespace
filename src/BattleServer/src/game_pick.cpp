@@ -17,21 +17,22 @@ PLAYER::PLAYER(std::vector<PNT> startPos, int id)
 
 GAME_PICK::GAME_PICK()
 {
-	std::vector<PNT> startPos1;
-	std::vector<PNT> startPos2;
+   std::vector<PNT> startPos1;
+   std::vector<PNT> startPos2;
    // // Create game map
    GenerateGameMap(FIELD_SIZE, FIELD_SIZE, gameMap, startPos1, startPos2);
    // // Initialize players and their unit positions
+   
    PLAYER player1 = PLAYER(startPos1, 1);
    players.push_back(player1);
- 
-   // PLAYER player2 = PLAYER(startPos2, 2);
-   // players.push_back(player2);
-
+   
+   //std::vector<PNT> startPos2{ PNT(1, 1) }; // 1 1 move to define
+   //PLAYER player2 = PLAYER(startPos2, 2);
+   //players.push_back(player2);
    // // Start timer
    // // ...
    // // Generate chips maybe not ?
-   // GenerateChips();
+   GenerateChips();
    // // set game stage
    gameStage = GAME_STAGE::connecting;
 }
@@ -53,113 +54,62 @@ void GAME_PICK::GetInitialData(Json::Value & data)  // TODO: use functions from 
    }
 
    data["key"] = "57fa30ff";
+   
+   data["colours"]["background"][0] = 0;
+   data["colours"]["background"][1] = 255;
+   data["colours"]["background"][2] = 0;
+
+   data["colours"]["barrier"][0] = 0;
+   data["colours"]["barrier"][1] = 0;
+   data["colours"]["barrier"][2] = 0;
+
+   data["colours"]["freespace"][0] = 255;
+   data["colours"]["freespace"][1] = 255;
+   data["colours"]["freespace"][2] = 255;
+
+   data["colours"]["player_1"][0] = 255;
+   data["colours"]["player_1"][1] = 0;
+   data["colours"]["player_1"][2] = 0;
+
+   data["colours"]["player_2"][0] = 0;
+   data["colours"]["player_2"][1] = 0;
+   data["colours"]["player_2"][2] = 255;
+
+   data["colours"]["chips"][0] = 255;
+   data["colours"]["chips"][1] = 0;
+   data["colours"]["chips"][2] = 255;
 }
 
 void GAME_PICK::GetGameFrameJSON(Json::Value & scene) // TODO: use functions from json_manager
 {
-   /*scene["time"] = time;
-   scene["game_stage"] = stages[gameStage];
+    scene.clear();
 
-   for (int i = 0; i < chips.size(); ++i)
-   {
-      scene["chips"][i]["position"][0] = chips[i].x;
-      scene["chips"][i]["position"][1] = chips[i].y;
-   }*/
+    scene["time"] = time;
+    scene["game_stage"] = stages[gameStage];
 
-   /////////////////////////////////////////////////////////////////////////
-   // temporary
+    for (int i = 0; i < chips.size(); i++) {
+        scene["chips"][i]["position"][0] = chips[i].x;
+        scene["chips"][i]["position"][1] = chips[i].y;
+    }
 
-   static std::string jsn1("{             \
-      \"time\": 12345,               \
-                                   \
-      \"game_stage\" : \"running\",    \
-                                   \
-      \"chips\" :                    \
-      [                            \
-   {                               \
-      \"position\":[0, 3]            \
-   },                              \
-        {                          \
-           \"position\":[7, 7]       \
-        },                         \
-        {                          \
-           \"position\":[9, 3]       \
-        },                         \
-        {                          \
-           \"position\":[0, 9]       \
-        },                         \
-        {                          \
-           \"position\":[5, 0]       \
-        }                          \
-      ],                           \
-                                   \
-                                   \
-      \"players\":                   \
-      [                            \
-      {                            \
-         \"ID\" : 1,                 \
-            \"position\" : [5, 0],   \
-            \"points\" : 30          \
-      },                           \
-        {                          \
-           \"ID\" : 2,               \
-           \"position\" : [5, 6],    \
-           \"points\" : 5            \
-        }                          \
-      ]                            \
-}                                  ");
+    for (int i = 0; i < players.size(); i++) {
+        scene["players"][i]["ID"] = players[i].GetId();
+        scene["players"][i]["points"] = players[i].GetScore();
 
-   static std::string jsn2("{             \
-      \"time\": 12345,               \
-                                   \
-      \"game_stage\" : \"running\",    \
-                                   \
-      \"chips\" :                    \
-      [                            \
-   {                               \
-      \"position\":[0, 3]            \
-   },                              \
-        {                          \
-           \"position\":[0, 0]       \
-        },                         \
-        {                          \
-           \"position\":[1, 1]       \
-        },                         \
-        {                          \
-           \"position\":[2, 2]       \
-        },                         \
-        {                          \
-           \"position\":[3, 3]       \
-        }                          \
-      ],                           \
-                                   \
-                                   \
-      \"players\":                   \
-      [                            \
-      {                            \
-         \"ID\" : 1,                 \
-            \"position\" : [5, 5],   \
-            \"points\" : 35          \
-      },                           \
-        {                          \
-           \"ID\" : 2,               \
-           \"position\" : [5, 6],    \
-           \"points\" : 5            \
-        }                          \
-      ]                            \
-}                                  ");
+        for (int j = 0; j < players[i].units.size(); j++) {
+            scene["players"][i]["position"][0] = players[i].units[j].x;
+            scene["players"][i]["position"][1] = players[i].units[j].y;
+        }
+    }
 
-   static bool state = true;
+    //temp code 
+    scene["players"][1]["ID"] = players[0].GetId();
+    scene["players"][1]["points"] = players[0].GetScore();
 
-   scene.clear();
-   Json::Reader rd;
-
-   if (state) {
-      rd.parse(jsn1, scene);
-   }  else{
-      rd.parse(jsn2, scene);
-   }
-   state = !state;
+    for (int j = 0; j < players[0].units.size(); j++) {
+        scene["players"][1]["position"][0] = players[0].units[j].x;
+        scene["players"][1]["position"][1] = players[0].units[j].y;
+    }
 }
 
 std::vector<std::vector<DIRECTION>> GAME_PICK::ParseJsonFromAI (void) // TODO: check this

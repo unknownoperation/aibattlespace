@@ -31,15 +31,25 @@ void GAME_SERVER::ServerLoop (void)
    game->SetGameStage(GAME_STAGE::starting); // Maybe delete one of connecting, starting?
    game->GetInitialData(init);
 
+   {
+       std::ofstream ofstr("..\\..\\..\\src\\ClientBackend\\backendPart\\static\\backendPart\\game_map .json");
+
+       Json::StyledStreamWriter wrt;
+
+       wrt.write(ofstr, init);
+   }
+
    // backend_connector.SendData(init);
    ai_connector[0].SendData(init);
    init = ai_connector[0].ReceiveData();
     
    Sleep(2000); // While showing window (not window in mean) with players name in frontend TODO 2000->const
 
+ 
    game->SetGameStage(GAME_STAGE::running);
    while (game->getGameStage() == GAME_STAGE::running) {
 
+      Sleep(100);
       Json::Value jsonFromServer;
 
       game->GetGameFrameJSON(jsonFromServer);
@@ -64,9 +74,6 @@ void GAME_SERVER::ServerLoop (void)
 
       wrt.write(ofstr, jsonFromServer);
 
-      ofstr.flush();
-
-      Sleep(100);
    }
 
    // send json with result

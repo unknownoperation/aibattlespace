@@ -20,7 +20,8 @@ public:
    PLAYER(std::vector<PNT> startPos, int id);
    void Move(std::vector<DIRECTION> dirs, FIELD gameMap);
    void IncScore(int addPoints) { score += addPoints; }
-   int GetScore(void) { return score; }
+   int GetScore(void) const { return score; }
+   int GetId(void) const { return id; }
    std::vector<UNIT> units;
 private:
    int score;
