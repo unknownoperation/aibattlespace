@@ -17,16 +17,17 @@ PLAYER::PLAYER(std::vector<PNT> startPos, int id)
 
 GAME_PICK::GAME_PICK()
 {
+	std::vector<PNT> startPos1;
+	std::vector<PNT> startPos2;
    // // Create game map
-   GenerateGameMap(FIELD_SIZE, FIELD_SIZE, gameMap);
+   GenerateGameMap(FIELD_SIZE, FIELD_SIZE, gameMap, startPos1, startPos2);
    // // Initialize players and their unit positions
-   std::vector<PNT> startPos1{ PNT(1, 1) }; // 1 1 move to define
    PLAYER player1 = PLAYER(startPos1, 1);
    players.push_back(player1);
-   //
-   // std::vector<PNT> startPos2{ PNT(9, 9) }; // 9 9 move to define
+ 
    // PLAYER player2 = PLAYER(startPos2, 2);
    // players.push_back(player2);
+
    // // Start timer
    // // ...
    // // Generate chips maybe not ?
