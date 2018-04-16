@@ -12,7 +12,7 @@ int main (void) {
 
    server.ServerLoop();
 
-   server.ReleaseSession();
+   /*server.ReleaseSession();*/
 
    printf("IMA SUPA SERVA\n");
    getchar();

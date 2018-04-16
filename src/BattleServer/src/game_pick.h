@@ -11,7 +11,7 @@
 
 const static int CHIPS_NUM_DURING_GAME = 4;
 const static int WINNIG_SCORE = 3;
-const static int FIELD_SIZE = 10;
+const static int FIELD_SIZE = 21;
 const static int POINTS_PER_CHIP = 1;
 
 
@@ -20,22 +20,23 @@ public:
    PLAYER(std::vector<PNT> startPos, int id);
    void Move(std::vector<DIRECTION> dirs, FIELD gameMap);
    void IncScore(int addPoints) { score += addPoints; }
-   int GetScore(void) { return score; }
+   int GetScore(void) const { return score; }
+   int GetId(void) const { return id; }
    std::vector<UNIT> units;
 private:
    int score;
    int id;
 };
 
-class GAME_IMPLEMENTATION : public GAME_BASE {
+class GAME_PICK : public GAME_BASE {
 public:
-   GAME_IMPLEMENTATION();
-   ~GAME_IMPLEMENTATION() {}
+   GAME_PICK();
+   ~GAME_PICK() {}
 
    void GetInitialData(Json::Value & data) override;
    void GetGameFrameJSON(Json::Value & scene) override;
    void RenderNextFrame(void) override;
-    void GenerateChips(void);
+   void GenerateChips(void);
 private:
    std::vector<std::vector<DIRECTION>> ParseJsonFromAI (void);
 
