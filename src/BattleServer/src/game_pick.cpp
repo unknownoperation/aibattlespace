@@ -225,14 +225,14 @@ void GAME_PICK::RenderNextFrame(void)
 
     printf("Player 1 NEW pos x=%d y=%d\n", players[0].units[0].x, players[0].units[0].y);
 
-   // Check for reaching chip by player
-   for (int i = 0; i < players.size(); ++i)
-      for (POINT_ITERATOR chip = chips.begin(); chip < chips.end(); ++chip)
-         if (CheckIfReachedChip(players[i], *chip))
-         {
-            players[i].IncScore(POINTS_PER_CHIP);
-            chips.erase(chip); // delete reached chip from chips
-         }
+   // Check for reaching chip by player            !!!!!!!!!!!!!!!!!!!!!!
+   //for (int i = 0; i < players.size(); ++i)
+   //   for (POINT_ITERATOR chip = chips.begin(); chip < chips.end(); ++chip)
+   //      if (CheckIfReachedChip(players[i], *chip))
+   //      {
+   //         players[i].IncScore(POINTS_PER_CHIP);
+   //         chips.erase(chip); // delete reached chip from chips
+   //      }
 
     printf("Player 1 score %d\n", players[0].GetScore());
 
