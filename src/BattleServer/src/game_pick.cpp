@@ -9,10 +9,10 @@ PLAYER::PLAYER(std::vector<PNT> startPos, int id)
 {
    score = 0;
    this->id = id;
-   for (int i = 0; i < startPos.size(); ++i) // Units num = gived point num
-   {
-      units.push_back(UNIT(startPos[i], i));
-   }
+   //for (int i = 0; i < startPos.size(); ++i) // Units num = gived point num
+   //{
+      units.push_back(UNIT(startPos[0], 0));
+   //}
 }
 
 GAME_PICK::GAME_PICK()
@@ -117,14 +117,14 @@ std::vector<std::vector<DIRECTION>> GAME_PICK::ParseJsonFromAI (void) // TODO: c
    std::vector<std::vector<DIRECTION>> moveDirs; // We have to get directions of movement of every unit of 2 players
    // Parse Jsons
    // AI1
-   moveDirs.resize(2);
+   moveDirs.resize(1);
    std::string tmp = Json::StyledWriter().write(jsonFromAi[0]);
    for (unsigned int i = 0; i < jsonFromAi[0]["players"].size(); ++i)
    {
       moveDirs[i].push_back(GetDirEnum(jsonFromAi[0]["players"][i]["direction"].asCString()));
-		printf("Direction %s\n", jsonFromAi[0]["players"][i]["direction"].asCString());
+      printf("Direction %s\n", jsonFromAi[0]["players"][i]["direction"].asCString());
    }
-	 
+    
    // AI2
    /* for (unsigned int i = 0; i < jsonFromAi[1]["players"].size(); ++i)
    {
@@ -217,24 +217,24 @@ void GAME_PICK::RenderNextFrame(void)
    // Get data from AI with JSON
    std::vector<std::vector<DIRECTION>> moveDirs = ParseJsonFromAI();
 
-	 printf("Player 1 OLD pos x=%d y=%d\n", players[0].units[0].x, players[0].units[0].y);
+    printf("Player 1 OLD pos x=%d y=%d\n", players[0].units[0].x, players[0].units[0].y);
 
    // Move players
    for (int i = 0; i < players.size(); ++i)
       players[i].Move(moveDirs[i], gameMap);
 
-	 printf("Player 1 NEW pos x=%d y=%d\n", players[0].units[0].x, players[0].units[0].y);
+    printf("Player 1 NEW pos x=%d y=%d\n", players[0].units[0].x, players[0].units[0].y);
 
-   // Check for reaching chip by player
-   for (int i = 0; i < players.size(); ++i)
-      for (POINT_ITERATOR chip = chips.begin(); chip < chips.end(); ++chip)
-         if (CheckIfReachedChip(players[i], *chip))
-         {
-            players[i].IncScore(POINTS_PER_CHIP);
-            chips.erase(chip); // delete reached chip from chips
-         }
+   // Check for reaching chip by player            !!!!!!!!!!!!!!!!!!!!!!
+   //for (int i = 0; i < players.size(); ++i)
+   //   for (POINT_ITERATOR chip = chips.begin(); chip < chips.end(); ++chip)
+   //      if (CheckIfReachedChip(players[i], *chip))
+   //      {
+   //         players[i].IncScore(POINTS_PER_CHIP);
+   //         chips.erase(chip); // delete reached chip from chips
+   //      }
 
-	 printf("Player 1 score %d\n", players[0].GetScore());
+    printf("Player 1 score %d\n", players[0].GetScore());
 
    // Check if there are winners
    for (PLAYER_ITERATOR player = players.begin(); player < players.end(); ++player)
