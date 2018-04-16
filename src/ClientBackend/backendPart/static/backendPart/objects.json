@@ -1,9 +1,9 @@
 {
 	"time": 12345,
-	
+
 	"game_stage": "running",
-	
-	"chips":                       
+
+	"chips":
     [
 		  {
 			  "position":[0, 3]
@@ -21,9 +21,9 @@
 			  "position":[5, 0]
 		  }
 		],
-  
-	
-	"players":                       
+
+
+	"players":
     [
 		  {
 			  "ID" : 1,
