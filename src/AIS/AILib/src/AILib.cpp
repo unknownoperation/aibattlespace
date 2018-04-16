@@ -6,7 +6,12 @@
 PLAYER_BASE::PLAYER_BASE(const std::string & serverAdress) :
    serverAdress(serverAdress)
 {
-   TWO_WAY_CONNECTOR::SetConnection(serverAdress);
+   int port = std::stoi(serverAdress.substr(serverAdress.size() - 4, 4));
+   std::string adress = serverAdress;
+   adress = (std::string)adress.substr(0, adress.size() - 4);
+   while (!TWO_WAY_CONNECTOR::SetConnection(adress + std::to_string(port))) {
+      ++port;
+   }
    TWO_WAY_CONNECTOR::SendData("Initial message");
    Json::Value data  = TWO_WAY_CONNECTOR::ReceiveData();
    playerName = data["key"].asString();
