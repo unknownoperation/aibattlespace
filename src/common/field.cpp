@@ -21,3 +21,17 @@ CELL_TYPE & FIELD::Get (int i, int j)
    return field[i + j * width];
 }
 
+bool FIELD::isSpace(PNT & point)
+{
+   if (point.x < 0 || point.y < 0 || point.x >= width || point.y >= height)
+      return false;
+   return Get(point.x, point.y) == CELL_TYPE::space;
+}
+
+bool FIELD::isBarrier(PNT & point)
+{
+   if (point.x < 0 || point.y < 0 || point.x >= width || point.y >= height)
+      return true; // Not really barrier, but not possible place to go
+   return Get(point.x, point.y) == CELL_TYPE::barrier;
+}
+

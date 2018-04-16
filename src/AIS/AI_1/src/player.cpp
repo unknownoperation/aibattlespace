@@ -15,7 +15,7 @@ void PLAYER::run_game()
    while (GetGameStage() != GAME_STAGE::compliting) {
       std::vector<UNIT_RESPONSE> res;
       // Using player coordinates and map
-
+      GetData();
       PNT curCoord = PNT(field->units[0].x, field->units[0].y);
       // find posible directions
       PNT coord;

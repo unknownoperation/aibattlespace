@@ -41,8 +41,7 @@
 
     enum class CELL_TYPE {
        space = 0,
-       barrier,
-       chip
+       barrier
     };
 
     class FIELD;
