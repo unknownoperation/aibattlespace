@@ -9,10 +9,10 @@ PLAYER::PLAYER(std::vector<PNT> startPos, int id)
 {
    score = 0;
    this->id = id;
-   //for (int i = 0; i < startPos.size(); ++i) // Units num = gived point num
-   //{
+   for (int i = 0; i < startPos.size(); ++i) // Units num = gived point num
+   {
       units.push_back(UNIT(startPos[0], 0));
-   //}
+   }
 }
 
 GAME_PICK::GAME_PICK()
@@ -25,15 +25,14 @@ GAME_PICK::GAME_PICK()
    
    PLAYER player1 = PLAYER(startPos1, 1);
    players.push_back(player1);
-   
-   //std::vector<PNT> startPos2{ PNT(1, 1) }; // 1 1 move to define
-   //PLAYER player2 = PLAYER(startPos2, 2);
-   //players.push_back(player2);
-   // // Start timer
-   // // ...
-   // // Generate chips maybe not ?
+
+   PLAYER player2 = PLAYER(startPos2, 2);
+   players.push_back(player2);
+   // Start timer
+   // ...
+   // Generate first chips
    GenerateChips();
-   // // set game stage
+   // set game stage
    gameStage = GAME_STAGE::connecting;
 }
 
@@ -103,6 +102,7 @@ void GAME_PICK::GetGameFrameJSON(Json::Value & scene) // TODO: use functions fro
     }
 
     //temp code 
+    /*
     scene["players"][1]["ID"] = players[0].GetId();
     scene["players"][1]["points"] = players[0].GetScore();
 
@@ -110,6 +110,7 @@ void GAME_PICK::GetGameFrameJSON(Json::Value & scene) // TODO: use functions fro
         scene["players"][1]["position"][0] = players[0].units[j].x;
         scene["players"][1]["position"][1] = players[0].units[j].y;
     }
+    */
 }
 
 std::vector<std::vector<DIRECTION>> GAME_PICK::ParseJsonFromAI (void) // TODO: check this
@@ -217,24 +218,31 @@ void GAME_PICK::RenderNextFrame(void)
    // Get data from AI with JSON
    std::vector<std::vector<DIRECTION>> moveDirs = ParseJsonFromAI();
 
-    printf("Player 1 OLD pos x=%d y=%d\n", players[0].units[0].x, players[0].units[0].y);
+   printf("Player 1 OLD pos x=%d y=%d\n", players[0].units[0].x, players[0].units[0].y);
+   printf("Player 2 OLD pos x=%d y=%d\n", players[1].units[0].x, players[1].units[0].y);
 
    // Move players
-   for (int i = 0; i < players.size(); ++i)
+   for (int i = 0; i < moveDirs.size(); ++i)
       players[i].Move(moveDirs[i], gameMap);
 
-    printf("Player 1 NEW pos x=%d y=%d\n", players[0].units[0].x, players[0].units[0].y);
+   printf("Player 1 NEW pos x=%d y=%d\n", players[0].units[0].x, players[0].units[0].y);
+   printf("Player 2 NEW pos x=%d y=%d\n", players[1].units[0].x, players[1].units[0].y);
 
-   // Check for reaching chip by player            !!!!!!!!!!!!!!!!!!!!!!
-   //for (int i = 0; i < players.size(); ++i)
-   //   for (POINT_ITERATOR chip = chips.begin(); chip < chips.end(); ++chip)
-   //      if (CheckIfReachedChip(players[i], *chip))
-   //      {
-   //         players[i].IncScore(POINTS_PER_CHIP);
-   //         chips.erase(chip); // delete reached chip from chips
-   //      }
+   //Check for reaching chip by player            !!!!!!!!!!!!!!!!!!!!!!
+   std::vector<POINT_ITERATOR> chipsToDelete;
+   for (int i = 0; i < players.size(); ++i)
+      for (POINT_ITERATOR chip = chips.begin(); chip < chips.end(); ++chip)
+         if (CheckIfReachedChip(players[i], *chip))
+         {
+            players[i].IncScore(POINTS_PER_CHIP);
+            chipsToDelete.push_back(chip);
+         }
+   // delete reached chip from chips
+   for (int i = 0; i < chipsToDelete.size(); ++i)
+      chips.erase(chipsToDelete[i]);
 
     printf("Player 1 score %d\n", players[0].GetScore());
+    printf("Player 2 score %d\n", players[1].GetScore());
 
    // Check if there are winners
    for (PLAYER_ITERATOR player = players.begin(); player < players.end(); ++player)
