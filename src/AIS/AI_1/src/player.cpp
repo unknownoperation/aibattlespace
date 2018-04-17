@@ -4,10 +4,10 @@
 #include "player.h"
 #include "field_pick.h"
 
-PLAYER::PLAYER(const std::string& url) :
-   PLAYER_BASE(url)
+PLAYER::PLAYER()
 {
 }
+
 void PLAYER::run_game()
 {
    FIELD_MANAGER * field = dynamic_cast<FIELD_MANAGER*>(GetField());
@@ -16,7 +16,7 @@ void PLAYER::run_game()
       std::vector<UNIT_RESPONSE> res;
       // Using player coordinates and map
       GetData();
-      PNT curCoord = PNT(field->units[0].x, field->units[0].y);
+      PNT curCoord = PNT(field->players[GetMyPlayerID()].x, field->players[GetMyPlayerID()].y);
       // find posible directions
       PNT coord;
       PNT possibleCoord[4];

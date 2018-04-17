@@ -5,6 +5,6 @@
 
 class PLAYER : public PLAYER_BASE {
 public:
-   PLAYER(const std::string& url);
+   PLAYER();
    void run_game();
 };

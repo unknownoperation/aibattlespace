@@ -38,7 +38,7 @@ UNIT::UNIT(PNT point, int id)
 {
    x = point.x;
    y = point.y;
-   id = id;
+   this->id = id;
 }
 
 

@@ -9,9 +9,9 @@
 #include "field.h"
 #include "game_common.h"
 
-const static int CHIPS_NUM_DURING_GAME = 4;
+const static int CHIPS_NUM_DURING_GAME = 15;
 const static int WINNIG_SCORE = 3;
-const static int FIELD_SIZE = 21;
+const static int FIELD_SIZE = 11;
 const static int POINTS_PER_CHIP = 1;
 
 

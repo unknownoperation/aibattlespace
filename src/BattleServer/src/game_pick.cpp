@@ -52,7 +52,21 @@ void GAME_PICK::GetInitialData(Json::Value & data)  // TODO: use functions from 
       }
    }
 
-   data["key"] = "57fa30ff";
+   static int aiID = 0;
+   std::string key = std::to_string(aiID);
+   int key_length = 8;
+
+   ++aiID;
+   for(int i = 0; i < key_length - 1; ++i) {
+      char new_symbol;
+      if ((i & 1) == 0) {
+         new_symbol = 48 + rand() % 10;
+      } else {
+         new_symbol = 97 + rand() % 26;
+      }
+      key += new_symbol;
+   }
+   data["key"] = key;
    
    data["colours"]["background"][0] = 0;
    data["colours"]["background"][1] = 255;
@@ -118,19 +132,27 @@ std::vector<std::vector<DIRECTION>> GAME_PICK::ParseJsonFromAI (void) // TODO: c
    std::vector<std::vector<DIRECTION>> moveDirs; // We have to get directions of movement of every unit of 2 players
    // Parse Jsons
    // AI1
-   moveDirs.resize(1);
-   std::string tmp = Json::StyledWriter().write(jsonFromAi[0]);
-   for (unsigned int i = 0; i < jsonFromAi[0]["players"].size(); ++i)
+   moveDirs.resize(2);
+   // std::string tmp = Json::StyledWriter().write(jsonFromAi[0]);
+   //for (unsigned int i = 0; i < jsonFromAi[0]["players"].size(); ++i)
+   //{
+   //   moveDirs[i].push_back(GetDirEnum(jsonFromAi[0]["players"][i]["direction"].asCString()));
+   //   printf("Direction %s\n", jsonFromAi[0]["players"][i]["direction"].asCString());
+   //}
+   // 
+   //// AI2
+   //for (unsigned int i = 0; i < jsonFromAi[1]["players"].size(); ++i)
+   //{
+   //   moveDirs[i].push_back(GetDirEnum(jsonFromAi[1]["players"][i]["direction"].asCString()));
+   //   printf("Direction %s\n", jsonFromAi[1]["players"][i]["direction"].asCString());
+   //} 
+
+   for (unsigned int i = 0; i < 2; ++i)
    {
-      moveDirs[i].push_back(GetDirEnum(jsonFromAi[0]["players"][i]["direction"].asCString()));
-      printf("Direction %s\n", jsonFromAi[0]["players"][i]["direction"].asCString());
-   }
-    
-   // AI2
-   /* for (unsigned int i = 0; i < jsonFromAi[1]["players"].size(); ++i)
-   {
-      moveDirs[i].push_back(GetDirEnum(jsonFromAi[1]["players"][i]["direction"].asCString()));
-   } */
+      moveDirs[i].push_back(GetDirEnum(jsonFromAi[i]["players"][0]["direction"].asCString()));
+      printf("Direction %s\n", jsonFromAi[i]["players"][0]["direction"].asCString());
+   } 
+
    return moveDirs;
 }
 
@@ -138,11 +160,12 @@ std::vector<std::vector<DIRECTION>> GAME_PICK::ParseJsonFromAI (void) // TODO: c
 void PLAYER::Move(std::vector<DIRECTION> dirs, FIELD gameMap)
 {
    // Check if moveDirs num matches with units num
-   assert(dirs.size() == units.size());
-   for (int i = 0; i < dirs.size(); ++i)
-   {
-      units[i].Move(dirs[i], gameMap); // Move if possible
-   }
+   // assert(dirs.size() == units.size());
+   //for (int i = 0; i < (int)dirs.size() - 1; ++i)
+   //{
+   // units[i].Move(dirs[i], gameMap); // Move if possible
+   //}
+   units[0].Move(dirs[0], gameMap); // Move if possible
 }
 
 bool CheckIfMatchesCoordinates(UNIT unit, PNT chip)
