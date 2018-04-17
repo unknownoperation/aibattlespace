@@ -259,18 +259,18 @@ void GAME_PICK::RenderNextFrame(void)
    printf("Player 1 NEW pos x=%d y=%d\n", players[0].units[0].x, players[0].units[0].y);
    printf("Player 2 NEW pos x=%d y=%d\n", players[1].units[0].x, players[1].units[0].y);
 
-   //Check for reaching chip by player            !!!!!!!!!!!!!!!!!!!!!!
-   std::vector<POINT_ITERATOR> chipsToDelete;
-   for (int i = 0; i < players.size(); ++i)
-      for (POINT_ITERATOR chip = chips.begin(); chip < chips.end(); ++chip)
-         if (CheckIfReachedChip(players[i], *chip))
-         {
-            players[i].IncScore(POINTS_PER_CHIP);
-            chipsToDelete.push_back(chip);
+      chips.erase(std::remove_if(chips.begin(), chips.end(), [&] (const PNT & pnt) {
+         bool markForDelete = false;
+
+         for (int i = 0; i < players.size(); ++i) {
+            if (CheckIfReachedChip(players[i], pnt)) {
+               markForDelete = true;
+               players[i].IncScore(POINTS_PER_CHIP);
+            }
          }
-   // delete reached chip from chips
-   for (int i = 0; i < chipsToDelete.size(); ++i)
-      chips.erase(chipsToDelete[i]);
+
+         return markForDelete; }), chips.end());
+
 
     printf("Player 1 score %d\n", players[0].GetScore());
     printf("Player 2 score %d\n", players[1].GetScore());
