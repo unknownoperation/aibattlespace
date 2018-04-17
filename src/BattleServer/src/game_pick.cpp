@@ -234,10 +234,17 @@ void GAME_PICK::GenerateChips(void)
    std::sort(freeCells.begin(), freeCells.end(),
       [](POINT_DISTANCE first, POINT_DISTANCE second) { return first.distance > second.distance; });
    // Put chips in places with max distance 
-   // TODO this algorithm put all new chips near each other
    int numChipsToGenerate = CHIPS_NUM_DURING_GAME - chips.size();
-   for (int i = 0; i < numChipsToGenerate; ++i)
-      chips.push_back(freeCells[i].point);
+   double chipsInUse = 0.8;
+   int maxIndex = int(chipsInUse * freeCells.size());
+   while (chips.size() < numChipsToGenerate)
+   {
+      int index = std::rand() % maxIndex;
+      if (std::find(chips.begin(), chips.end(), freeCells[index].point) == chips.end())
+      {
+         chips.push_back(freeCells[index].point);
+      }
+   }
 }
 
 void GAME_PICK::RenderNextFrame(void)

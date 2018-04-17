@@ -38,6 +38,12 @@
    public:
       PNT() : x(0), y(0) {}
       PNT(int newX, int newY) : x(newX), y(newY) {}
+
+      bool operator== (const PNT & point) const
+      {
+         return x == point.x && y == point.y;
+      }
+
       int x, y;
    };
 
