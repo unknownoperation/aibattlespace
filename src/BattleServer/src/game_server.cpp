@@ -54,8 +54,7 @@ void GAME_SERVER::ServerLoop (void)
 
  
    game->SetGameStage(GAME_STAGE::running);
-   while (game->getGameStage() == GAME_STAGE::running) {
-
+   while (game->getGameStage() == GAME_STAGE::running || game->getGameStage() == GAME_STAGE::result) {
       Sleep(100);
       Json::Value jsonFromServer;
 
@@ -75,19 +74,16 @@ void GAME_SERVER::ServerLoop (void)
 
       game->RenderNextFrame();
 
-      std::ofstream ofstr("..\\..\\..\\src\\ClientBackend\\backendPart\\static\\backendPart\\objects.json");
+      {
+         std::ofstream ofstr("..\\..\\..\\src\\ClientBackend\\backendPart\\static\\backendPart\\objects.json");
 
-      Json::StyledStreamWriter wrt;
+         Json::StyledStreamWriter wrt;
 
-      wrt.write(ofstr, jsonFromServer);
-
+         wrt.write(ofstr, jsonFromServer);
+      }
    }
 
    // send json with result
    // ...
    Sleep(2000); // While showing results
-
-   game->SetGameStage(GAME_STAGE::compliting);
-   // send json with end game
-   // ...
 }

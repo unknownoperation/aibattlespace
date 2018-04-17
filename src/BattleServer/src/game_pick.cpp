@@ -1,5 +1,6 @@
 #include <json/json.h>
 #include <algorithm>
+#include <random>
 
 #include "game_pick.h"
 #include "field_generator.h"
@@ -55,14 +56,17 @@ void GAME_PICK::GetInitialData(Json::Value & data)  // TODO: use functions from 
    static int aiID = 0;
    std::string key = std::to_string(aiID);
    int key_length = 8;
+   std::random_device rd;
+   std::mt19937 gen(rd());
+   std::uniform_int_distribution<> dis(1, 10000);
 
    ++aiID;
    for(int i = 0; i < key_length - 1; ++i) {
       char new_symbol;
       if ((i & 1) == 0) {
-         new_symbol = 48 + rand() % 10;
+         new_symbol = 48 + dis(gen) % 10;
       } else {
-         new_symbol = 97 + rand() % 26;
+         new_symbol = 97 + dis(gen) % 26;
       }
       key += new_symbol;
    }
@@ -98,7 +102,7 @@ void GAME_PICK::GetGameFrameJSON(Json::Value & scene) // TODO: use functions fro
     scene.clear();
 
     scene["time"] = time;
-    scene["game_stage"] = stages[gameStage];
+    scene["game_stage"] = stages[(int)gameStage];
 
     for (int i = 0; i < chips.size(); i++) {
         scene["chips"][i]["position"][0] = chips[i].x;
@@ -238,6 +242,10 @@ void GAME_PICK::GenerateChips(void)
 
 void GAME_PICK::RenderNextFrame(void)
 {
+   if (getGameStage() == GAME_STAGE::result) {
+      SetGameStage(GAME_STAGE::compliting);
+      return;
+   }
    // Get data from AI with JSON
    std::vector<std::vector<DIRECTION>> moveDirs = ParseJsonFromAI();
 
@@ -267,6 +275,7 @@ void GAME_PICK::RenderNextFrame(void)
     printf("Player 1 score %d\n", players[0].GetScore());
     printf("Player 2 score %d\n", players[1].GetScore());
 
+    bool debug = false;
    // Check if there are winners
    for (PLAYER_ITERATOR player = players.begin(); player < players.end(); ++player)
    {
@@ -275,7 +284,7 @@ void GAME_PICK::RenderNextFrame(void)
    }
 
    // If we have one or more winners end game
-   if (winners.size() > 0) 
+   if (winners.size() > 0 || debug) 
    {
       SetGameStage(GAME_STAGE::result);
       return;

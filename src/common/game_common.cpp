@@ -3,7 +3,14 @@
 #include "game_common.h"
 #include "field.h"
 
-
+GAME_STAGE ParseGameStage(std::string gameStage)
+{
+   for (int i = 0; i < stages.size(); ++i) {
+      if (gameStage == stages[i])
+         return (GAME_STAGE)i;
+   }
+   return GAME_STAGE::unknown;
+}
 
 DIRECTION GetDirEnum(const std::string & str)
 {

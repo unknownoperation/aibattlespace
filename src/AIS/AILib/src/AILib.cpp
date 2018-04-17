@@ -32,7 +32,9 @@ FIELD_BASE * PLAYER_BASE::GetField()
 
 void PLAYER_BASE::GetData()
 {
-   field->ParseData(TWO_WAY_CONNECTOR::ReceiveData());
+   Json::Value msg = TWO_WAY_CONNECTOR::ReceiveData();
+   stage = ParseGameStage(msg["game_stage"].asString());
+   field->ParseData(msg);
 }
 
 void PLAYER_BASE::SendData(std::vector<UNIT_RESPONSE> data)
@@ -56,3 +58,4 @@ int PLAYER_BASE::GetMyPlayerID()
 {
    return playerName[0] - '0';
 }
+

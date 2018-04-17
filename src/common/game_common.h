@@ -17,12 +17,13 @@
    std::string GetDirStr(const DIRECTION & dir);
 
 
-   enum GAME_STAGE {
+   enum class GAME_STAGE {
       connecting = 0,
       starting,
       running,
       result,
-      compliting
+      compliting,
+      unknown
    };
    const std::vector<std::string> stages{
       "connecting",
@@ -31,20 +32,21 @@
       "result",
       "compliting"
    };
+   GAME_STAGE ParseGameStage(std::string gameStage);
 
-    class PNT {
-    public:
-       PNT() : x(0), y(0) {}
-       PNT(int newX, int newY) : x(newX), y(newY) {}
-       int x, y;
-    };
+   class PNT {
+   public:
+      PNT() : x(0), y(0) {}
+      PNT(int newX, int newY) : x(newX), y(newY) {}
+      int x, y;
+   };
 
-    enum class CELL_TYPE {
-       space = 0,
-       barrier
-    };
+   enum class CELL_TYPE {
+      space = 0,
+      barrier
+   };
 
-    class FIELD;
+   class FIELD;
 
 class UNIT : public PNT {
 public:

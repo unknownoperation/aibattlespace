@@ -12,10 +12,10 @@ void PLAYER::run_game()
 {
    FIELD_MANAGER * field = dynamic_cast<FIELD_MANAGER*>(GetField());
 
-   while (GetGameStage() != GAME_STAGE::compliting) {
+   while (GetGameStage() != GAME_STAGE::result) {
+      GetData();
       std::vector<UNIT_RESPONSE> res;
       // Using player coordinates and map
-      GetData();
       PNT curCoord = PNT(field->players[GetMyPlayerID()].x, field->players[GetMyPlayerID()].y);
       // find posible directions
       PNT coord;

@@ -13,7 +13,7 @@
 		"height" : 11,
 		"width" : 11
 	},
-	"key" : "57fa30ff",
+	"key" : "17v4p5j4",
 	"obstruction" : 
 	[
 		{
@@ -81,11 +81,7 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 4, 2 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 5, 2 ],
+			"position" : [ 2, 2 ],
 			"type" : "barrier"
 		},
 		{
@@ -98,6 +94,10 @@
 		},
 		{
 			"position" : [ 0, 3 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 2, 3 ],
 			"type" : "barrier"
 		},
 		{
@@ -153,10 +153,6 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 7, 6 ],
-			"type" : "barrier"
-		},
-		{
 			"position" : [ 10, 6 ],
 			"type" : "barrier"
 		},
@@ -177,11 +173,7 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 5, 8 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 6, 8 ],
+			"position" : [ 3, 8 ],
 			"type" : "barrier"
 		},
 		{
