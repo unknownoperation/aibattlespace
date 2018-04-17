@@ -21,7 +21,7 @@ public:
    };
    void SendData(std::vector<UNIT_RESPONSE> data);
    GAME_STAGE GetGameStage();
-   int GetMyPlayerID()();
+   int GetMyPlayerID();
 private:
    std::string playerName;
    std::string serverAdress;

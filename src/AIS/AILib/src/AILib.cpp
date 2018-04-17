@@ -52,7 +52,7 @@ GAME_STAGE PLAYER_BASE::GetGameStage()
    return stage;
 }
 
-int PLAYER_BASE::GetMyPlayerID()()
+int PLAYER_BASE::GetMyPlayerID()
 {
    return playerName[0] - '0';
 }
