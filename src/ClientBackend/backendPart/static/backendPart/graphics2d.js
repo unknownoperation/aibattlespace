@@ -208,7 +208,7 @@ class Graphics2d {
                 }
             }
         }
-        //this.objects.game_stage = "compliting";
+        this.objects.game_stage = "result";
         var font_size = 30;
         this.ctx.font = font_size+"px Arial";
         switch(this.objects.game_stage) {
@@ -220,13 +220,17 @@ class Graphics2d {
                 this.ctx.fillText("points " + this.objects.players[1].points, 3.1*this.textCanvas.clientWidth/4, this.textCanvas.clientHeight/2+font_size);
                 break;
             }
-            case "compliting":
+            case "result":
             {
                 this.ctx.fillStyle = "rgba(127,127,127,0.5)";
                 this.ctx.fillRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
                 this.ctx.fillStyle = "rgba(255,0,0,1)";
-                for(let i = 0; i < this.objects.winner.length;i++)
-                    this.ctx.fillText("Player " + this.objects.winner[0] + " wins", 260, 240+10*i);
+                if(this.objects.players[0].points > this.objects.players[1].points)
+					this.ctx.fillText("Player 1 WINS",3*this.textCanvas.clientWidth/8, this.textCanvas.clientHeight/2);
+				if(this.objects.players[0].points < this.objects.players[1].points)
+					this.ctx.fillText("Player 2 WINS",3*this.textCanvas.clientWidth/8, this.textCanvas.clientHeight/2);
+				if(this.objects.players[0].points === this.objects.players[1].points)
+					this.ctx.fillText("DRAW",3*this.textCanvas.clientWidth/8, this.textCanvas.clientHeight/2);
                 break;
             }
         }
