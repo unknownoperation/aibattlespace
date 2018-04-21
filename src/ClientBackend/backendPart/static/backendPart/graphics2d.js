@@ -208,12 +208,13 @@ class Graphics2d {
                 }
             }
         }
-        this.objects.game_stage = "result";
+        //this.objects.game_stage = "result";
         var font_size = 30;
         this.ctx.font = font_size+"px Arial";
+		this.ctx.fillText("state: " + this.objects.game_stage, 3*this.textCanvas.clientWidth/8, 19*this.textCanvas.clientHeight/20);
+		this.ctx.fillText("Pick it Up!", 3*this.textCanvas.clientWidth/8, this.textCanvas.clientWidth/20);
         switch(this.objects.game_stage) {
             case "running": {
-                this.ctx.fillText("state: " + this.objects.game_stage, 3*this.textCanvas.clientWidth/8, this.textCanvas.clientWidth/20);
                 this.ctx.fillText("player " + this.objects.players[0].ID, this.textCanvas.clientWidth/32, this.textCanvas.clientHeight/2);
                 this.ctx.fillText("points " + this.objects.players[0].points, this.textCanvas.clientWidth/32, this.textCanvas.clientHeight/2+font_size);
                 this.ctx.fillText("player " + this.objects.players[1].ID, 3.1*this.textCanvas.clientWidth/4, this.textCanvas.clientHeight/2);
