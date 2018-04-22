@@ -55,7 +55,7 @@ void GAME_SERVER::ServerLoop (void)
  
    game->SetGameStage(GAME_STAGE::running);
    while (game->getGameStage() == GAME_STAGE::running || game->getGameStage() == GAME_STAGE::result) {
-      Sleep(100);
+      Sleep(1000);
       Json::Value jsonFromServer;
 
       game->GetGameFrameJSON(jsonFromServer);
