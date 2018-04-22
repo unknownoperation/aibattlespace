@@ -3,17 +3,17 @@
 	{
 		"background" : [ 0, 255, 0 ],
 		"barrier" : [ 0, 0, 0 ],
-		"chips" : [ 255, 0, 255 ],
+		"chips" : [ 0, 255, 255 ],
 		"freespace" : [ 255, 255, 255 ],
 		"player_1" : [ 255, 0, 0 ],
 		"player_2" : [ 0, 0, 255 ]
 	},
 	"field" : 
 	{
-		"height" : 11,
-		"width" : 11
+		"height" : 21,
+		"width" : 21
 	},
-	"key" : "17v4p5j4",
+	"key" : "14k5p8e1",
 	"obstruction" : 
 	[
 		{
@@ -61,6 +61,46 @@
 			"type" : "barrier"
 		},
 		{
+			"position" : [ 11, 0 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 12, 0 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 13, 0 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 14, 0 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 15, 0 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 16, 0 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 17, 0 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 18, 0 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 19, 0 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 0 ],
+			"type" : "barrier"
+		},
+		{
 			"position" : [ 0, 1 ],
 			"type" : "barrier"
 		},
@@ -69,7 +109,15 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 10, 1 ],
+			"position" : [ 6, 1 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 16, 1 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 1 ],
 			"type" : "barrier"
 		},
 		{
@@ -85,11 +133,47 @@
 			"type" : "barrier"
 		},
 		{
+			"position" : [ 4, 2 ],
+			"type" : "barrier"
+		},
+		{
 			"position" : [ 8, 2 ],
 			"type" : "barrier"
 		},
 		{
+			"position" : [ 9, 2 ],
+			"type" : "barrier"
+		},
+		{
 			"position" : [ 10, 2 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 11, 2 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 12, 2 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 14, 2 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 15, 2 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 16, 2 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 18, 2 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 2 ],
 			"type" : "barrier"
 		},
 		{
@@ -101,11 +185,19 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 8, 3 ],
+			"position" : [ 4, 3 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 10, 3 ],
+			"position" : [ 12, 3 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 18, 3 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 3 ],
 			"type" : "barrier"
 		},
 		{
@@ -117,19 +209,35 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 7, 4 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 8, 4 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 9, 4 ],
+			"position" : [ 4, 4 ],
 			"type" : "barrier"
 		},
 		{
 			"position" : [ 10, 4 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 13, 4 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 14, 4 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 15, 4 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 16, 4 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 18, 4 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 4 ],
 			"type" : "barrier"
 		},
 		{
@@ -141,7 +249,27 @@
 			"type" : "barrier"
 		},
 		{
+			"position" : [ 4, 5 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 8, 5 ],
+			"type" : "barrier"
+		},
+		{
 			"position" : [ 10, 5 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 16, 5 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 18, 5 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 5 ],
 			"type" : "barrier"
 		},
 		{
@@ -153,7 +281,31 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 10, 6 ],
+			"position" : [ 4, 6 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 5, 6 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 6, 6 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 8, 6 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 13, 6 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 16, 6 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 6 ],
 			"type" : "barrier"
 		},
 		{
@@ -161,7 +313,15 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 10, 7 ],
+			"position" : [ 4, 7 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 16, 7 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 7 ],
 			"type" : "barrier"
 		},
 		{
@@ -177,15 +337,31 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 7, 8 ],
+			"position" : [ 4, 8 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 8, 8 ],
+			"position" : [ 5, 8 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 10, 8 ],
+			"position" : [ 6, 8 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 14, 8 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 15, 8 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 16, 8 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 8 ],
 			"type" : "barrier"
 		},
 		{
@@ -193,7 +369,15 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 10, 9 ],
+			"position" : [ 14, 9 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 18, 9 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 9 ],
 			"type" : "barrier"
 		},
 		{
@@ -221,23 +405,375 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 6, 10 ],
+			"position" : [ 14, 10 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 7, 10 ],
+			"position" : [ 18, 10 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 8, 10 ],
+			"position" : [ 20, 10 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 9, 10 ],
+			"position" : [ 0, 11 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 10, 10 ],
+			"position" : [ 4, 11 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 16, 11 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 11 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 0, 12 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 2, 12 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 6, 12 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 14, 12 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 18, 12 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 12 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 0, 13 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 2, 13 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 8, 13 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 18, 13 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 13 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 0, 14 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 2, 14 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 3, 14 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 4, 14 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 5, 14 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 6, 14 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 8, 14 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 14, 14 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 15, 14 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 16, 14 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 18, 14 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 14 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 0, 15 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 8, 15 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 10, 15 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 12, 15 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 14, 15 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 16, 15 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 15 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 0, 16 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 4, 16 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 5, 16 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 6, 16 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 7, 16 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 8, 16 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 10, 16 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 12, 16 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 14, 16 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 16, 16 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 16 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 0, 17 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 6, 17 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 10, 17 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 12, 17 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 14, 17 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 17 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 0, 18 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 2, 18 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 3, 18 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 4, 18 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 6, 18 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 7, 18 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 8, 18 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 9, 18 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 10, 18 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 12, 18 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 14, 18 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 15, 18 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 16, 18 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 17, 18 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 18 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 0, 19 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 12, 19 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 19 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 0, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 1, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 2, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 3, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 4, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 5, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 6, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 7, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 8, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 9, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 10, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 11, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 12, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 13, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 14, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 15, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 16, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 17, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 18, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 19, 20 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 20 ],
 			"type" : "barrier"
 		}
 	]

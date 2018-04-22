@@ -172,6 +172,11 @@ class Graphics2d {
             for (let j = 0; j < this.squares.field.width; j++) {
                     this.addX = (2 / this.squares.field.width) * (j);
                     this.addY = (2 / this.squares.field.height) * (i);
+				if(this.objects.players[0].position[0] == this.objects.players[1].position[0] &&
+				   this.objects.players[0].position[1] == this.objects.players[1].position[1]){
+					   for(let k = 0; k < 3;k++)
+					     this.matrix_of_squares[this.objects.players[0].position[0]][this.objects.players[0].position[1]].color[k] = this.squares.colours.player_1[k]+this.squares.colours.player_2[k];
+				   }
                 mat4.translate(this.modelViewMatrix,
                     mat4.create(), [-1.0 + this.addX, -1.0 + this.addY, -5.0]);
                 {
