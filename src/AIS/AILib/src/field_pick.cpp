@@ -21,10 +21,10 @@ void FIELD_MANAGER::ParseData(const Json::Value & data)
    for (unsigned int i = 0; i < data["chips"].size(); ++i) {
 	   chips.push_back(PNT(data["chips"][i]["position"][0].asInt(), data["chips"][i]["position"][1].asInt()));
    }
-   
-   units.clear();
+   std::string tmp = Json::StyledWriter().write(data);
+   players.clear();
    for (unsigned int i = 0; i < data["players"].size(); ++i) {
-      units.push_back(UNIT(
+      players.push_back(UNIT(
          PNT(data["players"][i]["position"][0].asInt(),
          data["players"][i]["position"][1].asInt()),
          data["players"][i]["ID"].asInt()));

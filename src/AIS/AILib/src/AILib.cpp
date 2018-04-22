@@ -3,10 +3,15 @@
 #include "field_pick.h"
 #include "game_common.h"
 
-PLAYER_BASE::PLAYER_BASE(const std::string & serverAdress) :
-   serverAdress(serverAdress)
+PLAYER_BASE::PLAYER_BASE()
 {
-   TWO_WAY_CONNECTOR::SetConnection(serverAdress);
+   serverAdress = "tcp://127.0.0.1:8800";
+   int port = std::stoi(serverAdress.substr(serverAdress.size() - 4, 4));
+   std::string adress = serverAdress;
+   adress = (std::string)adress.substr(0, adress.size() - 4);
+   while (!TWO_WAY_CONNECTOR::SetConnection(adress + std::to_string(port), TWO_WAY_CONNECTOR::CONNECTION_TYPE::bind)) {
+      ++port;
+   }
    TWO_WAY_CONNECTOR::SendData("Initial message");
    Json::Value data  = TWO_WAY_CONNECTOR::ReceiveData();
    playerName = data["key"].asString();
@@ -27,7 +32,9 @@ FIELD_BASE * PLAYER_BASE::GetField()
 
 void PLAYER_BASE::GetData()
 {
-   field->ParseData(TWO_WAY_CONNECTOR::ReceiveData());
+   Json::Value msg = TWO_WAY_CONNECTOR::ReceiveData();
+   stage = ParseGameStage(msg["game_stage"].asString());
+   field->ParseData(msg);
 }
 
 void PLAYER_BASE::SendData(std::vector<UNIT_RESPONSE> data)
@@ -46,3 +53,9 @@ GAME_STAGE PLAYER_BASE::GetGameStage()
 {
    return stage;
 }
+
+int PLAYER_BASE::GetMyPlayerID()
+{
+   return playerName[0] - '0';
+}
+

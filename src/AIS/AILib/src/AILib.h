@@ -9,7 +9,7 @@ class FIELD_BASE;
 
 class PLAYER_BASE : private TWO_WAY_CONNECTOR {
 public:
-   PLAYER_BASE(const std::string& serverAdress);
+   PLAYER_BASE();
    ~PLAYER_BASE();
 
    FIELD_BASE* GetField();
@@ -21,9 +21,10 @@ public:
    };
    void SendData(std::vector<UNIT_RESPONSE> data);
    GAME_STAGE GetGameStage();
+   int GetMyPlayerID();
 private:
-   std::string serverAdress;
    std::string playerName;
+   std::string serverAdress;
    FIELD_BASE *field;
    GAME_STAGE stage;
 };
