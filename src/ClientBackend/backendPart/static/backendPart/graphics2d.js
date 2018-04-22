@@ -39,12 +39,12 @@ class Graphics2d {
                 color: this.gl.getUniformLocation(this.shaderProgram, 'color'),
             },
         };
-
-        this.buffers = this.initBuffers(this.gl);
         this.objXml = new XMLHttpRequest();
         this.objXml.open("GET", "game_map .json", false);
         this.objXml.send(null);
         this.squares = JSON.parse(this.objXml.responseText);
+        this.buffers = this.initBuffers(this.gl);
+
     }
 
     main() {
@@ -68,7 +68,19 @@ class Graphics2d {
 			this.canvas.height = 300;
 		if(this.canvas.height > 640)
 			this.canvas.height = 640;
-        this.drawScene(this.gl, this.programInfo, this.buffers);
+
+        this.textCanvas.width = window.innerWidth * this.window_width_aspect;
+        this.textCanvas.height = window.innerHeight * this.window_height_aspect;
+        this.textCanvas.width = window.innerWidth * this.window_width_aspect;
+        if(this.textCanvas.width < 300)
+            this.textCanvas.width = 300;
+        if(this.textCanvas.width > 1024)
+            this.textCanvas.width = 1024;
+        this.textCanvas.height = window.innerHeight * this.window_height_aspect;
+        if(this.textCanvas.height<300)
+            this.textCanvas.height = 300;
+        if(this.textCanvas.height > 640)
+            this.textCanvas.height = 640;
         this.drawScene(this.gl, this.programInfo, this.buffers);
         return;
     }
@@ -80,10 +92,10 @@ class Graphics2d {
         gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 
         this.positions = [
-            0.1, 0.1,
-            -0.1, 0.1,
-            0.1, -0.1,
-            -0.1, -0.1,
+            1/this.squares.field.width, 1/this.squares.field.height,
+            -1/this.squares.field.width, 1/this.squares.field.height,
+            1/this.squares.field.width, -1/this.squares.field.height,
+            -1/this.squares.field.width, -1/this.squares.field.height,
         ];
                                                                 
         gl.bufferData(gl.ARRAY_BUFFER,
@@ -107,9 +119,10 @@ class Graphics2d {
         gl.depthFunc(gl.LEQUAL);            
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 
-        const fieldOfView = 45 * Math.PI / 180 * (gl.canvas.clientHeight / gl.canvas.clientWidth); 
+        const fieldOfView = 45 * Math.PI / 180 * (gl.canvas.clientHeight / gl.canvas.clientWidth);
         let aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
         const zNear = 0.1;
         const zFar = 100.0;
@@ -152,22 +165,20 @@ class Graphics2d {
             aspect,
             zNear,
             zFar);
-        mat4.translate(this.modelViewMatrix,   
-            this. modelViewMatrix,     
-            [-1.0, -1.0, -5]);  
+        mat4.translate(this.modelViewMatrix,
+            mat4.create(),
+            [-1.0, -1.0, -5]);
         for (let i = 0; i < this.squares.field.height; i++) {
             for (let j = 0; j < this.squares.field.width; j++) {
-                if (j != 0)
-                    this.addX = 2 / this.squares.field.width * (j);
-                else
-                    this.addX = 0;
-                if (i != 0)
-                    this.addY = 2 / this.squares.field.height * (i);
-                else
-                    this.addY = 0;
-                this.modelViewMatrix = mat4.create();
-                mat4.translate(this.modelViewMatrix,     
-                    this.modelViewMatrix, [-1.0 + this.addX, -1.0 + this.addY, -5.0]);
+                    this.addX = (2 / this.squares.field.width) * (j);
+                    this.addY = (2 / this.squares.field.height) * (i);
+				if(this.objects.players[0].position[0] == this.objects.players[1].position[0] &&
+				   this.objects.players[0].position[1] == this.objects.players[1].position[1]){
+					   for(let k = 0; k < 3;k++)
+					     this.matrix_of_squares[this.objects.players[0].position[0]][this.objects.players[0].position[1]].color[k] = this.squares.colours.player_1[k]+this.squares.colours.player_2[k];
+				   }
+                mat4.translate(this.modelViewMatrix,
+                    mat4.create(), [-1.0 + this.addX, -1.0 + this.addY, -5.0]);
                 {
                     const numComponents = 2;
                     const type = gl.FLOAT;
@@ -202,23 +213,30 @@ class Graphics2d {
                 }
             }
         }
-        //this.objects.game_stage = "compliting";
+        //this.objects.game_stage = "result";
+        var font_size = 30;
+        this.ctx.font = font_size+"px Arial";
+		this.ctx.fillText("state: " + this.objects.game_stage, 3*this.textCanvas.clientWidth/8, 19*this.textCanvas.clientHeight/20);
+		this.ctx.fillText("Pick it Up!", 3*this.textCanvas.clientWidth/8, this.textCanvas.clientWidth/20);
         switch(this.objects.game_stage) {
             case "running": {
-                this.ctx.fillText("state: " + this.objects.game_stage, 300, 40);
-                this.ctx.fillText("player " + this.objects.players[0].ID, 50, 350);
-                this.ctx.fillText("points " + this.objects.players[0].points, 50, 360);
-                this.ctx.fillText("player " + this.objects.players[1].ID, 550, 350);
-                this.ctx.fillText("points " + this.objects.players[1].points, 550, 360);
+                this.ctx.fillText("player " + this.objects.players[0].ID, this.textCanvas.clientWidth/32, this.textCanvas.clientHeight/2);
+                this.ctx.fillText("points " + this.objects.players[0].points, this.textCanvas.clientWidth/32, this.textCanvas.clientHeight/2+font_size);
+                this.ctx.fillText("player " + this.objects.players[1].ID, 3.1*this.textCanvas.clientWidth/4, this.textCanvas.clientHeight/2);
+                this.ctx.fillText("points " + this.objects.players[1].points, 3.1*this.textCanvas.clientWidth/4, this.textCanvas.clientHeight/2+font_size);
                 break;
             }
-            case "compliting":
+            case "result":
             {
                 this.ctx.fillStyle = "rgba(127,127,127,0.5)";
                 this.ctx.fillRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
                 this.ctx.fillStyle = "rgba(255,0,0,1)";
-                for(let i = 0; i < this.objects.winner.length;i++)
-                    this.ctx.fillText("Player " + this.objects.winner[0] + " wins", 260, 240+10*i);
+                if(this.objects.players[0].points > this.objects.players[1].points)
+					this.ctx.fillText("Player 1 WINS",3*this.textCanvas.clientWidth/8, this.textCanvas.clientHeight/2);
+				if(this.objects.players[0].points < this.objects.players[1].points)
+					this.ctx.fillText("Player 2 WINS",3*this.textCanvas.clientWidth/8, this.textCanvas.clientHeight/2);
+				if(this.objects.players[0].points === this.objects.players[1].points)
+					this.ctx.fillText("DRAW",3*this.textCanvas.clientWidth/8, this.textCanvas.clientHeight/2);
                 break;
             }
         }

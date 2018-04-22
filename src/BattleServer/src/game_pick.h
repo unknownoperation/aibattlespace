@@ -9,9 +9,9 @@
 #include "field.h"
 #include "game_common.h"
 
-const static int CHIPS_NUM_DURING_GAME = 4;
-const static int WINNIG_SCORE = 3;
-const static int FIELD_SIZE = 21;
+const static int CHIPS_NUM_DURING_GAME = 30;
+const static int WINNIG_SCORE = 300;
+const static int FIELD_SIZE = 22;
 const static int POINTS_PER_CHIP = 1;
 
 
@@ -37,6 +37,7 @@ public:
    void GetGameFrameJSON(Json::Value & scene) override;
    void RenderNextFrame(void) override;
    void GenerateChips(void);
+   void drawGame(void);
 private:
    std::vector<std::vector<DIRECTION>> ParseJsonFromAI (void);
 
