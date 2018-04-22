@@ -92,8 +92,8 @@ void GAME_PICK::GetInitialData(Json::Value & data)  // TODO: use functions from 
    data["colours"]["player_2"][1] = 0;
    data["colours"]["player_2"][2] = 255;
 
-   data["colours"]["chips"][0] = 255;
-   data["colours"]["chips"][1] = 0;
+   data["colours"]["chips"][0] = 0;
+   data["colours"]["chips"][1] = 255;
    data["colours"]["chips"][2] = 255;
 }
 
