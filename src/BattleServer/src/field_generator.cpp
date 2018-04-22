@@ -139,7 +139,7 @@ void GenerateGameMap(int h, int w, FIELD & fld, std::vector<PNT> &startPos1, std
    startPos1.push_back(PNT(h / 2 - 1, 3 * w / 8 + 1));
    startPos2.push_back(PNT(h / 2 + 1, 5 * w / 8 - 1));
 
-   bool printMap = true;
+   bool printMap = false;
    if (printMap) {
       for (int i = 0; i < h; i++) {
          for (int j = 0; j < w; j++) {
