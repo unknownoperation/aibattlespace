@@ -3,7 +3,14 @@
 #include "game_common.h"
 #include "field.h"
 
-
+GAME_STAGE ParseGameStage(std::string gameStage)
+{
+   for (int i = 0; i < stages.size(); ++i) {
+      if (gameStage == stages[i])
+         return (GAME_STAGE)i;
+   }
+   return GAME_STAGE::unknown;
+}
 
 DIRECTION GetDirEnum(const std::string & str)
 {
@@ -38,7 +45,7 @@ UNIT::UNIT(PNT point, int id)
 {
    x = point.x;
    y = point.y;
-   id = id;
+   this->id = id;
 }
 
 
@@ -49,10 +56,10 @@ void UNIT::Move(DIRECTION dir, FIELD gameMap) // TODO check maybe need to invert
    {
 
    case DIRECTION::up:
-      newCoord.y++;
+      newCoord.y--;
       break;
    case DIRECTION::down:
-      newCoord.y--;
+      newCoord.y++;
       break;
    case DIRECTION::left:
       newCoord.x--;
@@ -65,7 +72,7 @@ void UNIT::Move(DIRECTION dir, FIELD gameMap) // TODO check maybe need to invert
    }
    if (!gameMap.isBarrier(newCoord)) // do movement if possible
    {
-      this->x = newCoord.x; // Refactor
+      this->x = newCoord.x;
       this->y = newCoord.y;
    }
 }

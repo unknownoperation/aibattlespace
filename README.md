@@ -42,7 +42,10 @@ pip install django==2.0.2
 ```
 Install [Visual Studio 2017 Community](https://www.visualstudio.com/ru/thank-you-downloading-visual-studio/?sku=Community&rel=15)
 
-Add path to python.exe to Environment Variables on Windows
+<p>Set path ../../bin/pc/$(ProjectName) as working directory in BattleServer project's settings for all configurations</p>
+<p>Set path ../../bin/pc/ as working directory in AiLib project's settings for all configurations</p>
+<p>Set path ../../../bin/pc/ as working directory in AI_1, AI_2 projects' settings for all configurations</p>
+
 
 Program components
 -------------------
@@ -72,7 +75,7 @@ Requirements
 
 Build and Run
 --------------
-<p>Rebuild all projects in BattleServer solution</p>
+<p>Rebuild all projects in BattleServer solution with x64, release configuration</p>
 <p>Run {YourPath}/aibattlespace/builds/run_game_server.bat</p>
 <p>Run {YourPath}/aibattlespace/src/ClientBackend/run_backend.bat</p>
 

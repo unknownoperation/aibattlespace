@@ -9,7 +9,7 @@ function main() {
 
 function renderloop() {
     graphics.main();
-    window.setTimeout(this.renderloop, 1000/60);  
+    window.setTimeout(this.renderloop, 1);
 }
 
 function resizeCanvas() {
