@@ -18,11 +18,11 @@
 	</div>
 
 	<form name = "Send_Data" enctype="multipart/form-data">
-		<b>Name:</b>
-		<textarea name = "Name" rows = 1 cols = 20></textarea>
-		<br><br>   
-		<b>File: </b>
-		<input type = "file" name = "FileName" multiple>
+		<b>Player name:</b>
+		<textarea name = "playerName" required rows = 1 cols = 20></textarea>
+		<br><br>
+		<b>Source code: </b>
+		<input  type = "file" id = "file" name = "FileName" multiple>
 		<br><br>
 		<input type = "button" value ="Send" onClick="Complete();">
 		<input type = "reset" value = "Reset">

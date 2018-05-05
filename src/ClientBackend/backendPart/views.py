@@ -1,9 +1,11 @@
 import json
 import socket
-# Create your views here.
+import subprocess
+
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
+from django.views.decorators.csrf import csrf_exempt
 
 
 def index(request):
@@ -62,3 +64,21 @@ def getObjectsJson(request):
     if not readed:
         data = readDirectlyFromFile(fileName)
     return HttpResponse(json.dumps(data), content_type='application/json')
+
+
+@csrf_exempt
+def uploadFile(request):
+    path = ""
+
+    file = request.FILES['AIsource']
+    playerName = str(request.FILES['AIsource'].name)
+
+    # Write sent file
+    with open(str(path) + 'AI_' + playerName + ".cpp", 'wb+') as destination:
+        for chunk in file.chunks():
+            destination.write(chunk)
+
+    # deployer place
+    # Run exe (in future compiler)
+    # subprocess.Popen("notepad.exe")
+    return HttpResponse("file was uploaded")
