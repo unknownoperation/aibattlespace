@@ -1,0 +1,44 @@
+<html lang="en" ng-app>
+  <head>
+    <meta charset="utf-8">
+    <title>HTML File</title>
+  
+	</head>
+	
+	<script>
+	function LogIn(){
+	var login = document.log_in.login.value;
+	var password = document.log_in.password.value;
+	var data = new FormData();
+	data.append("login", login);
+	data.append("password", password);
+	
+	var request = new XMLHttpRequest(); 
+	request.open("POST", "logIn"); 
+	request.send(data);
+	
+	alert(password);
+	}
+	</script>
+  
+  <body>
+    <p>AI Battle Space</p>
+	
+
+	<form name = "log_in">
+		<b>Login:</b>
+		<input name = "login" required />
+		<br>  
+		<b>Password: </b>
+		<input type = "password" name = "password" required/>
+		<br><br>
+		<input type = "submit" value ="Log In" onclick = "LogIn();"/>
+	</form>
+	
+	<form name = "sign_up" action = "registration.html">
+		<input type = "submit" value = "Sign Up"/>
+	</form>
+    
+	
+  </body>
+</html>
