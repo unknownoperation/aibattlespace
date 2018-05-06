@@ -1,39 +1,76 @@
-<!doctype html>
 <html lang="en" ng-app>
   <head>
     <meta charset="utf-8">
-    <title>HTML File</title>
-  
-	</head>
+    <title>AI Battle Space</title>
+  </head>
 	
-  <body onload="main()">
-    <p>Hello World</p>
-	<div class="container" style="position:relative">
-		<canvas id="glcanvas"  style="position:absolute; top:150px; left:0; z-index:1" width="640" height="480">
-		  Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
-		</canvas>
-		<canvas id="text" style="position:absolute; top:150px; left:0; z-index:2" width="640" height="480">
-			Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
-		</canvas>
-	</div>
+	<script>
+	function LogIn(){
+        var username = document.log_in.username.value;
+        var password = document.log_in.password.value;
+        var data = new FormData();
+        data.append("username", username);
+        data.append("password", password);
 
-	<form name = "Send_Data" enctype="multipart/form-data">
-		<b>Player name:</b>
-		<textarea name = "playerName" required rows = 1 cols = 20></textarea>
-		<br><br>
-		<b>Source code: </b>
-		<input  type = "file" id = "file" name = "FileName" multiple>
-		<br><br>
-		<input type = "button" value ="Send" onClick="Complete();">
-		<input type = "reset" value = "Reset">
-	</form>
-    
-	{% load staticfiles %}
-    <script src="{% static "backendPart/cell.js" %}"></script>
-    <script src="{% static "backendPart/parser.js" %}"></script>
-    <script src="{% static "backendPart/graphics2d.js" %}"></script>
-    <script src="{% static "backendPart/gl-matrix.js" %}"></script>
-    <script src="{% static "backendPart/main.js" %}"></script>
-	
+        var request = new XMLHttpRequest();
+        request.open("POST", "logIn");
+        request.send(data);
+
+        //document.write(request.responseText);
+        alert(request.responseText);
+        alert("end log in");
+
+        alert("request2");
+        var request2 = new XMLHttpRequest(); // To block Get request // Did not block
+        request2.open("POST", "index");
+        request2.send(null);
+	}
+	function LogOut(){
+	    alert("start log out js");
+	    var request = new XMLHttpRequest();
+        request.open("GET", "logOut", false);
+        request.send(null);
+
+        //document.write(request.responseText);
+        alert(request.responseText);
+        alert("end log out js");
+    }
+	</script>
+  
+  <body>
+    <p>AI Battle Space</p>
+
+    {% if logStatus %}
+        <p>Hello {{ username }}</p>
+        <form name = "log_out">
+            <input type = "submit" value ="Log Out" onclick = "LogOut();"/>
+        </form>
+    {% else %}
+        <form name = "log_in">
+            <b>Login:</b>
+            <input name = "username" required />
+            <br>
+            <b>Password: </b>
+            <input type = "password" name = "password" required/>
+            <br><br>
+            <input type = "submit" value ="Log In" onclick = "LogIn();"/>
+        </form>
+
+        <form name = "sign_up" action = "registration">
+            <input type = "submit" value = "Sign Up"/>
+        </form>
+    {%  endif %}
+
+        <form name = "watch_match" action = "watchMatch">
+            <input type = "submit" value = "Watch match"/>
+        </form>
+    <!--
+    Existing users:
+    <ol>
+    {% for user in userList %}
+            <li>Login {{ user.username }} Email {{ user.email }} Password {{ user.password }}</li>
+    {% endfor %}
+    </ol>
+    -->
   </body>
 </html>

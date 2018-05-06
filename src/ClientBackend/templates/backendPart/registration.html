@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" ng-app>
+  <head>
+    <meta charset="utf-8">
+    <title>Registration</title>
+  
+	</head>
+	
+	<script>
+
+	function SignUp(){
+	    alert("start registering js");
+        var username = document.sign_up.username.value;
+        var password = document.sign_up.password.value;
+        var email = document.sign_up.email.value;
+
+        var data = new FormData();
+        data.append("username", username);
+        data.append("password", password);
+        data.append("email", email);
+
+        var request = new XMLHttpRequest();
+        request.open("POST", "registerUser");
+        request.send(data);
+        //document.write(request.responseText);
+        alert("end registering js")
+	}
+	</script>
+  <body>
+
+	<form name = "sign_up">
+		<b>Login:</b>
+		<input name = "username"  required />
+		<br>  
+		<b>Password: </b>
+		<input type = "password" required name = "password" />
+		<br>
+		<b>E-mail: </b>
+		<input name = "email" type = "email" required />
+        <br><br>
+		<input type = "submit" value ="Sign Up" onclick = "SignUp();"/>
+	</form>
+    <br>
+  	<form name = "go to main" action = "index">
+		<input type = "submit" value = "Go to main"/>
+	</form>
+    
+	
+  </body>
+</html>
