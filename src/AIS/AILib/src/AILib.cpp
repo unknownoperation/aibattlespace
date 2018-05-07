@@ -17,12 +17,14 @@ PLAYER_BASE::PLAYER_BASE()
    playerName = data["key"].asString();
    field = new FIELD_MANAGER();
    field->ParseinitialData(data);
+   stage = new GAME_STAGE();
 }
 
 PLAYER_BASE::~PLAYER_BASE()
 {
    TWO_WAY_CONNECTOR::ReleaseConnection();
    delete field;
+   delete stage;
 }
 
 FIELD_BASE * PLAYER_BASE::GetField()
@@ -33,7 +35,7 @@ FIELD_BASE * PLAYER_BASE::GetField()
 void PLAYER_BASE::GetData()
 {
    Json::Value msg = TWO_WAY_CONNECTOR::ReceiveData();
-   stage = ParseGameStage(msg["game_stage"].asString());
+   *stage = ParseGameStage(msg["game_stage"].asString());
    field->ParseData(msg);
 }
 
@@ -51,7 +53,7 @@ void PLAYER_BASE::SendData(std::vector<UNIT_RESPONSE> data)
 
 GAME_STAGE PLAYER_BASE::GetGameStage()
 {
-   return stage;
+   return *stage;
 }
 
 int PLAYER_BASE::GetMyPlayerID()

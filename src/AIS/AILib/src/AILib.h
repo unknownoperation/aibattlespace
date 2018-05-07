@@ -26,5 +26,5 @@ private:
    std::string playerName;
    std::string serverAdress;
    FIELD_BASE *field;
-   GAME_STAGE stage;
+   GAME_STAGE *stage;
 };
