@@ -68,9 +68,28 @@
         <form name = "watch_match" action = "watchMatch">
             <input type = "submit" value = "Game"/>
         </form>
-        <form name = "Upload AI">
-            <input type = "submit" value ="Upload AI" onclick = ""/>
+
+        <form name = "CheckIfWantToUploadAIFrom">
+            <input type = "submit" value ="Upload AI" onclick = "
+            if (document.UploadAIFrom.style.display == 'block')
+                document.UploadAIFrom.style.display = 'none';
+            else
+                document.UploadAIFrom.style.display = 'block';
+            return false;">
         </form>
+
+        <form style="display: none;" name = "UploadAIFrom" enctype="multipart/form-data">
+            <b>Player name:</b>
+            <br>
+            <textarea name = "playerName" required rows = 1 cols = 20></textarea>
+            <br>
+            <b>Source code: </b>
+            <input  type = "file" id = "file" name = "FileName" multiple>
+            <br><br>
+            <input type = "button" value ="Send" onClick="Complete();">
+            <input type = "reset" value = "Reset">
+        </form>
+
         <form name = "log_out">
             <input type = "submit" value ="Log Out" onclick = "LogOut();"/>
         </form>
