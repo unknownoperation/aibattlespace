@@ -1,75 +1,71 @@
-<!doctype html>
 <html lang="en" ng-app>
-  <head>
-    <meta charset="utf-8">
-    <title>Registration</title>
-    <style>
-	body{
-	display:block;          
-        margin:0 auto;
-	width: 459px;
-	}
+    <head>
+        <meta charset="utf-8">
+        <title>Registration</title>
+        <style>
+        body{
+        display:block;
+            margin:0 auto;
+        width: 459px;
+        }
 
-	form{                   
-	margin: 0 auto;
-	width: 459px; 
-	}
+        form{
+        margin: 0 auto;
+        width: 459px;
+        }
 
-	input{
-	width: 459px;
-	height: 40;
-	background: #efefef;
-	padding: 10px;
-	border: 1px solid #dedede;
-	margin-top: 3px;
-	font-size: 0.9em;
-	color: #3a3a3a;
-	}                
-     </style>
-  
+        input{
+        width: 459px;
+        height: 40px;
+        background: #efefef;
+        padding: 10px;
+        border: 1px solid #dedede;
+        margin-top: 3px;
+        font-size: 0.9em;
+        color: #3a3a3a;
+        }
+         </style>
 	</head>
 	
 	<script>
+        function SignUp(){
+            alert("start registering js");
+            var username = document.sign_up.username.value;
+            var password = document.sign_up.password.value;
+            var email = document.sign_up.email.value;
 
-	function SignUp(){
-	    alert("start registering js");
-        var username = document.sign_up.username.value;
-        var password = document.sign_up.password.value;
-        var email = document.sign_up.email.value;
+            var data = new FormData();
+            data.append("username", username);
+            data.append("password", password);
+            data.append("email", email);
 
-        var data = new FormData();
-        data.append("username", username);
-        data.append("password", password);
-        data.append("email", email);
-
-        var request = new XMLHttpRequest();
-        request.open("POST", "registerUser");
-        request.send(data);
-        //document.write(request.responseText);
-        alert("end registering js")
-	}
+            var request = new XMLHttpRequest();
+            request.open("POST", "registerUser");
+            request.send(data);
+            //document.write(request.responseText);
+            alert("end registering js")
+        }
 	</script>
-  <body bgcolor="#87CEEB">
-  <p align = "center">
-   <font  size="11" color="blue" face="Tahoma" > Registration </font>
-  </p>
-	<form name = "sign_up">
-		<b>Login:</b>
-		<input name = "username"  required />
-		<br>  
-		<b>Password: </b>
-		<input type = "password" required name = "password" />
-		<br>
-		<b>E-mail: </b>
-		<input name = "email" type = "email" required />
-        <br><br>
-		<input type = "submit" value ="Sign Up" onclick = "SignUp();"/>
-	</form>
-        <br>
-  	<form name = "go to main" action = "index">
-		<input type = "submit" value = "Main page"/>
-	</form>
-    
-	
-  </body>
+
+    <body bgcolor="#87CEEB">
+        <p align = "center">
+        <font  size="11" color="blue" face="Tahoma" > Registration </font>
+        </p>
+        <form name = "sign_up">
+            <b>Login:</b>
+            <input name = "username"  required width="489"/>
+            <br>
+            <b>Password: </b>
+            <input type = "password" required name = "password" />
+            <br>
+            <b>E-mail: </b>
+            <input name = "email" type = "email" required />
+            <br><br>
+            <input type = "submit" value ="Sign Up" onclick = "SignUp();"/>
+        </form>
+            <br>
+        <form name = "go to main" action = "index">
+            <input type = "submit" value = "Main page"/>
+        </form>
+    </body>
 </html>

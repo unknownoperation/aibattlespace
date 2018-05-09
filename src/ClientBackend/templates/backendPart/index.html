@@ -16,7 +16,7 @@
 
 	input{
 	width: 459px;
-	height: 40;
+	height: 40px;
 	background: #efefef;
 	padding: 10px;
 	border: 1px solid #dedede;
@@ -43,11 +43,6 @@
         //document.write(request.responseText);
         alert(request.responseText);
         alert("end log in");
-
-        alert("request2");
-        var request2 = new XMLHttpRequest(); // To block Get request // Did not block
-        request2.open("POST", "index");
-        request2.send(null);
 	}
 	function LogOut(){
 	    alert("start log out js");
@@ -66,20 +61,24 @@
   <p align = "center">
    <font  size="11" color="blue" face="Tahoma" > AI Battle Space </font>
   </p>
-    {% if logStatus %}
+    {% if logStatus %} <!--When logged in-->
         <p align = "left">   
         <font  size="4" color="black" face="Verdana" > Welcome, {{username}}! Let's play! Please, upload your AI. </font>
         </p>
         <form name = "watch_match" action = "watchMatch">
             <input type = "submit" value = "Game"/>
         </form>
+        <form name = "Upload AI">
+            <input type = "submit" value ="Upload AI" onclick = ""/>
+        </form>
         <form name = "log_out">
             <input type = "submit" value ="Log Out" onclick = "LogOut();"/>
         </form>
-    {% else %}
+    {% else %} <!--When logged out-->
      <p align = "left">   
      <font  size="4" color="black" face="Verdana" > AI BattleSpace - platform for the competition of artificial
-     intellegences(AI). You can upload files with the source code of the user's AI to the web server and watch the game in your browser. </font>
+     intellegences(AI). You can upload files with the source code of the user's AI to the web server and watch
+         the game in your browser. </font>
      </p>
         <form name = "log_in">
             <b>Login:</b>
