@@ -3,17 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>PickItUp Watch match</title>
+    <style>
+	body{
+	display:block;          
+        margin:0 auto;
+	width: 640px;
+	}
+
+	form{                   
+	margin: 0 auto;
+	width: 640px; 
+	}
+
+	input{
+	width: 640px;
+	height: 40;
+	background: #efefef;
+	padding: 10px;
+	border: 1px solid #dedede;
+	margin-top: 3px;
+	font-size: 0.9em;
+	color: #3a3a3a;
+	}                
+     </style>
+
 </head>
-<body onload="main()">
+<body onload="main()" bgcolor="#87CEEB">
   	<form name = "go to main" action = "index">
-		<input type = "submit" value = "Go to main"/>
+		<input type = "submit" value = "Main page"/>
 	</form>
+        <p align = "left">   
+        <font  size="4" color="black" face="Verdana" > <p>
+Your AI should collect chips in labirinth.
+The winner is the one with the most chips.
+
+You don't know the map and the location of chips in advance because each game they are generated randomly!
+</p>
+<p>Let's play!</p> </font>
+        </p>
 
 	<div class="container" style="position:relative">
-		<canvas id="glcanvas"  style="position:absolute; top:150px; left:0; z-index:1" width="640" height="480">
+		<canvas id="glcanvas"  style="position:absolute; top:10px; left:0; z-index:1" width="640" height="480">
 		  Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
 		</canvas>
-		<canvas id="text" style="position:absolute; top:150px; left:0; z-index:2" width="640" height="480">
+		<canvas id="text" style="position:absolute; top:10px; left:0; z-index:2" width="640" height="480">
 			Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
 		</canvas>
 	</div>

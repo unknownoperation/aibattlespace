@@ -3,6 +3,29 @@
   <head>
     <meta charset="utf-8">
     <title>Registration</title>
+    <style>
+	body{
+	display:block;          
+        margin:0 auto;
+	width: 459px;
+	}
+
+	form{                   
+	margin: 0 auto;
+	width: 459px; 
+	}
+
+	input{
+	width: 459px;
+	height: 40;
+	background: #efefef;
+	padding: 10px;
+	border: 1px solid #dedede;
+	margin-top: 3px;
+	font-size: 0.9em;
+	color: #3a3a3a;
+	}                
+     </style>
   
 	</head>
 	
@@ -26,8 +49,10 @@
         alert("end registering js")
 	}
 	</script>
-  <body>
-
+  <body bgcolor="#87CEEB">
+  <p align = "center">
+   <font  size="11" color="blue" face="Tahoma" > Registration </font>
+  </p>
 	<form name = "sign_up">
 		<b>Login:</b>
 		<input name = "username"  required />
@@ -40,9 +65,9 @@
         <br><br>
 		<input type = "submit" value ="Sign Up" onclick = "SignUp();"/>
 	</form>
-    <br>
+        <br>
   	<form name = "go to main" action = "index">
-		<input type = "submit" value = "Go to main"/>
+		<input type = "submit" value = "Main page"/>
 	</form>
     
 	
