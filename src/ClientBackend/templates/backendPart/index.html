@@ -30,6 +30,7 @@
 	
 	<script>
 	function LogIn(){
+        alert("start log in js");
         var username = document.log_in.username.value;
         var password = document.log_in.password.value;
         var data = new FormData();
@@ -40,8 +41,6 @@
         request.open("POST", "logIn");
         request.send(data);
 
-        //document.write(request.responseText);
-        alert(request.responseText);
         alert("end log in");
 	}
 	function LogOut(){
@@ -49,10 +48,39 @@
 	    var request = new XMLHttpRequest();
         request.open("GET", "logOut", false);
         request.send(null);
-
-        //document.write(request.responseText);
-        alert(request.responseText);
         alert("end log out js");
+    }
+
+    function UploadFIle() {
+        alert("UploadFIle started");
+        playerName = document.UploadAIFrom.playerName.value;
+        if (playerName == "") {
+            alert("Please enter your name");
+            return;
+        }
+
+        if(document.getElementById("file").files.length == 0) {
+            alert("Attach source code of your AI");
+            return;
+        }
+        SourceCode = document.getElementById("file").files[0];
+
+        var gotData = "Player name: " + playerName +
+            "\nFile name: " + SourceCode.name;
+        alert(gotData);
+
+        // Fill sending data
+        var formData = new FormData();
+        formData.append('AIsource', SourceCode, playerName);
+
+        // Make request
+        var request = new XMLHttpRequest();
+        request.open("POST", "uploadFile", false);
+        request.send(formData);
+
+        // Show result
+        alert(request.responseText);
+        alert("UploadFIle ended");
     }
 	</script>
   
@@ -86,7 +114,7 @@
             <b>Source code: </b>
             <input  type = "file" id = "file" name = "FileName" multiple>
             <br><br>
-            <input type = "button" value ="Send" onClick="Complete();">
+            <input type = "button" value ="Send" onClick="UploadFIle();">
             <input type = "reset" value = "Reset">
         </form>
 
@@ -107,13 +135,20 @@
             <input type = "password" name = "password" required/>
             <br><br>
             <input type = "submit" value ="Log In" onclick = "LogIn();"/>
-        </form>     
+        </form>
+        {{ result }}
         <br>
         <form name = "sign_up" action = "registration">
             <input type = "submit" value = "Sign Up"/>
         </form>
-    {%  endif %}
-       
+    {% endif %}
+    {% if result == ""  %}
+        1
+    {% else %}
+        2
+        {{ result }}
+    {% endif %}
+    LogStatus: {{ logStatus }}
     <!--
     Existing users:
     <ol>

@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
-from . import models
+from . import models, forms
 
 @csrf_exempt
 def index(request):
@@ -23,6 +23,7 @@ def index(request):
             'username': request.user.username,
             'userList': userList,
             'logStatus': True,
+            'result': "",
         }
         # context.update([('l ogStatus', "Authenticated")])
     else:
@@ -30,6 +31,7 @@ def index(request):
         context = {
             'userList': userList,
             'logStatus': False,
+            'result': "",
         }
         # context.update([('logStatus', "Not authenticated")])
 
@@ -97,46 +99,72 @@ def registrationPage(request):
 @csrf_exempt
 def registerUser(request):
     print("start registering view")
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-    email = request.POST.get('email')
+    if request.method == 'POST':
+        form = forms.SignUpForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            email = form.cleaned_data['email']
 
-    print(username, password, email)
-    try:
-        user = User.objects.get(username=username)
-    except ObjectDoesNotExist:
-        user = None
+            print(username, password, email)
+            try:
+                user = User.objects.get(username=username)
+            except ObjectDoesNotExist:
+                user = None
 
-    if user is not None:
-        print("Not success registering view, existing user | view")
-        return HttpResponse("Existing username. Please try another")
-    newUser = User.objects.create_user(username, email, password)
-    newUser.save()
+            if user is not None:
+                print("Not success registering view, existing user | view")
+                return HttpResponse("Existing username. Please try another")
+            newUser = User.objects.create_user(username, email, password)
+            newUser.save()
 
-    person = models.Profile()
-    person.user = newUser
-    person.AiFolderPath = None
-    person.save()
+            #person = models.Profile()
+            #person.user = newUser
+            #person.AiFolderPath = None
+            #person.save()
 
-    print("success registering view")
-    return HttpResponse("success registering")
+            print("success registering view")
+            return HttpResponse("success registering")
+        else:
+            print("Input data is not valid")
+            return HttpResponse("Invalid syntax of email")
+
 
 
 @csrf_exempt
 def logIn(request):
+    template = loader.get_template('backendPart/index.html')
     print("log in view started")
-    username = request.POST.get('username')
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    # request.session['userId'] = models
+    if request.method == 'POST':
+        form = forms.logInForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            # request.session['userId'] = models
 
-    if user is not None:
-        print("Have such user")
-        login(request, user)
-        return HttpResponse("Success username")
-    else:
-        print("Don't have such user")
-        return HttpResponse("Invalid username")
+            if user is not None:
+                print("Have such user")
+                login(request, user)
+                #return render(request, 'index.html', {"result": "suc"})
+                return HttpResponse("Success username")
+            else:
+                print("Username or password is not valid")
+                context = {
+                           'result': "Username or password is not valid",
+                           }
+                #return HttpResponse(template.render(context, request))
+                return render(request, 'backendPart/index.html', context)
+                #return HttpResponse("Invalid username")
+        else:
+            print("Input data is not valid")
+            context = {
+                       'result': "Invalid data",
+                       }
+            return HttpResponse(template.render(context, request))
+
+            #return render(request, 'backendPart/index.html', context)
+            #return HttpResponse("Invalid data")
 
 @csrf_exempt
 def logOut(request):
@@ -169,8 +197,3 @@ def watchMatch(request):
     context = {}
     template = loader.get_template('backendPart/PickItUpWatch.html')
     return HttpResponse(template.render(context, request))
-
-from . import forms
-def logIn2(request):
-    if request.method == 'POST':
-        form = forms.logInForm

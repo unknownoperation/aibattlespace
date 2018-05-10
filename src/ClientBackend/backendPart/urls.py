@@ -6,7 +6,7 @@ urlpatterns = [
     path('objects.json', views.getObjectsJson),
     path('logIn', views.logIn),
     path('registration', views.registrationPage),
-    path('index', views.index),
+    #path('index', views.index),
     path('registerUser', views.registerUser),
     path('logOut', views.logOut),
     path('uploadFile', views.uploadFile),
