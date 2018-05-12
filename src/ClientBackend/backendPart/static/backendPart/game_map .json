@@ -1,10 +1,10 @@
 {
 	"colours" : 
 	{
-		"background" : [ 0, 255, 0 ],
+		"background" : [ 135, 206, 235 ],
 		"barrier" : [ 0, 0, 0 ],
-		"chips" : [ 0, 255, 255 ],
-		"freespace" : [ 255, 255, 255 ],
+		"chips" : [ 153, 50, 204 ],
+		"freespace" : [ 102, 205, 170 ],
 		"player_1" : [ 255, 0, 0 ],
 		"player_2" : [ 0, 0, 255 ]
 	},

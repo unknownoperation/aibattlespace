@@ -72,17 +72,17 @@ void GAME_PICK::GetInitialData(Json::Value & data)  // TODO: use functions from 
    }
    data["key"] = key;
    
-   data["colours"]["background"][0] = 0;
-   data["colours"]["background"][1] = 255;
-   data["colours"]["background"][2] = 0;
+   data["colours"]["background"][0] = 135;
+   data["colours"]["background"][1] = 206;
+   data["colours"]["background"][2] = 235;
 
    data["colours"]["barrier"][0] = 0;
    data["colours"]["barrier"][1] = 0;
    data["colours"]["barrier"][2] = 0;
 
-   data["colours"]["freespace"][0] = 255;
-   data["colours"]["freespace"][1] = 255;
-   data["colours"]["freespace"][2] = 255;
+   data["colours"]["freespace"][0] = 102;
+   data["colours"]["freespace"][1] = 205;
+   data["colours"]["freespace"][2] = 170;
 
    data["colours"]["player_1"][0] = 255;
    data["colours"]["player_1"][1] = 0;
@@ -92,9 +92,9 @@ void GAME_PICK::GetInitialData(Json::Value & data)  // TODO: use functions from 
    data["colours"]["player_2"][1] = 0;
    data["colours"]["player_2"][2] = 255;
 
-   data["colours"]["chips"][0] = 0;
-   data["colours"]["chips"][1] = 255;
-   data["colours"]["chips"][2] = 255;
+   data["colours"]["chips"][0] = 153;
+   data["colours"]["chips"][1] = 50;
+   data["colours"]["chips"][2] = 204;
 }
 
 void GAME_PICK::GetGameFrameJSON(Json::Value & scene) // TODO: use functions from json_manager
