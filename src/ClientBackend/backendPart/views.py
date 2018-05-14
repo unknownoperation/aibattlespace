@@ -52,7 +52,7 @@ def readFromSocket(blockSize):
     data = b""
     # Try to open socket
     try:
-        sock = socket.socket()  # Do not know when file closes to know hen to close socket, so now open and close it in every request
+        sock = socket.socket()  # Do not know when file closes to know then to close socket, so now open and close it in every request
         sock.connect(('localhost', port))
     except ConnectionRefusedError:
         return False, data
@@ -90,7 +90,7 @@ def getObjectsJson(request):
     return HttpResponse(json.dumps(data), content_type='application/json')
 
 
-def registrationPage(request):
+def registration(request):
     context = {}
     template = loader.get_template('backendPart/registration.html')
     return HttpResponse(template.render(context, request))
@@ -99,6 +99,7 @@ def registrationPage(request):
 @csrf_exempt
 def registerUser(request):
     print("start registering view")
+    context = {}
     if request.method == 'POST':
         form = forms.SignUpForm(request.POST)
         if form.is_valid():
@@ -113,71 +114,102 @@ def registerUser(request):
                 user = None
 
             if user is not None:
-                print("Not success registering view, existing user | view")
-                return HttpResponse("Existing username. Please try another")
-            newUser = User.objects.create_user(username, email, password)
-            newUser.save()
+                print("Unsuccessful registration: such user exist! Please choose other username.")
+                context = {
+                    'logStatus': False,
+                    'result': "Unsuccessful registration: such user exist! Please choose other username.",
+                }
+            else:
+                newUser = User.objects.create_user(username, email, password)
+                newUser.save()
 
-            #person = models.Profile()
-            #person.user = newUser
-            #person.AiFolderPath = None
-            #person.save()
+                #person = models.Profile()
+                #person.user = newUser
+                #person.AiFolderPath = None
+                #person.save()
 
-            print("success registering view")
-            return HttpResponse("success registering")
+                print("\nSign up was successful!")
+                context = {
+                    'username': request.user.username,
+                    'logStatus': False,
+                    'result': "\nSign up was successful!",
+                }
         else:
             print("Input data is not valid")
-            return HttpResponse("Invalid syntax of email")
-
+            context = {
+                'logStatus': False,
+                'result': "Input data is not valid",
+            }
+    else:
+        print("request is not POST")
+        context = {
+            'username': request.user.username,
+            'logStatus': False,
+            'result': "",
+        }
+    return render(request, 'backendPart/registration.html', context)
 
 
 @csrf_exempt
 def logIn(request):
-    template = loader.get_template('backendPart/index.html')
+    #template = loader.get_template('backendPart/index.html')
     print("log in view started")
     if request.method == 'POST':
         form = forms.logInForm(request.POST)
+        print(form.is_valid())
+        print(form.errors)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(request, username=username, password=password)
-            # request.session['userId'] = models
 
             if user is not None:
                 print("Have such user")
                 login(request, user)
-                #return render(request, 'index.html', {"result": "suc"})
-                return HttpResponse("Success username")
+                context = {
+                    'username': request.user.username,
+                    'logStatus': True,
+                    'result': "",
+                }
             else:
                 print("Username or password is not valid")
                 context = {
-                           'result': "Username or password is not valid",
-                           }
-                #return HttpResponse(template.render(context, request))
-                return render(request, 'backendPart/index.html', context)
-                #return HttpResponse("Invalid username")
+                    'username': request.user.username,
+                    'logStatus': False,
+                    'result': "Username or password is not valid",
+                }
         else:
             print("Input data is not valid")
             context = {
-                       'result': "Invalid data",
-                       }
-            return HttpResponse(template.render(context, request))
-
-            #return render(request, 'backendPart/index.html', context)
-            #return HttpResponse("Invalid data")
+                'username': request.user.username,
+                'logStatus': False,
+                'result': "Username or password is not valid",
+            }
+    else:
+        print("request is not POST")
+        context = {
+            'username': request.user.username,
+            'logStatus': True,
+            'result': "",
+        }
+    return render(request, 'backendPart/index.html', context)
 
 @csrf_exempt
 def logOut(request):
     print("log out view started")
     logout(request)
-    return HttpResponse("Logged out")
+    context = {
+        'logStatus': False,
+        'result': "",
+    }
+    return render(request, 'backendPart/index.html', context)
 
 
 @csrf_exempt
 def uploadFile(request):
     username = request.user.username
 
-    #for p in models.Profile.objects.raw('SELECT AiFolderPath from Profile'):
+    # for p in models.Profile.objects.raw('SELECT AiFolderPath from Profile'):
     #   print(p)
 
     user = User.objects.get(username=username)

@@ -29,28 +29,6 @@
   </head>
 	
 	<script>
-	function LogIn(){
-        alert("start log in js");
-        var username = document.log_in.username.value;
-        var password = document.log_in.password.value;
-        var data = new FormData();
-        data.append("username", username);
-        data.append("password", password);
-
-        var request = new XMLHttpRequest();
-        request.open("POST", "logIn");
-        request.send(data);
-
-        alert("end log in");
-	}
-	function LogOut(){
-	    alert("start log out js");
-	    var request = new XMLHttpRequest();
-        request.open("GET", "logOut", false);
-        request.send(null);
-        alert("end log out js");
-    }
-
     function UploadFIle() {
         alert("UploadFIle started");
         playerName = document.UploadAIFrom.playerName.value;
@@ -106,7 +84,7 @@
             return false;">
         </form>
 
-        <form style="display: none;" name = "UploadAIFrom" enctype="multipart/form-data">
+        <form method="post" style="display: none;" name = "UploadAIFrom" enctype="multipart/form-data">
             <b>Player name:</b>
             <br>
             <textarea name = "playerName" required rows = 1 cols = 20></textarea>
@@ -118,37 +96,33 @@
             <input type = "reset" value = "Reset">
         </form>
 
-        <form name = "log_out">
-            <input type = "submit" value ="Log Out" onclick = "LogOut();"/>
+        <form method="post" name = "log_out" action="logOut">
+            <input type = "submit" value ="Log Out"/>
         </form>
     {% else %} <!--When logged out-->
      <p align = "left">   
      <font  size="4" color="black" face="Verdana" > AI BattleSpace - platform for the competition of artificial
-     intellegences(AI). You can upload files with the source code of the user's AI to the web server and watch
+     intelligences (AI). You can upload files with the source code of the user's AI to the web server and watch
          the game in your browser. </font>
      </p>
-        <form name = "log_in">
+        <form method="post" name = "log_in" action="logIn">
             <b>Login:</b>
             <input name = "username" required />
             <br>
             <b>Password: </b>
             <input type = "password" name = "password" required/>
             <br><br>
-            <input type = "submit" value ="Log In" onclick = "LogIn();"/>
+            <input type = "submit" value ="Log In"/>
         </form>
-        {{ result }}
         <br>
         <form name = "sign_up" action = "registration">
             <input type = "submit" value = "Sign Up"/>
         </form>
-    {% endif %}
-    {% if result == ""  %}
-        1
-    {% else %}
-        2
-        {{ result }}
-    {% endif %}
-    LogStatus: {{ logStatus }}
+  {% endif %}
+        <p align = "center">
+        <font  size="4" color="black" face="Verdana" >
+            {{ result }}</font>
+        </p>
     <!--
     Existing users:
     <ol>
@@ -156,6 +130,6 @@
             <li>Login {{ user.username }} Email {{ user.email }} Password {{ user.password }}</li>
     {% endfor %}
     </ol>
-    -->
+
   </body>
 </html>
