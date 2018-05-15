@@ -1,0 +1,55 @@
+<html lang="en" ng-app>
+    <head>
+        <meta charset="utf-8">
+        <title>Registration</title>
+        <style>
+        body{
+        display:block;
+            margin:0 auto;
+        width: 459px;
+        }
+
+        form{
+        margin: 0 auto;
+        width: 459px;
+        }
+
+        input{
+        width: 459px;
+        height: 40px;
+        background: #efefef;
+        padding: 10px;
+        border: 1px solid #dedede;
+        margin-top: 3px;
+        font-size: 0.9em;
+        color: #3a3a3a;
+        }
+         </style>
+	</head>
+
+    <body bgcolor="#87CEEB">
+        <p align = "center">
+        <font  size="11" color="blue" face="Tahoma" > Registration </font>
+        </p>
+        <form method="post" name = "sign_up" action="registerUser">
+            <b>Login:</b>
+            <input name = "username"  required/>
+            <br>
+            <b>Password: </b>
+            <input type = "password" required name = "password" />
+            <br>
+            <b>E-mail: </b>
+            <input name = "email" type = "email" required />
+            <br><br>
+            <input type = "submit" value ="Sign Up"/>
+        </form>
+        <br>
+        <form name = "go to main" action = "index">
+            <input type = "submit" value = "Main page"/>
+        </form>
+         <p align = "center">
+        <font  size="4" color="black" face="Verdana" >
+            {{ result }}</font>
+        </p>
+    </body>
+</html>
