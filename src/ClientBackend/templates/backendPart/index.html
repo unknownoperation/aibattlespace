@@ -106,7 +106,7 @@
          the game in your browser. </font>
      </p>
         <form method="post" name = "log_in" action="logIn">
-            <b>Login:</b>
+            <b>Username:</b>
             <input name = "username" required />
             <br>
             <b>Password: </b>
@@ -118,7 +118,7 @@
         <form name = "sign_up" action = "registration">
             <input type = "submit" value = "Sign Up"/>
         </form>
-  {% endif %}
+     {% endif %}
         <p align = "center">
         <font  size="4" color="black" face="Verdana" >
             {{ result }}</font>
@@ -130,6 +130,14 @@
             <li>Login {{ user.username }} Email {{ user.email }} Password {{ user.password }}</li>
     {% endfor %}
     </ol>
-
+    -->
+    <!--
+    Existing profiles:
+    <ol>
+    {% for profile in profileList %}
+            <li>Username {{ profile.user.username }} Files {{ profile.aiFolderPath }} </li>
+    {% endfor %}
+    </ol>
+    -->
   </body>
 </html>

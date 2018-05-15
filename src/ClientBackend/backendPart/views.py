@@ -13,15 +13,21 @@ from . import models, forms
 @csrf_exempt
 def index(request):
     print("Index view started")
+
     userList = []
     for user in User.objects.all():
         userList.append(user)
+
+    profileList = []
+    for profile in models.Profile.objects.all():
+        profileList.append(profile)
 
     if request.user.is_authenticated:
         print("logged")
         context = {
             'username': request.user.username,
             'userList': userList,
+            'profileList': profileList,
             'logStatus': True,
             'result': "",
         }
@@ -30,6 +36,7 @@ def index(request):
         print("logged out")
         context = {
             'userList': userList,
+            'profileList': profileList,
             'logStatus': False,
             'result': "",
         }
@@ -114,7 +121,7 @@ def registerUser(request):
                 user = None
 
             if user is not None:
-                print("Unsuccessful registration: such user exist! Please choose other username.")
+                print("Unsuccessful registration: such username exist! Please choose other username.")
                 context = {
                     'logStatus': False,
                     'result': "Unsuccessful registration: such user exist! Please choose other username.",
@@ -123,10 +130,10 @@ def registerUser(request):
                 newUser = User.objects.create_user(username, email, password)
                 newUser.save()
 
-                #person = models.Profile()
-                #person.user = newUser
-                #person.AiFolderPath = None
-                #person.save()
+                person = models.Profile()
+                person.user = newUser
+                person.aiFolderPath = ""
+                person.save()
 
                 print("\nSign up was successful!")
                 context = {

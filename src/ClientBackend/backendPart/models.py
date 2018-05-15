@@ -3,4 +3,4 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
-    AiFolderPath = models.URLField()
+    aiFolderPath = models.URLField()
