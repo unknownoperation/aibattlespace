@@ -10,7 +10,7 @@
 #include "game_common.h"
 
 const static int CHIPS_NUM_DURING_GAME = 30;
-const static int WINNIG_SCORE = 300;
+const static int WINNIG_SCORE = 15;
 const static int FIELD_SIZE = 22;
 const static int POINTS_PER_CHIP = 1;
 
