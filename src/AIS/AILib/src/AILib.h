@@ -6,25 +6,25 @@
 #include "game_common.h"
 
 class FIELD_BASE;
+struct PIMPL_PLAYER_BASE;
+class UNIT_RESPONSE;
 
 class PLAYER_BASE : private TWO_WAY_CONNECTOR {
 public:
    PLAYER_BASE();
    ~PLAYER_BASE();
 
-   FIELD_BASE* GetField();
-   void GetData();
    class UNIT_RESPONSE {
    public:
       int id;
       DIRECTION direction;
    };
+
+   FIELD_BASE* GetField();
+   void GetData();
    void SendData(std::vector<UNIT_RESPONSE> data);
    GAME_STAGE GetGameStage();
    int GetMyPlayerID();
 private:
-   std::string playerName;
-   std::string serverAdress;
-   FIELD_BASE *field;
-   GAME_STAGE stage;
+   PIMPL_PLAYER_BASE * pimpl;
 };

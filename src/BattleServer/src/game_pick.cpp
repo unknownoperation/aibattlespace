@@ -124,8 +124,9 @@ std::vector<std::vector<DIRECTION>> GAME_PICK::ParseJsonFromAI (void) // TODO: c
 {
    std::vector<std::vector<DIRECTION>> moveDirs; // We have to get directions of movement of every unit of 2 players
    // Parse Jsons
-   moveDirs.resize(2);
-   for (unsigned int i = 0; i < 2; ++i)
+   int playersNum = 2;
+   moveDirs.resize(playersNum);
+   for (unsigned int i = 0; i < playersNum; ++i)
    {
       moveDirs[i].push_back(GetDirEnum(jsonFromAi[i]["players"][0]["direction"].asCString()));
       printf("Direction %s\n", jsonFromAi[i]["players"][0]["direction"].asCString());
@@ -253,15 +254,19 @@ void GAME_PICK::RenderNextFrame(void)
    // Get data from AI with JSON
    std::vector<std::vector<DIRECTION>> moveDirs = ParseJsonFromAI();
 
-   printf("Player 1 OLD pos x=%d y=%d\n", players[0].units[0].x, players[0].units[0].y);
-   printf("Player 2 OLD pos x=%d y=%d\n", players[1].units[0].x, players[1].units[0].y);
+   if (players.size() > 1) {
+      printf("Player 1 OLD pos x=%d y=%d\n", players[0].units[0].x, players[0].units[0].y);
+      printf("Player 2 OLD pos x=%d y=%d\n", players[1].units[0].x, players[1].units[0].y);
+   }
 
    // Move players
    for (int i = 0; i < moveDirs.size(); ++i)
       players[i].Move(moveDirs[i], gameMap);
 
-   printf("Player 1 NEW pos x=%d y=%d\n", players[0].units[0].x, players[0].units[0].y);
-   printf("Player 2 NEW pos x=%d y=%d\n", players[1].units[0].x, players[1].units[0].y);
+   if (players.size() > 1) {
+      printf("Player 1 NEW pos x=%d y=%d\n", players[0].units[0].x, players[0].units[0].y);
+      printf("Player 2 NEW pos x=%d y=%d\n", players[1].units[0].x, players[1].units[0].y);
+   }
 
    // Delete chips
    chips.erase(std::remove_if(chips.begin(), chips.end(), [&] (const PNT & pnt) {
@@ -280,7 +285,6 @@ void GAME_PICK::RenderNextFrame(void)
     printf("Player 1 score %d\n", players[0].GetScore());
     printf("Player 2 score %d\n", players[1].GetScore());
 
-    bool debug = false;
    // Check if there are winners
    for (PLAYER_ITERATOR player = players.begin(); player < players.end(); ++player)
    {
@@ -289,7 +293,7 @@ void GAME_PICK::RenderNextFrame(void)
    }
 
    // If we have one or more winners end game
-   if (winners.size() > 0 || debug) 
+   if (winners.size() > 0) 
    {
       SetGameStage(GAME_STAGE::result);
       return;
