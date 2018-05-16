@@ -1,6 +1,6 @@
 import json
 import socket
-# Create your views here.
+import os
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
@@ -8,7 +8,11 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
+from shutil import rmtree
 from . import models, forms
+
+AIDBPath = "../../AIDataBase"
+
 
 @csrf_exempt
 def index(request):
@@ -61,6 +65,7 @@ def readFromSocket(blockSize):
             return False, data
         sock.close()
 
+
 @csrf_exempt
 def getGameMapJson(request):
     fileName = 'game_map .json'
@@ -71,6 +76,7 @@ def getGameMapJson(request):
         print("read directly")
         data = readDirectlyFromFile(fileName)
     return HttpResponse(json.dumps(data), content_type='application/json')
+
 
 @csrf_exempt
 def getObjectsJson(request):
@@ -115,9 +121,13 @@ def registerUser(request):
                 newUser = User.objects.create_user(username, email, password)
                 newUser.save()
 
+                # create user directory
+                path = AIDBPath + username
+                os.makedirs(path)
+                # add profile in database
                 person = models.Profile()
                 person.user = newUser
-                person.aiFolderPath = ""
+                person.aiFolderPath = path
                 person.save()
 
                 print("\nSign up was successful!")
@@ -139,12 +149,10 @@ def registerUser(request):
 
 @csrf_exempt
 def logIn(request):
-    #template = loader.get_template('backendPart/index.html')
+    # template = loader.get_template('backendPart/index.html')
     print("log in view started")
     if request.method == 'POST':
         form = forms.logInForm(request.POST)
-        print(form.is_valid())
-        print(form.errors)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
@@ -173,6 +181,7 @@ def logIn(request):
         }
     return render(request, 'backendPart/index.html', context)
 
+
 @csrf_exempt
 def logOut(request):
     print("log out view started")
@@ -182,8 +191,11 @@ def logOut(request):
     }
     return render(request, 'backendPart/index.html', context)
 
+
 @csrf_exempt
 def uploadFile(request):
+    gameName = "PickItUp"  # Temporary hardcode#############################
+
     permittedExtensions = ["cpp", "h"]
     permittedFileSize = 1e5
     context = {}
@@ -191,48 +203,62 @@ def uploadFile(request):
         print("upload view started")
         form = forms.UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            path = ""
-            fileList = request.FILES.getlist('FileName')
+            filesPath = AIDBPath + "/" + request.user.username + "/" + gameName + "/"
+            # Create game path for user
+            if os.path.exists(filesPath):
+                existingFilesList = [f for f in os.listdir(filesPath)]
+                for f in existingFilesList:
+                    os.remove(os.path.join(filesPath, f))  # delete existing files
+            else:
+                os.makedirs(filesPath)
+
+            uploadedfilesList = request.FILES.getlist('FileName')
             uploadedFileCounter = 0
-            for file in fileList:
+            for file in uploadedfilesList:
                 fileName = file.name
-                # Check file extensions (permitted only .cpp, .h)
+                # Check file extensions (permitted only .cpp, .h) and size
                 extension = fileName.split(".")[-1]
-                print(file, " size: ", file.size)
                 if extension not in permittedExtensions:
                     continue
                 if file.size > permittedFileSize:
                     continue
+
                 # Write sent file
-                with open(str(path) + fileName, 'wb+') as destination:
+                with open(filesPath + fileName, 'wb+') as destination:
                     for chunk in file.chunks():
                         destination.write(chunk)
                 uploadedFileCounter += 1
             # Static check AI files
+            # ...
             context = {
                 'result': str(uploadedFileCounter) + " files were uploaded",
             }
-    return render(request, 'backendPart/gameGallery.html', context)
+    return render(request, 'backendPart/games/game' + gameName + '.html', context)
+
 
 def gameGallery(request):
     context = {}
     template = loader.get_template('backendPart/gameGallery.html')
     return HttpResponse(template.render(context, request))
 
+
 def gamePickItUp(request):
     context = {}
     template = loader.get_template('backendPart/games/gamePickItUp.html')
     return HttpResponse(template.render(context, request))
+
 
 def game1(request):
     context = {}
     template = loader.get_template('backendPart/games/game1.html')
     return HttpResponse(template.render(context, request))
 
+
 def game2(request):
     context = {}
     template = loader.get_template('backendPart/games/game2.html')
     return HttpResponse(template.render(context, request))
+
 
 @csrf_exempt
 def startGame(request):
