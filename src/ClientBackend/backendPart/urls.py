@@ -4,11 +4,18 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('game_map .json', views.getGameMapJson),
     path('objects.json', views.getObjectsJson),
-    path('logIn', views.logIn),
-    path('registration', views.registration),
+
     path('index', views.index),
-    path('registerUser', views.registerUser),
+    path('logIn', views.logIn),
     path('logOut', views.logOut),
+    path('registration', views.registration),
+
+    path('registerUser', views.registerUser),
     path('uploadFile', views.uploadFile),
-    path('watchMatch', views.watchMatch)
+
+    path('startGame', views.startGame),
+    path('gameGallery', views.gameGallery),
+    path('gamePickItUp', views.gamePickItUp),
+    path('game1', views.game1),
+    path('game2', views.game2)
 ]

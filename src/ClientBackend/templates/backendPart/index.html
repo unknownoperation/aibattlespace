@@ -36,25 +36,8 @@
         <p align = "left">   
         <font  size="4" color="black" face="Verdana" > Welcome, {{request.user.username}}! Let's play! Please, upload your AI. </font>
         </p>
-        <form name = "watch_match" action = "watchMatch">
-            <input type = "submit" value = "Game"/>
-        </form>
-
-        <form name = "CheckIfWantToUploadAIFrom">
-            <input type = "submit" value ="Upload AI" onclick = "
-            if (document.UploadAIFrom.style.display == 'block')
-                document.UploadAIFrom.style.display = 'none';
-            else
-                document.UploadAIFrom.style.display = 'block';
-            return false;">
-        </form>
-
-        <form method="post" style="display: none;" name = "UploadAIFrom" enctype="multipart/form-data" action="uploadFile">
-            <b> Source code: </b>
-            <input type = "file" id = "file_id" name = "FileName" align="center" multiple >
-            <br><br>
-            <input type = "submit" value ="Send">
-            <input type = "reset" value = "Reset">
+        <form name = "watch_match" action = "gameGallery">
+            <input type = "submit" value = "Game gallery"/>
         </form>
 
         <form method="post" name = "log_out" action="logOut">

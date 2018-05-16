@@ -1,0 +1,88 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PickItUp Watch match</title>
+    <style>
+	body{
+	display:block;          
+        margin:0 auto;
+	width: 640px;
+	}
+
+	form{                   
+	margin: 0 auto;
+	width: 640px; 
+	}
+
+	input{
+	width: 640px;
+	height: 40;
+	background: #efefef;
+	padding: 10px;
+	border: 1px solid #dedede;
+	margin-top: 3px;
+	font-size: 0.9em;
+	color: #3a3a3a;
+	}                
+     </style>
+</head>
+<body bgcolor="#87CEEB">
+  	<form name = "go to main" action = "index">
+		<input type = "submit" value = "Main page"/>
+	</form>
+    <form name = "go to gameGallery" action = "gameGallery">
+		<input type = "submit" value = "Game Gallery"/>
+	</form>
+    <p align = "left">
+        <font  size="4" color="black" face="Verdana" >
+        <p>
+        Some description
+        </p>
+        <p>Let's play!</p>
+        </font>
+    </p>
+
+    <form name = "CheckIfWantToUploadAIFrom">
+        <input type = "submit" value ="Upload AI" onclick = "
+        if (document.UploadAIFrom.style.display == 'block')
+            document.UploadAIFrom.style.display = 'none';
+        else
+            document.UploadAIFrom.style.display = 'block';
+        return false;">
+    </form>
+
+    <form method="post" style="display: none;" name = "UploadAIFrom" enctype="multipart/form-data" action="uploadFile">
+        <b> Source code: </b>
+        <input type = "file" id = "file_id" name = "FileName" align="center" multiple >
+        <br><br>
+        <input type = "submit" value ="Send">
+        <input type = "reset" value = "Reset">
+    </form>
+
+    <!-- Does not work (closes in 2 seconds)
+    <form method="post" name="StartPickItUp">
+        <input type = "submit" value = "Play" onclick="main">
+        <input type = "hidden" name="gameName" value="PickItUp">
+    </form>
+    -->
+
+    <button onclick="main()" >Play</button> <!-- Works -->
+
+    <div class="container" style="position:relative">
+		<canvas id="glcanvas"  style="position:absolute; top:10px; left:0; z-index:1" width="640" height="480">
+		  Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
+		</canvas>
+		<canvas id="text" style="position:absolute; top:10px; left:0; z-index:2" width="640" height="480">
+			Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
+		</canvas>
+	</div>
+
+	{% load staticfiles %}
+    <script src="{% static "backendPart/cell.js" %}"></script>
+    <script src="{% static "backendPart/parser.js" %}"></script>
+    <script src="{% static "backendPart/graphics2d.js" %}"></script>
+    <script src="{% static "backendPart/gl-matrix.js" %}"></script>
+    <script src="{% static "backendPart/main.js" %}"></script>
+
+</body>
+</html>

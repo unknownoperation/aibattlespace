@@ -209,8 +209,30 @@ def uploadFile(request):
         }
     return render(request, 'backendPart/index.html', context)
 
-
-def watchMatch(request):
+def gameGallery(request):
     context = {}
-    template = loader.get_template('backendPart/PickItUpWatch.html')
+    template = loader.get_template('backendPart/gameGallery.html')
     return HttpResponse(template.render(context, request))
+
+def gamePickItUp(request):
+    context = {}
+    template = loader.get_template('backendPart/games/gamePickItUp.html')
+    return HttpResponse(template.render(context, request))
+
+def game1(request):
+    context = {}
+    template = loader.get_template('backendPart/games/game1.html')
+    return HttpResponse(template.render(context, request))
+
+def game2(request):
+    context = {}
+    template = loader.get_template('backendPart/games/game2.html')
+    return HttpResponse(template.render(context, request))
+
+@csrf_exempt
+def startGame(request):
+    if request.method == 'POST':
+        form = forms.StartGameForm(request.POST)
+        if form.is_valid():
+            gameName = form.cleaned_data['gameName']
+            # start game with name = gameName
