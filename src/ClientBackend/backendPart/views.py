@@ -184,30 +184,35 @@ def logOut(request):
 
 @csrf_exempt
 def uploadFile(request):
+    permittedExtensions = ["cpp", "h"]
+    permittedFileSize = 1e5
     context = {}
     if request.method == 'POST':
         print("upload view started")
         form = forms.UploadFileForm(request.POST, request.FILES)
-        print(request.FILES)
-        print(request.FILES['FileName'])
-        files = request.FILES['FileName']
-        print(files)
         if form.is_valid():
             path = ""
-            fileInd = 1
             fileList = request.FILES.getlist('FileName')
+            uploadedFileCounter = 0
             for file in fileList:
                 fileName = file.name
-                #expansion = fileName.split(".")[-1]
+                # Check file extensions (permitted only .cpp, .h)
+                extension = fileName.split(".")[-1]
+                print(file, " size: ", file.size)
+                if extension not in permittedExtensions:
+                    continue
+                if file.size > permittedFileSize:
+                    continue
                 # Write sent file
                 with open(str(path) + fileName, 'wb+') as destination:
                     for chunk in file.chunks():
                         destination.write(chunk)
-                fileInd += 1
-        context = {
-            'result': "Files were uploaded",
-        }
-    return render(request, 'backendPart/index.html', context)
+                uploadedFileCounter += 1
+            # Static check AI files
+            context = {
+                'result': str(uploadedFileCounter) + " files were uploaded",
+            }
+    return render(request, 'backendPart/gameGallery.html', context)
 
 def gameGallery(request):
     context = {}

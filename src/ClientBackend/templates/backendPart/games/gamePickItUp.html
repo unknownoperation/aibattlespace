@@ -44,24 +44,33 @@
         <p>Let's play!</p>
         </font>
     </p>
+    {% if request.user.is_authenticated %} <!--When logged in-->
+        <form name = "CheckIfWantToUploadAIFrom">
+            <input type = "submit" value ="Upload AI" onclick = "
+            if (document.UploadAIFrom.style.display == 'block')
+                document.UploadAIFrom.style.display = 'none';
+            else
+                document.UploadAIFrom.style.display = 'block';
+            return false;">
+        </form>
 
-    <form name = "CheckIfWantToUploadAIFrom">
-        <input type = "submit" value ="Upload AI" onclick = "
-        if (document.UploadAIFrom.style.display == 'block')
-            document.UploadAIFrom.style.display = 'none';
-        else
-            document.UploadAIFrom.style.display = 'block';
-        return false;">
-    </form>
+        <form method="post" style="display: none;" name = "UploadAIFrom" enctype="multipart/form-data" action="uploadFile">
+            <b>Permitted extensions: .cpp, .h Permitted file size: under 10000 byte</b>
+            <input type = "file" id = "file_id" name = "FileName" align="center" multiple >
+            <br><br>
+            <input type = "submit" value ="Send">
+            <input type = "reset" value = "Reset">
+        </form>
 
-    <form method="post" style="display: none;" name = "UploadAIFrom" enctype="multipart/form-data" action="uploadFile">
-        <b> Source code: </b>
-        <input type = "file" id = "file_id" name = "FileName" align="center" multiple >
-        <br><br>
-        <input type = "submit" value ="Send">
-        <input type = "reset" value = "Reset">
-    </form>
-
+        <p align = "center">
+            <font  size="4" color="black" face="Verdana" >
+                {{ result }}</font>
+        </p>
+    {% else %}
+        <p align = "center">
+            <font  size="4" color="black" face="Verdana" >Please log in for start game</font>
+        </p>
+    {% endif %}
     <!-- Does not work (closes in 2 seconds)
     <form method="post" name="StartPickItUp">
         <input type = "submit" value = "Play" onclick="main">
