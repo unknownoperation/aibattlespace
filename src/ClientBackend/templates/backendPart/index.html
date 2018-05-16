@@ -27,49 +27,14 @@
      </style>
 
   </head>
-	
-	<script>
-    function UploadFIle() {
-        alert("UploadFIle started");
-        playerName = document.UploadAIFrom.playerName.value;
-        if (playerName == "") {
-            alert("Please enter your name");
-            return;
-        }
-
-        if(document.getElementById("file").files.length == 0) {
-            alert("Attach source code of your AI");
-            return;
-        }
-        SourceCode = document.getElementById("file").files[0];
-
-        var gotData = "Player name: " + playerName +
-            "\nFile name: " + SourceCode.name;
-        alert(gotData);
-
-        // Fill sending data
-        var formData = new FormData();
-        formData.append('AIsource', SourceCode, playerName);
-
-        // Make request
-        var request = new XMLHttpRequest();
-        request.open("POST", "uploadFile", false);
-        request.send(formData);
-
-        // Show result
-        alert(request.responseText);
-        alert("UploadFIle ended");
-    }
-	</script>
-  
   <body bgcolor="#87CEEB">
 
   <p align = "center">
    <font  size="11" color="blue" face="Tahoma" > AI Battle Space </font>
   </p>
-    {% if logStatus %} <!--When logged in-->
+    {% if request.user.is_authenticated %} <!--When logged in-->
         <p align = "left">   
-        <font  size="4" color="black" face="Verdana" > Welcome, {{username}}! Let's play! Please, upload your AI. </font>
+        <font  size="4" color="black" face="Verdana" > Welcome, {{request.user.username}}! Let's play! Please, upload your AI. </font>
         </p>
         <form name = "watch_match" action = "watchMatch">
             <input type = "submit" value = "Game"/>
@@ -84,15 +49,11 @@
             return false;">
         </form>
 
-        <form method="post" style="display: none;" name = "UploadAIFrom" enctype="multipart/form-data">
-            <b>Player name:</b>
-            <br>
-            <textarea name = "playerName" required rows = 1 cols = 20></textarea>
-            <br>
-            <b>Source code: </b>
-            <input  type = "file" id = "file" name = "FileName" multiple>
+        <form method="post" style="display: none;" name = "UploadAIFrom" enctype="multipart/form-data" action="uploadFile">
+            <b> Source code: </b>
+            <input type = "file" id = "file_id" name = "FileName" align="center" multiple >
             <br><br>
-            <input type = "button" value ="Send" onClick="UploadFIle();">
+            <input type = "submit" value ="Send">
             <input type = "reset" value = "Reset">
         </form>
 

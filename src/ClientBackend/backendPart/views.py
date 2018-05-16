@@ -22,25 +22,11 @@ def index(request):
     for profile in models.Profile.objects.all():
         profileList.append(profile)
 
-    if request.user.is_authenticated:
-        print("logged")
-        context = {
-            'username': request.user.username,
-            'userList': userList,
-            'profileList': profileList,
-            'logStatus': True,
-            'result': "",
-        }
-        # context.update([('l ogStatus', "Authenticated")])
-    else:
-        print("logged out")
-        context = {
-            'userList': userList,
-            'profileList': profileList,
-            'logStatus': False,
-            'result': "",
-        }
-        # context.update([('logStatus', "Not authenticated")])
+    context = {
+        'userList': userList,
+        'profileList': profileList,
+        'result': "",
+    }
 
     template = loader.get_template('backendPart/index.html')
 
@@ -123,7 +109,6 @@ def registerUser(request):
             if user is not None:
                 print("Unsuccessful registration: such username exist! Please choose other username.")
                 context = {
-                    'logStatus': False,
                     'result': "Unsuccessful registration: such user exist! Please choose other username.",
                 }
             else:
@@ -137,21 +122,16 @@ def registerUser(request):
 
                 print("\nSign up was successful!")
                 context = {
-                    'username': request.user.username,
-                    'logStatus': False,
                     'result': "\nSign up was successful!",
                 }
         else:
             print("Input data is not valid")
             context = {
-                'logStatus': False,
                 'result': "Input data is not valid",
             }
     else:
         print("request is not POST")
         context = {
-            'username': request.user.username,
-            'logStatus': False,
             'result': "",
         }
     return render(request, 'backendPart/registration.html', context)
@@ -174,29 +154,21 @@ def logIn(request):
                 print("Have such user")
                 login(request, user)
                 context = {
-                    'username': request.user.username,
-                    'logStatus': True,
                     'result': "",
                 }
             else:
                 print("Username or password is not valid")
                 context = {
-                    'username': request.user.username,
-                    'logStatus': False,
                     'result': "Username or password is not valid",
                 }
         else:
             print("Input data is not valid")
             context = {
-                'username': request.user.username,
-                'logStatus': False,
                 'result': "Username or password is not valid",
             }
     else:
         print("request is not POST")
         context = {
-            'username': request.user.username,
-            'logStatus': True,
             'result': "",
         }
     return render(request, 'backendPart/index.html', context)
@@ -206,30 +178,36 @@ def logOut(request):
     print("log out view started")
     logout(request)
     context = {
-        'logStatus': False,
         'result': "",
     }
     return render(request, 'backendPart/index.html', context)
 
-
 @csrf_exempt
 def uploadFile(request):
-    username = request.user.username
-
-    # for p in models.Profile.objects.raw('SELECT AiFolderPath from Profile'):
-    #   print(p)
-
-    user = User.objects.get(username=username)
-    path = ""
-
-    file = request.FILES['AIsource']
-    playerName = str(request.FILES['AIsource'].name)
-
-    # Write sent file
-    with open(str(path) + 'AI_' + playerName + ".cpp", 'wb+') as destination:
-        for chunk in file.chunks():
-            destination.write(chunk)
-    return HttpResponse("file was uploaded")
+    context = {}
+    if request.method == 'POST':
+        print("upload view started")
+        form = forms.UploadFileForm(request.POST, request.FILES)
+        print(request.FILES)
+        print(request.FILES['FileName'])
+        files = request.FILES['FileName']
+        print(files)
+        if form.is_valid():
+            path = ""
+            fileInd = 1
+            fileList = request.FILES.getlist('FileName')
+            for file in fileList:
+                fileName = file.name
+                #expansion = fileName.split(".")[-1]
+                # Write sent file
+                with open(str(path) + fileName, 'wb+') as destination:
+                    for chunk in file.chunks():
+                        destination.write(chunk)
+                fileInd += 1
+        context = {
+            'result': "Files were uploaded",
+        }
+    return render(request, 'backendPart/index.html', context)
 
 
 def watchMatch(request):
