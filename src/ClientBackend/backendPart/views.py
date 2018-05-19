@@ -27,8 +27,8 @@ def index(request):
         profileList.append(profile)
 
     context = {
-        'userList': userList,
-        'profileList': profileList,
+        #'userList': userList,
+        #'profileList': profileList,
         'result': "",
     }
 
@@ -90,15 +90,14 @@ def getObjectsJson(request):
 
 
 def registration(request):
-    context = {}
     template = loader.get_template('backendPart/registration.html')
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render({}, request))
 
 
 @csrf_exempt
 def registerUser(request):
     print("start registering view")
-    context = {}
+    result = ""
     if request.method == 'POST':
         form = forms.SignUpForm(request.POST)
         if form.is_valid():
@@ -114,9 +113,7 @@ def registerUser(request):
 
             if user is not None:
                 print("Unsuccessful registration: such username exist! Please choose other username.")
-                context = {
-                    'result': "Unsuccessful registration: such user exist! Please choose other username.",
-                }
+                result = "Unsuccessful registration: such user exist! Please choose other username."
             else:
                 newUser = User.objects.create_user(username, email, password)
                 newUser.save()
@@ -131,26 +128,20 @@ def registerUser(request):
                 person.save()
 
                 print("\nSign up was successful!")
-                context = {
-                    'result': "\nSign up was successful!",
-                }
+                result = "Sign up was successful!"
         else:
             print("Input data is not valid")
-            context = {
-                'result': "Input data is not valid",
-            }
+            result = "Input data is not valid"
     else:
         print("request is not POST")
-        context = {
-            'result': "",
-        }
-    return render(request, 'backendPart/registration.html', context)
+    return render(request, 'backendPart/registration.html', {'result': result})
 
 
 @csrf_exempt
 def logIn(request):
     # template = loader.get_template('backendPart/index.html')
     print("log in view started")
+    result = ""
     if request.method == 'POST':
         form = forms.logInForm(request.POST)
         if form.is_valid():
@@ -161,50 +152,39 @@ def logIn(request):
             if user is not None:
                 print("Have such user")
                 login(request, user)
-                context = {
-                    'result': "",
-                }
             else:
                 print("Username or password is not valid")
-                context = {
-                    'result': "Username or password is not valid",
-                }
+                result = "Username or password is not valid"
         else:
             print("Input data is not valid")
-            context = {
-                'result': "Username or password is not valid",
-            }
+            result = "Username or password is not valid"
     else:
         print("request is not POST")
-        context = {
-            'result': "",
-        }
-    return render(request, 'backendPart/index.html', context)
+    return render(request, 'backendPart/index.html', {'result': result})
 
 
 @csrf_exempt
 def logOut(request):
     print("log out view started")
     logout(request)
-    context = {
-        'result': "",
-    }
-    return render(request, 'backendPart/index.html', context)
+    return render(request, 'backendPart/index.html', {'result': ""})
 
 
 @csrf_exempt
 def uploadFile(request):
-    gameName = "PickItUp"  # Temporary hardcode#############################
-
-    permittedExtensions = ["cpp", "h"]
+    permittedExtensions = ["cpp", "h", "c"]
     permittedFileSize = 1e5
-    context = {}
+
+    result = "Files were uploaded" # Default result
     if request.method == 'POST':
         print("upload view started")
         form = forms.UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            filesPath = AIDBPath + "/" + request.user.username + "/" + gameName + "/"
+            # Get game name
+            gameName = request.POST['gameName']
+
             # Create game path for user
+            filesPath = AIDBPath + "/" + request.user.username + "/" + gameName + "/"
             if os.path.exists(filesPath):
                 existingFilesList = [f for f in os.listdir(filesPath)]
                 for f in existingFilesList:
@@ -212,52 +192,47 @@ def uploadFile(request):
             else:
                 os.makedirs(filesPath)
 
+            # Iterating throw uploaded files
             uploadedfilesList = request.FILES.getlist('FileName')
-            uploadedFileCounter = 0
             for file in uploadedfilesList:
                 fileName = file.name
                 # Check file extensions (permitted only .cpp, .h) and size
                 extension = fileName.split(".")[-1]
                 if extension not in permittedExtensions:
-                    continue
+                    result = "Not permitted extension: " + fileName
+                    break
                 if file.size > permittedFileSize:
-                    continue
+                    result = "Not permitted file size: " + fileName
+                    break
 
                 # Write sent file
                 with open(filesPath + fileName, 'wb+') as destination:
                     for chunk in file.chunks():
                         destination.write(chunk)
-                uploadedFileCounter += 1
             # Static check AI files
             # ...
-            context = {
-                'result': str(uploadedFileCounter) + " files were uploaded",
-            }
-    return render(request, 'backendPart/games/game' + gameName + '.html', context)
+            return render(request, 'backendPart/games/game' + gameName + '.html', {'result': result})
+    return render(request, 'backendPart/gameGallery.html', {})
 
 
 def gameGallery(request):
-    context = {}
     template = loader.get_template('backendPart/gameGallery.html')
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render({}, request))
 
 
 def gamePickItUp(request):
-    context = {}
     template = loader.get_template('backendPart/games/gamePickItUp.html')
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render({}, request))
 
 
 def game1(request):
-    context = {}
     template = loader.get_template('backendPart/games/game1.html')
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render({}, request))
 
 
 def game2(request):
-    context = {}
     template = loader.get_template('backendPart/games/game2.html')
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render({}, request))
 
 
 @csrf_exempt

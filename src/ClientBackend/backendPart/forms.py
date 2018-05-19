@@ -13,6 +13,7 @@ class SignUpForm(forms.Form):
 class UploadFileForm(forms.Form):
     #file = forms.FileField()
     file = forms.FileInput()
+    gameName = forms.CharField(max_length=32)
 
 class StartGameForm(forms.Form):
     gameName = forms.CharField(max_length=32)
