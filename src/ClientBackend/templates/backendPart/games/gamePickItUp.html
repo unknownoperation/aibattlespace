@@ -72,14 +72,14 @@
             <font  size="4" color="black" face="Verdana" >Please log in for start game</font>
         </p>
     {% endif %}
+
     <!-- Does not work (closes in 2 seconds)
     <form method="post" name="StartPickItUp">
         <input type = "submit" value = "Play" onclick="main">
         <input type = "hidden" name="gameName" value="PickItUp">
     </form>
     -->
-
-    <button onclick="main()" >Play</button> <!-- Works -->
+    <button onclick="main('PickItUp')">Play</button> <!-- Works -->
 
     <div class="container" style="position:relative">
 		<canvas id="glcanvas"  style="position:absolute; top:10px; left:0; z-index:1" width="640" height="480">

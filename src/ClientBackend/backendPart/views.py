@@ -8,7 +8,6 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
-from shutil import rmtree
 from . import models, forms
 
 AIDBPath = "../../AIDataBase"
@@ -219,17 +218,17 @@ def gameGallery(request):
     template = loader.get_template('backendPart/gameGallery.html')
     return HttpResponse(template.render({}, request))
 
-
+@csrf_exempt
 def gamePickItUp(request):
     template = loader.get_template('backendPart/games/gamePickItUp.html')
     return HttpResponse(template.render({}, request))
 
-
+@csrf_exempt
 def game1(request):
     template = loader.get_template('backendPart/games/game1.html')
     return HttpResponse(template.render({}, request))
 
-
+@csrf_exempt
 def game2(request):
     template = loader.get_template('backendPart/games/game2.html')
     return HttpResponse(template.render({}, request))
@@ -241,4 +240,8 @@ def startGame(request):
         form = forms.StartGameForm(request.POST)
         if form.is_valid():
             gameName = form.cleaned_data['gameName']
+            print("excelent" + gameName)
             # start game with name = gameName
+
+            return render(request, 'backendPart/gameGallery.html', {})
+
