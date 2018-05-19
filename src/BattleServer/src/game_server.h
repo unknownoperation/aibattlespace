@@ -9,7 +9,7 @@ public:
    void InitSession    (void);
    void ReleaseSession (void);
    
-   void ServerLoop (void);
+   void ServerLoop (const std::string & path);
 
 private:
    GAME_BASE * game;
