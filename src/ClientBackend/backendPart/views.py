@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
 from . import models, forms
 
-AIDBPath = "../../AIDataBase"
+AIDBPath = "../../AIDataBase/"
 
 
 @csrf_exempt
@@ -230,8 +230,8 @@ def gameMakeItYours(request):
     return HttpResponse(template.render({}, request))
 
 @csrf_exempt
-def game2(request):
-    template = loader.get_template('backendPart/games/game2.html')
+def gameBattleTanks(request):
+    template = loader.get_template('backendPart/games/gameBattleTanks.html')
     return HttpResponse(template.render({}, request))
 
 

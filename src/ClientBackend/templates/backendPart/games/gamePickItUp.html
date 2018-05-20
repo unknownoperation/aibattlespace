@@ -34,6 +34,12 @@
 		<input type = "submit" value = "Game Gallery"/>
 	</form>
     <p align = "left">
+        <font  size="6" color="black" face="Verdana" weight="600">
+        <p>
+        PickItUp
+        </p>
+        </font>
+    <p align = "left">
         <font  size="4" color="black" face="Verdana" >
         <p>
         Your AI should collect chips in labyrinth.
@@ -55,8 +61,10 @@
         </form>
 
         <form method="post" style="display: none;" name = "UploadAIFrom" enctype="multipart/form-data" action="uploadFile">
-            <b>Permitted extensions: .cpp, .h Permitted file size: under 10000 byte</b>
+            <br><br>
             <input type = "file" id = "file_id" name = "FileName" align="center" multiple >
+            <br><br>
+            Please upload your real source code of the AI. We support .cpp, .c and .h files under 100 kilobytes.
             <input type="hidden" name = "gameName" value="PickItUp">
             <br><br>
             <input type = "submit" value ="Send">
