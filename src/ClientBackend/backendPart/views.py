@@ -241,8 +241,11 @@ def startGame(request):
         form = forms.StartGameForm(request.POST)
         if form.is_valid():
             gameName = form.cleaned_data['gameName']
-            print("excelent" + gameName)
             # start game with name = gameName
-
+            pathToBuilds = '../../builds/'
+            subprocess.Popen(
+                pathToBuilds + 'x64/Debug/BattleServer.exe -p ..\\..\\src\\ClientBackend\\backendPart\\static\\backendPart\\')
+            subprocess.Popen(pathToBuilds + 'x64/Debug/AI_1.exe')
+            subprocess.Popen(pathToBuilds + 'x64/Debug/AI_2.exe')
             return render(request, 'backendPart/gameGallery.html', {})
 

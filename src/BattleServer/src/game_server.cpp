@@ -83,8 +83,5 @@ void GAME_SERVER::ServerLoop (const std::string & path)
          wrt.write(ofstr, jsonFromServer);
       }
    }
-
-   // send json with result
-   // ...
    Sleep(2000); // While showing results
 }
