@@ -10,10 +10,10 @@
 	},
 	"field" : 
 	{
-		"height" : 21,
-		"width" : 21
+		"height" : 23,
+		"width" : 23
 	},
-	"key" : "14k5p8e1",
+	"key" : "19f8z5n4",
 	"obstruction" : 
 	[
 		{
@@ -101,6 +101,14 @@
 			"type" : "barrier"
 		},
 		{
+			"position" : [ 21, 0 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 22, 0 ],
+			"type" : "barrier"
+		},
+		{
 			"position" : [ 0, 1 ],
 			"type" : "barrier"
 		},
@@ -113,11 +121,7 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 16, 1 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 20, 1 ],
+			"position" : [ 22, 1 ],
 			"type" : "barrier"
 		},
 		{
@@ -134,6 +138,10 @@
 		},
 		{
 			"position" : [ 4, 2 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 6, 2 ],
 			"type" : "barrier"
 		},
 		{
@@ -157,6 +165,10 @@
 			"type" : "barrier"
 		},
 		{
+			"position" : [ 13, 2 ],
+			"type" : "barrier"
+		},
+		{
 			"position" : [ 14, 2 ],
 			"type" : "barrier"
 		},
@@ -169,11 +181,23 @@
 			"type" : "barrier"
 		},
 		{
+			"position" : [ 17, 2 ],
+			"type" : "barrier"
+		},
+		{
 			"position" : [ 18, 2 ],
 			"type" : "barrier"
 		},
 		{
+			"position" : [ 19, 2 ],
+			"type" : "barrier"
+		},
+		{
 			"position" : [ 20, 2 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 22, 2 ],
 			"type" : "barrier"
 		},
 		{
@@ -189,11 +213,11 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 12, 3 ],
+			"position" : [ 6, 3 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 18, 3 ],
+			"position" : [ 14, 3 ],
 			"type" : "barrier"
 		},
 		{
@@ -201,11 +225,11 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 0, 4 ],
+			"position" : [ 22, 3 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 2, 4 ],
+			"position" : [ 0, 4 ],
 			"type" : "barrier"
 		},
 		{
@@ -213,11 +237,19 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 10, 4 ],
+			"position" : [ 6, 4 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 13, 4 ],
+			"position" : [ 7, 4 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 11, 4 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 12, 4 ],
 			"type" : "barrier"
 		},
 		{
@@ -225,11 +257,11 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 15, 4 ],
+			"position" : [ 16, 4 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 16, 4 ],
+			"position" : [ 17, 4 ],
 			"type" : "barrier"
 		},
 		{
@@ -237,7 +269,15 @@
 			"type" : "barrier"
 		},
 		{
+			"position" : [ 19, 4 ],
+			"type" : "barrier"
+		},
+		{
 			"position" : [ 20, 4 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 22, 4 ],
 			"type" : "barrier"
 		},
 		{
@@ -245,19 +285,7 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 2, 5 ],
-			"type" : "barrier"
-		},
-		{
 			"position" : [ 4, 5 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 8, 5 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 10, 5 ],
 			"type" : "barrier"
 		},
 		{
@@ -265,11 +293,11 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 18, 5 ],
+			"position" : [ 20, 5 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 20, 5 ],
+			"position" : [ 22, 5 ],
 			"type" : "barrier"
 		},
 		{
@@ -277,15 +305,7 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 2, 6 ],
-			"type" : "barrier"
-		},
-		{
 			"position" : [ 4, 6 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 5, 6 ],
 			"type" : "barrier"
 		},
 		{
@@ -297,6 +317,10 @@
 			"type" : "barrier"
 		},
 		{
+			"position" : [ 12, 6 ],
+			"type" : "barrier"
+		},
+		{
 			"position" : [ 13, 6 ],
 			"type" : "barrier"
 		},
@@ -305,7 +329,15 @@
 			"type" : "barrier"
 		},
 		{
+			"position" : [ 18, 6 ],
+			"type" : "barrier"
+		},
+		{
 			"position" : [ 20, 6 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 22, 6 ],
 			"type" : "barrier"
 		},
 		{
@@ -317,11 +349,19 @@
 			"type" : "barrier"
 		},
 		{
+			"position" : [ 6, 7 ],
+			"type" : "barrier"
+		},
+		{
 			"position" : [ 16, 7 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 20, 7 ],
+			"position" : [ 18, 7 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 22, 7 ],
 			"type" : "barrier"
 		},
 		{
@@ -349,11 +389,11 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 14, 8 ],
+			"position" : [ 7, 8 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 15, 8 ],
+			"position" : [ 14, 8 ],
 			"type" : "barrier"
 		},
 		{
@@ -361,7 +401,11 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 20, 8 ],
+			"position" : [ 18, 8 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 22, 8 ],
 			"type" : "barrier"
 		},
 		{
@@ -369,7 +413,7 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 14, 9 ],
+			"position" : [ 16, 9 ],
 			"type" : "barrier"
 		},
 		{
@@ -377,7 +421,7 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 20, 9 ],
+			"position" : [ 22, 9 ],
 			"type" : "barrier"
 		},
 		{
@@ -405,7 +449,19 @@
 			"type" : "barrier"
 		},
 		{
+			"position" : [ 6, 10 ],
+			"type" : "barrier"
+		},
+		{
 			"position" : [ 14, 10 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 15, 10 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 16, 10 ],
 			"type" : "barrier"
 		},
 		{
@@ -417,6 +473,14 @@
 			"type" : "barrier"
 		},
 		{
+			"position" : [ 21, 10 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 22, 10 ],
+			"type" : "barrier"
+		},
+		{
 			"position" : [ 0, 11 ],
 			"type" : "barrier"
 		},
@@ -425,11 +489,11 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 16, 11 ],
+			"position" : [ 18, 11 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 20, 11 ],
+			"position" : [ 22, 11 ],
 			"type" : "barrier"
 		},
 		{
@@ -441,7 +505,7 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 6, 12 ],
+			"position" : [ 4, 12 ],
 			"type" : "barrier"
 		},
 		{
@@ -449,11 +513,23 @@
 			"type" : "barrier"
 		},
 		{
+			"position" : [ 15, 12 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 16, 12 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 17, 12 ],
+			"type" : "barrier"
+		},
+		{
 			"position" : [ 18, 12 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 20, 12 ],
+			"position" : [ 22, 12 ],
 			"type" : "barrier"
 		},
 		{
@@ -465,7 +541,7 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 8, 13 ],
+			"position" : [ 4, 13 ],
 			"type" : "barrier"
 		},
 		{
@@ -474,6 +550,10 @@
 		},
 		{
 			"position" : [ 20, 13 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 22, 13 ],
 			"type" : "barrier"
 		},
 		{
@@ -505,19 +585,15 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 14, 14 ],
+			"position" : [ 9, 14 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 15, 14 ],
+			"position" : [ 10, 14 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 16, 14 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 18, 14 ],
+			"position" : [ 12, 14 ],
 			"type" : "barrier"
 		},
 		{
@@ -525,15 +601,15 @@
 			"type" : "barrier"
 		},
 		{
+			"position" : [ 22, 14 ],
+			"type" : "barrier"
+		},
+		{
 			"position" : [ 0, 15 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 8, 15 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 10, 15 ],
+			"position" : [ 2, 15 ],
 			"type" : "barrier"
 		},
 		{
@@ -541,15 +617,7 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 14, 15 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 16, 15 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 20, 15 ],
+			"position" : [ 22, 15 ],
 			"type" : "barrier"
 		},
 		{
@@ -561,23 +629,11 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 5, 16 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 6, 16 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 7, 16 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 8, 16 ],
-			"type" : "barrier"
-		},
-		{
 			"position" : [ 10, 16 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 11, 16 ],
 			"type" : "barrier"
 		},
 		{
@@ -585,15 +641,11 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 14, 16 ],
+			"position" : [ 13, 16 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 16, 16 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 20, 16 ],
+			"position" : [ 22, 16 ],
 			"type" : "barrier"
 		},
 		{
@@ -601,35 +653,19 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 6, 17 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 10, 17 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 12, 17 ],
-			"type" : "barrier"
-		},
-		{
 			"position" : [ 14, 17 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 20, 17 ],
+			"position" : [ 18, 17 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 22, 17 ],
 			"type" : "barrier"
 		},
 		{
 			"position" : [ 0, 18 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 2, 18 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 3, 18 ],
 			"type" : "barrier"
 		},
 		{
@@ -641,19 +677,7 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 7, 18 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 8, 18 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 9, 18 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 10, 18 ],
+			"position" : [ 11, 18 ],
 			"type" : "barrier"
 		},
 		{
@@ -665,10 +689,6 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 15, 18 ],
-			"type" : "barrier"
-		},
-		{
 			"position" : [ 16, 18 ],
 			"type" : "barrier"
 		},
@@ -677,7 +697,11 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 20, 18 ],
+			"position" : [ 18, 18 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 22, 18 ],
 			"type" : "barrier"
 		},
 		{
@@ -685,19 +709,19 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 12, 19 ],
+			"position" : [ 4, 19 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 20, 19 ],
+			"position" : [ 14, 19 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 22, 19 ],
 			"type" : "barrier"
 		},
 		{
 			"position" : [ 0, 20 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 1, 20 ],
 			"type" : "barrier"
 		},
 		{
@@ -713,23 +737,7 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 5, 20 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 6, 20 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 7, 20 ],
-			"type" : "barrier"
-		},
-		{
 			"position" : [ 8, 20 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 9, 20 ],
 			"type" : "barrier"
 		},
 		{
@@ -741,39 +749,119 @@
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 12, 20 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 13, 20 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 14, 20 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 15, 20 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 16, 20 ],
-			"type" : "barrier"
-		},
-		{
-			"position" : [ 17, 20 ],
-			"type" : "barrier"
-		},
-		{
 			"position" : [ 18, 20 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 19, 20 ],
+			"position" : [ 22, 20 ],
 			"type" : "barrier"
 		},
 		{
-			"position" : [ 20, 20 ],
+			"position" : [ 0, 21 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 10, 21 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 21 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 22, 21 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 0, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 1, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 2, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 3, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 4, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 5, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 6, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 7, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 8, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 9, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 10, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 11, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 12, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 13, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 14, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 15, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 16, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 17, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 18, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 19, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 20, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 21, 22 ],
+			"type" : "barrier"
+		},
+		{
+			"position" : [ 22, 22 ],
 			"type" : "barrier"
 		}
 	]

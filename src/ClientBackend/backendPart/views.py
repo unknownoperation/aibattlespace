@@ -1,6 +1,7 @@
 import json
 import socket
 import os
+import subprocess
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
@@ -224,8 +225,8 @@ def gamePickItUp(request):
     return HttpResponse(template.render({}, request))
 
 @csrf_exempt
-def game1(request):
-    template = loader.get_template('backendPart/games/game1.html')
+def gameMakeItYours(request):
+    template = loader.get_template('backendPart/games/gameMakeItYours.html')
     return HttpResponse(template.render({}, request))
 
 @csrf_exempt

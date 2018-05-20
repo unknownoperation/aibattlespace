@@ -41,7 +41,7 @@ void GAME_SERVER::ServerLoop (const std::string & path)
    {
       std::cout << (path + std::string("game_map .json")) << std::endl;
        std::ofstream ofstr(path + std::string("game_map .json"));
-
+       std::cout << path << "path";
        Json::StyledStreamWriter wrt;
 
        wrt.write(ofstr, init);
