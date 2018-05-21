@@ -1,55 +1,60 @@
-<html lang="en" ng-app>
-    <head>
-        <meta charset="utf-8">
-        <title>Registration</title>
-        <style>
-        body{
-        display:block;
-            margin:0 auto;
-        width: 459px;
-        }
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        form{
-        margin: 0 auto;
-        width: 459px;
-        }
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-        input{
-        width: 459px;
-        height: 40px;
-        background: #efefef;
-        padding: 10px;
-        border: 1px solid #dedede;
-        margin-top: 3px;
-        font-size: 0.9em;
-        color: #3a3a3a;
-        }
-         </style>
-	</head>
+    <title>Registration</title>
 
-    <body bgcolor="#87CEEB">
-        <p align = "center">
-        <font  size="11" color="blue" face="Tahoma" > Registration </font>
-        </p>
-        <form method="post" name = "sign_up" action="registerUser">
-            <b>Login:</b>
-            <input name = "username"  required/>
-            <br>
-            <b>Password: </b>
-            <input type = "password" required name = "password" />
-            <br>
-            <b>E-mail: </b>
-            <input name = "email" type = "email" required />
-            <br><br>
-            <input type = "submit" value ="Sign Up"/>
+  </head>
+  <body>
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
+ <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+   <div class="navbar-header">                       
+                      <label class="btn col-xs-3">
+                        <a href="index" class="thumbnail" style="margin-bottom: 0;">
+                          <img src="D:\!projects\spbpu\3.2\aibattlespace\src\ClientBackend\backendPart\static\backendPart\icon.png" class="img-fluid">
+                        </a>
+                      </label>
+                </a>
+       
+    </nav>       
+   <br><br>
+   <div class="container">
+    <h1 align="middle">Registration</h1>
+     <br>
+<div class="offset-sm-4 col-sm-4">
+ <form method="post" name = "sign_up" action="registerUser">
+           <label for="exampleInputUsername">Username</label>
+           <input  name = "username" class="form-control" id="exampleInputUsername" aria-describedby="usernameHelp" placeholder="Enter name" placeholder=".col-2" required>
+           <br>                                               
+          <label for="examplePassword">Password</label>
+           <input type = "password" name = "password" class="form-control" id="exampleInputPassword" aria-describedby="passwordHelp" placeholder="Enter password" required>
+           <br>
+           <label for="exampleEmail">E-mail</label>
+           <input type = "email" name = "email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
+           <br>
+           <div class="offset-sm-4 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-md">
+                  Sign Up
+             </button>
+            </div>
         </form>
         <br>
-        <form name = "go to main" action = "index">
-            <input type = "submit" value = "Main page"/>
+     <h3 align="middle">{{ result }} </h3>  
         </form>
-         <p align = "center">
-        <font  size="4" color="black" face="Verdana" >
-            {{ result }}</font>
-        </p>
+</div>      
+   </div> 
     </body>
 </html>

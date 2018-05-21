@@ -1,47 +1,61 @@
-<html lang="en" ng-app>
+<!doctype html>
+<html lang="en">
   <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <title>AI Battle Space</title>
-    <style>
-	body{
-	display:block;          
-        margin:0 auto;
-	width: 459px;
-	}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	form{                   
-	margin: 0 auto;
-	width: 459px; 
-	}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-	input{
-	width: 459px;
-	height: 40px;
-	background: #efefef;
-	padding: 10px;
-	border: 1px solid #dedede;
-	margin-top: 3px;
-	font-size: 0.9em;
-	color: #3a3a3a;
-	}      
-     </style>
+    <title>Game gallery</title>
 
-    </head>
-    <body bgcolor="#87CEEB">
-  	<form name = "go to main" action = "index">
-		<input type = "submit" value = "Main page"/>
-	</form>
+  </head>
+    <body>
 
-    <form name = "gamePickItUp" action = "gamePickItUp">
-        <input type = "submit" value = "PickItUp"/>
-    </form>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
+ <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+   <div class="navbar-header">                       
+                      <label class="btn col-xs-3">
+                        <a href="index" class="thumbnail" style="margin-bottom: 0;">
+                          <img src="icon.png">
+                        </a>
+                      </label>
+                </a>
+       
+    </nav>       
+   <br><br>
+   <div class="container">
+    <h1 align="middle">Game gallery</h1>
+     <br>          
+<div class="offset-sm-5 col-sm-4">                    
+<form name = "gamePickItUp" action = "gamePickItUp"> 
+<button type = "submit" class="btn btn-primary btn-lg">
+Pick It Up!
+</button> 
+</form> 
 
-    <form name = "MakeItYours" action = "gameMakeItYours">
-        <input type = "submit" value = "MakeItYours"/>
-    </form>
+     <br>          
 
-    <form name = "battleTanks" action = "gameBattleTanks">
-        <input type = "submit" value = "BattleTanks"/>
-    </form>
+<form name = "MakeItYours" action = "gameMakeItYours"> 
+<button type = "submit" class="btn btn-primary btn-lg">
+Make It Yours
+</button>  
+</form> 
+
+     <br>          
+
+<form name = "battleTanks" action = "gameBattleTanks"> 
+<button type = "submit" class="btn btn-primary btn-lg">
+Battle Tanks
+</button> 
+</form>
+</div>
+    </div>
     </body>
 </html>
