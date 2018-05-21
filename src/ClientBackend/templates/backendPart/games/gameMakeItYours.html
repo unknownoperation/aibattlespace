@@ -1,59 +1,56 @@
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>MakeItYours Watch match</title>
-    <style>
-	body{
-	display:block;          
-        margin:0 auto;
-	width: 640px;
-	}
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	form{                   
-	margin: 0 auto;
-	width: 640px; 
-	}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-	input{
-	width: 640px;
-	height: 40;
-	background: #efefef;
-	padding: 10px;
-	border: 1px solid #dedede;
-	margin-top: 3px;
-	font-size: 0.9em;
-	color: #3a3a3a;
-	}                
-     </style>
-</head>
-<body bgcolor="#87CEEB">
-  	<form name = "go to main" action = "index">
-		<input type = "submit" value = "Main page"/>
+    <title></title>
+
+  </head>
+<body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
+ <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+   <div class="navbar-header">                       
+                      <label class="btn col-xs-3">
+                        <a href="index" class="thumbnail" style="margin-bottom: 0;">
+                          <img src="icon.png">
+                        </a>
+                      </label>
+                </div>
+            <ul class="nav navbar-nav">
+            </ul>
+          <ul class="nav navbar-nav navbar-right">
+                 <form name = "go to gameGallery" action = "gameGallery">
+		<button type = "submit" class="btn btn-primary btn-lg">
+                 Game Gallery
+                </button>
 	</form>
-    <form name = "go to gameGallery" action = "gameGallery">
-		<input type = "submit" value = "Game Gallery"/>
-	</form>
-    <p align = "left">
-        <font  size="6" color="black" face="Verdana" weight="600">
-        <p>
-        MakeItYours
-        </p>
-        </font>
-    <p align = "left">
-        <font  size="4" color="black" face="Verdana" >
-        <p>
-        Do you wanna fill like Gaius Iulius Caesar? Your AI should occupy towns in map.
-        The winner is the one with the most numbers of occupied towns at the end of game.
 
-        You don't know the map and the location of towns in advance because each game they are generated randomly!
-        </p>
-        <font  size="3" color="#8b0000" face="Verdana" >
-            <p>Game is under development</p>
-        </font>
-    </font>
-    </p>
 
-    <div class="container" style="position:relative">
+          </ul>       
+    </nav>       
+   <br><br>
+    <h1 align="middle">Make It Yours</h1>
+     <br>                                                        
+   <h3 align="middle"> Do you wanna fill like Gaius Iulius Caesar? Your AI should occupy towns in map.</h3>
+   <h3 align="middle">The winner is the one with the most numbers of occupied towns at the end of game.</h3>
+   <h3 align="middle"> You don't know the map and the location of towns in advance because each game they are generated randomly!</h3>
+   <br>
+   <h3 align="middle">Game is under development</h3>
+
+       
+        
+        <div class="container" style="position:relative">
 		<canvas id="glcanvas"  style="position:absolute; top:10px; left:0; z-index:1" width="640" height="480">
 		  Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
 		</canvas>
