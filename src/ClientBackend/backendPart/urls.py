@@ -17,5 +17,6 @@ urlpatterns = [
     path('gameGallery', views.gameGallery),
     path('gamePickItUp', views.gamePickItUp),
     path('gameMakeItYours', views.gameMakeItYours),
-    path('gameBattleTanks', views.gameBattleTanks)
+    path('gameBattleTanks', views.gameBattleTanks),
+    path('getUserGuide', views.getUserGuide)
 ]

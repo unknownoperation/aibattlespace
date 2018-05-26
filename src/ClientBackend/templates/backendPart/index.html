@@ -55,7 +55,9 @@
    <div class="navbar-header">                       
                       <label class="btn col-xs-3">
                         <a href="index" class="thumbnail" style="margin-bottom: 0;">
-                          <img src="icon.png">
+                            {% load static %}
+                            <img src="{% static 'backendPart/images/whiteLogo.png' %}"
+                                 alt="Logo" style="width: 100px;height:70px;"/>
                         </a>
                       </label>
                 </a>
@@ -104,17 +106,25 @@
         <h3 align="middle"> Please, select game in game gallery and upload your AI.</h3>
         <br>
         <form name = "watch_match" action = "gameGallery">
-          <div class="offset-sm-5 col-sm-8">
+         <div class="offset-sm-5 col-sm-8">
           <button type="submit" class="btn btn-primary btn-lg" >
               Game gallery   
                  </button>
          </div>
         </form>
-                                                         {% else %} <!--When logged out-->
+   {% else %} <!--When logged out-->
      <h3 align="middle"> AI BattleSpace - platform for the competition of artificial intelligences (AI). </h3>
      <h3 align="middle"> You can upload files with the source code of the user's AI to the web server </h3>
-     <h3 align="middle"> and watch the game in your browser. </h3>                                                       
-     {% endif %}
+     <h3 align="middle"> and watch the game in your browser. </h3>
+   {% endif %}
+	<form name = "user_guide.docx" action = "getUserGuide">
+		<div class="offset-sm-5 col-sm-8">
+			 <br>
+			<button type="submit" class="btn btn-primary btn-lg" >
+			  Get user guide
+			     </button>
+		</div>
+	</form>
     <!--
     Existing users:
     <ol>

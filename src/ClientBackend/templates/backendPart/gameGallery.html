@@ -23,7 +23,9 @@
    <div class="navbar-header">                       
                       <label class="btn col-xs-3">
                         <a href="index" class="thumbnail" style="margin-bottom: 0;">
-                          <img src="icon.png">
+                            {% load static %}
+                            <img src="{% static 'backendPart/images/whiteLogo.png' %}"
+                                 alt="Logo" style="width: 100px;height:70px;"/>
                         </a>
                       </label>
                 </a>
@@ -33,28 +35,35 @@
    <div class="container">
     <h1 align="middle">Game gallery</h1>
      <br>          
-<div class="offset-sm-5 col-sm-4">                    
-<form name = "gamePickItUp" action = "gamePickItUp"> 
-<button type = "submit" class="btn btn-primary btn-lg">
-Pick It Up!
-</button> 
-</form> 
+<div class="offset-sm-5 col-sm-4">
+    {% load static %}
+    <img src="{% static 'backendPart/images/GameDataBase/PickItUp/PickItUpTitle.jpg' %}"
+     alt="PickItUpTitle" style="width: 400px;height:400px;"/>
+    <form name = "gamePickItUp" action = "gamePickItUp">
+    <button type = "submit" class="btn btn-primary btn-lg">
+    Pick It Up!
+    </button>
+    </form>
 
-     <br>          
+         <br>
+    {% load static %}
+    <img src="{% static 'backendPart/images/GameDataBase/MakeItYours/MakeItYoursTitle.jpg' %}"
+     alt="MakeItYoursTitle" style="width: 400px;height:400px;"/>
+    <form name = "MakeItYours" action = "gameMakeItYours">
+    <button type = "submit" class="btn btn-primary btn-lg">
+    Make It Yours
+    </button>
+    </form>
 
-<form name = "MakeItYours" action = "gameMakeItYours"> 
-<button type = "submit" class="btn btn-primary btn-lg">
-Make It Yours
-</button>  
-</form> 
-
-     <br>          
-
-<form name = "battleTanks" action = "gameBattleTanks"> 
-<button type = "submit" class="btn btn-primary btn-lg">
-Battle Tanks
-</button> 
-</form>
+         <br>
+    {% load static %}
+    <img src="{% static 'backendPart/images/GameDataBase/BattleTanks/BattleTanksTitle.jpg' %}"
+     alt="BattleTanksTitle" style="width: 400px;height:400px;"/>
+    <form name = "battleTanks" action = "gameBattleTanks">
+    <button type = "submit" class="btn btn-primary btn-lg">
+    Battle Tanks
+    </button>
+    </form>
 </div>
     </div>
     </body>

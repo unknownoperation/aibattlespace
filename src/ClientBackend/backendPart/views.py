@@ -275,3 +275,13 @@ def startGame(request):
             subprocess.Popen(pathToBuilds + 'x64/Debug/AI_2.exe')
             return render(request, 'backendPart/gameGallery.html', {})
 
+# Handler of request to get user guide
+# @param request - user request
+def getUserGuide(request):
+    filename = '..\\..\\documents\\user_guide.docx'
+    data = open(filename, "rb").read()
+    print(data)
+    response = HttpResponse(data, content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+    response['Content-Length'] = os.path.getsize(filename)
+    return response
+

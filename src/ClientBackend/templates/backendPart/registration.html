@@ -24,8 +24,9 @@
    <div class="navbar-header">                       
                       <label class="btn col-xs-3">
                         <a href="index" class="thumbnail" style="margin-bottom: 0;">
-                          <img src="D:\!projects\spbpu\3.2\aibattlespace\src\ClientBackend\backendPart\static\backendPart\icon.png" class="img-fluid">
-                        </a>
+                            {% load static %}
+                            <img src="{% static 'backendPart/images/whiteLogo.png' %}"
+                                 alt="Logo" style="width: 100px;height:70px;"/>                        </a>
                       </label>
                 </a>
        

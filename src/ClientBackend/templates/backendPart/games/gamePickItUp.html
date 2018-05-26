@@ -23,8 +23,9 @@
    <div class="navbar-header">                       
                       <label class="btn col-xs-3">
                         <a href="index" class="thumbnail" style="margin-bottom: 0;">
-                          <img src="icon.png">
-                        </a>
+                            {% load static %}
+                            <img src="{% static 'backendPart/images/whiteLogo.png' %}"
+                                 alt="Logo" style="width: 100px;height:70px;"/>                        </a>
                       </label>
                 </div>
             <ul class="nav navbar-nav">
