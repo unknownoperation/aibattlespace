@@ -11,6 +11,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
 from . import models, forms
 
+## Path to user's AI files
 AIDBPath = "../../AIDataBase/"
 
 @csrf_exempt
@@ -37,14 +38,18 @@ def index(request):
 
     return HttpResponse(template.render(context, request))
 
-
+## Read game json from file
+# Method for reading game server's json from file
+# @param fileName = name of json's file
 def readDirectlyFromFile(fileName):
     filePath = 'backendPart/static/backendPart/'
     file = open(filePath + fileName)
     data = json.load(file)
     return data
 
-
+## Read game json from socket
+# Method for reading game server's json from socket
+# @param blockSize - size of blocks to read per request
 def readFromSocket(blockSize):
     port = 8000
     data = b""
@@ -68,6 +73,8 @@ def readFromSocket(blockSize):
 
 
 @csrf_exempt
+## Get game map json
+# @param request - user request
 def getGameMapJson(request):
     fileName = 'game_map .json'
     # Getting JSON with TCP from game server
@@ -80,6 +87,8 @@ def getGameMapJson(request):
 
 
 @csrf_exempt
+## Get game objects json
+# @param request - user request
 def getObjectsJson(request):
     fileName = 'objects.json'
     # Getting JSON with TCP from game server
