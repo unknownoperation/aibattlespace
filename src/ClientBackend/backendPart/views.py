@@ -13,8 +13,9 @@ from . import models, forms
 
 AIDBPath = "../../AIDataBase/"
 
-
 @csrf_exempt
+## Handler of request of index page
+# @param request - user request
 def index(request):
     print("Index view started")
 
@@ -88,13 +89,16 @@ def getObjectsJson(request):
         data = readDirectlyFromFile(fileName)
     return HttpResponse(json.dumps(data), content_type='application/json')
 
-
+## Handler of request of registration page
+# @param request - user request
 def registration(request):
     template = loader.get_template('backendPart/registration.html')
     return HttpResponse(template.render({}, request))
 
 
 @csrf_exempt
+## Handler of request to register the user
+# @param request - user request
 def registerUser(request):
     print("start registering view")
     result = ""
@@ -138,6 +142,8 @@ def registerUser(request):
 
 
 @csrf_exempt
+## Handler of request to log in the user
+# @param request - user request
 def logIn(request):
     # template = loader.get_template('backendPart/index.html')
     print("log in view started")
@@ -164,6 +170,8 @@ def logIn(request):
 
 
 @csrf_exempt
+## Handler of request to log out the user
+# @param request - user request
 def logOut(request):
     print("log out view started")
     logout(request)
@@ -171,6 +179,9 @@ def logOut(request):
 
 
 @csrf_exempt
+## Handler of request to upload user files (AI files)
+# @param request - user request
+# permitted file's extensions: .cpp, .c, .h
 def uploadFile(request):
     permittedExtensions = ["cpp", "h", "c"]
     permittedFileSize = 1e5
@@ -214,28 +225,34 @@ def uploadFile(request):
             return render(request, 'backendPart/games/game' + gameName + '.html', {'result': result})
     return render(request, 'backendPart/gameGallery.html', {})
 
-
+## Handler of request of game gallery page
+# @param request - user request
 def gameGallery(request):
     template = loader.get_template('backendPart/gameGallery.html')
     return HttpResponse(template.render({}, request))
 
-@csrf_exempt
+## Handler of request of game PickItUp page
+# @param request - user request
 def gamePickItUp(request):
     template = loader.get_template('backendPart/games/gamePickItUp.html')
     return HttpResponse(template.render({}, request))
 
-@csrf_exempt
+## Handler of request of game MakeItYours page
+# @param request - user request
 def gameMakeItYours(request):
     template = loader.get_template('backendPart/games/gameMakeItYours.html')
     return HttpResponse(template.render({}, request))
 
-@csrf_exempt
+## Handler of request of game BattleTanks page
+# @param request - user request
 def gameBattleTanks(request):
     template = loader.get_template('backendPart/games/gameBattleTanks.html')
     return HttpResponse(template.render({}, request))
 
 
 @csrf_exempt
+## Handler of request to start game
+# @param request - user request
 def startGame(request):
     if request.method == 'POST':
         form = forms.StartGameForm(request.POST)
