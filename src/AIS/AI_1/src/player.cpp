@@ -7,8 +7,8 @@
 PLAYER::PLAYER()
 {
 }
-
-class GameMap {
+/// class for representating information about map to AI
+class GameMap { 
 public:
    GameMap(int val, int size) {
       width = val;
@@ -17,7 +17,7 @@ public:
    std::vector<int> map;
 
    int width;
-   void Set(PNT point, int value) {
+   void Set(PNT point, int value) { 
       map[point.y*width + point.x] = value;
    }
    int Get(PNT point) {
@@ -28,13 +28,14 @@ void getPathToChip(std::vector<DIRECTION> & directions, FIELD_MANAGER* field, Ga
 PNT findNearestChip(PNT curCoord, std::vector<PNT>chips);
 void getPath(std::vector<DIRECTION> & directions, GameMap gameMap, PNT goalChip, std::vector<PNT> wave);
 
+///Main function of AI
 void PLAYER::run_game()
 {
    FIELD_MANAGER * field = dynamic_cast<FIELD_MANAGER*>(GetField());
    int WALL = 9999;
 
 
-   //fill the game_map array
+   ///fill the game_map array
    GameMap gameMap(field->field.width, field->field.size());
    PNT point;
    for (int i = 0; i < field->field.width; ++i)
@@ -51,7 +52,8 @@ void PLAYER::run_game()
    int i = 0;
    bool needToFound = true;
    PNT goalChip;
-   while (GetGameStage() != GAME_STAGE::compliting) {
+   ///main game loop
+   while (GetGameStage() != GAME_STAGE::compliting) {///main game loop
       // Using player coordinates and map
       GetData();
       PNT curCoord = PNT(field->players[GetMyPlayerID()].x, field->players[GetMyPlayerID()].y);
@@ -94,7 +96,7 @@ void PLAYER::run_game()
    }
 }
 
-
+///function for getting fastest path to the specific chip
 void getPathToChip(std::vector<DIRECTION> & directions, FIELD_MANAGER* field, GameMap gameMap, PNT curCoord, PNT goalChip) {
    directions.clear();
    std::vector<PNT> wave;

@@ -6,7 +6,7 @@
 #include "game_common.h"
 
 class FIELD_BASE;
-
+/// interlayer class between Two way connector and player class itself
 class PLAYER_BASE : private TWO_WAY_CONNECTOR {
 public:
    PLAYER_BASE();

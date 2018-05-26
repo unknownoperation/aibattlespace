@@ -6,7 +6,7 @@
 
 
 void GenerateGameMap(int h, int w, FIELD & fld);
-
+///class for representating game field
 class FIELD {
 public:
    friend void GenerateGameMap(int h, int w, FIELD & fld);

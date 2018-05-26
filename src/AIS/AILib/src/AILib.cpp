@@ -3,6 +3,8 @@
 #include "field_pick.h"
 #include "game_common.h"
 
+///construcor
+///used establish connection to server
 PLAYER_BASE::PLAYER_BASE()
 {
    serverAdress = "tcp://127.0.0.1:8800";
@@ -29,14 +31,14 @@ FIELD_BASE * PLAYER_BASE::GetField()
 {
    return field;
 }
-
+///getting and parsing data which are delievered from server
 void PLAYER_BASE::GetData()
 {
    Json::Value msg = TWO_WAY_CONNECTOR::ReceiveData();
    stage = ParseGameStage(msg["game_stage"].asString());
    field->ParseData(msg);
 }
-
+///sending data to server
 void PLAYER_BASE::SendData(std::vector<UNIT_RESPONSE> data)
 {
    Json::Value msg;
@@ -48,12 +50,12 @@ void PLAYER_BASE::SendData(std::vector<UNIT_RESPONSE> data)
    msg["key"] = playerName;
    TWO_WAY_CONNECTOR::SendData(msg);
 }
-
+///getting current stage of the game
 GAME_STAGE PLAYER_BASE::GetGameStage()
 {
    return stage;
 }
-
+///getting ID of AI
 int PLAYER_BASE::GetMyPlayerID()
 {
    return playerName[0] - '0';

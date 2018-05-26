@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-
+///possible directions for the players
    enum class DIRECTION {
       up = 0,
       right,
@@ -16,7 +16,7 @@
 
    std::string GetDirStr(const DIRECTION & dir);
 
-
+///possible stages of the game
    enum class GAME_STAGE {
       connecting = 0,
       starting,
@@ -33,7 +33,7 @@
       "compliting"
    };
    GAME_STAGE ParseGameStage(std::string gameStage);
-
+///basic class for point in 2d space
    class PNT {
    public:
       PNT() : x(0), y(0) {}
@@ -46,14 +46,14 @@
 
       int x, y;
    };
-
+///possible types of cell in game
    enum class CELL_TYPE {
       space = 0,
       barrier
    };
 
    class FIELD;
-
+///class for representating player
 class UNIT : public PNT {
 public:
    UNIT(PNT point, int id);

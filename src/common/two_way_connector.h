@@ -2,7 +2,7 @@
 
 #include <string>
 #include <json/json.h>
-
+///class for establishing connection to the server and sending data between machine and server
 class TWO_WAY_CONNECTOR {
 public:
    enum class CONNECTION_TYPE {

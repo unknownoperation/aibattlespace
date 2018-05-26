@@ -1,7 +1,7 @@
 #pragma once
 
 #include <json/json.h>
-
+///class for getting and parsing data in json format
 class FIELD_BASE {
 public:
    virtual void ParseinitialData(const Json::Value & data) = 0;
