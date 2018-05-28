@@ -16,10 +16,4 @@ function resizeCanvas() {
     graphics.resizeDisplay();
 }
 
-function Complete() {
-    var Elem= "Name: " + document.Send_Data.Name.value +
-	"\nFile: " + document.Send_Data.FileName.value;
-    alert(Elem);
-}
-
 
