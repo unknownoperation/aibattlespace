@@ -67,7 +67,7 @@ Using ports
 **Backend** 127.0.0.1:8080
 
 Requirements
------------------
+------------
 ***OS***: Windows 7, 8, 10  
 ***HDD or SDD***: 200MB free space minimum, 300MB recommended  
 ***RAM***: 4GB  
@@ -92,3 +92,7 @@ Development team
 - Yulya Sidorina
 - Ekaterina Priymak 
 - Sofia Kevlia
+
+License
+-------
+This project has been licensed with [MIT License](https://github.com/unknownoperation/aibattlespace/blob/backend/LICENSE.md)
