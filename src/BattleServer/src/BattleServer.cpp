@@ -2,7 +2,7 @@
 
 #include "game_server.h"
 
-int main (void) {
+int main (int argc, char ** argv) {
 
    GAME_SERVER server;
 
@@ -10,7 +10,13 @@ int main (void) {
    server.InitSession();
    printf("inited\n");
 
-   server.ServerLoop();
+   std::string path("");
+
+   if (argc == 3 && !strcmp(argv[1], "-p")) {
+      path = path + std::string(argv[2]);
+   }
+
+   server.ServerLoop(path);
 
    /*server.ReleaseSession();*/
 

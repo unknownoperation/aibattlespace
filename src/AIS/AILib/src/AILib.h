@@ -6,8 +6,12 @@
 #include "game_common.h"
 
 class FIELD_BASE;
+
+/// interlayer class between Two way connector and player class itself
+
 struct PIMPL_PLAYER_BASE;
 class UNIT_RESPONSE;
+
 
 class PLAYER_BASE : private TWO_WAY_CONNECTOR {
 public:

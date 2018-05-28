@@ -3,6 +3,11 @@
 #include "field_pick.h"
 #include "game_common.h"
 
+
+///construcor
+///used establish connection to server
+
+
 struct PIMPL_PLAYER_BASE {
    std::string playerName;
    std::string serverAdress;
@@ -40,14 +45,14 @@ FIELD_BASE * PLAYER_BASE::GetField()
 {
    return pimpl->field;
 }
-
+///getting and parsing data which are delievered from server
 void PLAYER_BASE::GetData()
 {
    Json::Value msg = TWO_WAY_CONNECTOR::ReceiveData();
    *(pimpl->stage) = ParseGameStage(msg["game_stage"].asString());
    pimpl->field->ParseData(msg);
 }
-
+///sending data to server
 void PLAYER_BASE::SendData(std::vector<UNIT_RESPONSE> data)
 {
    Json::Value msg;
@@ -59,12 +64,12 @@ void PLAYER_BASE::SendData(std::vector<UNIT_RESPONSE> data)
    msg["key"] = pimpl->playerName;
    TWO_WAY_CONNECTOR::SendData(msg);
 }
-
+///getting current stage of the game
 GAME_STAGE PLAYER_BASE::GetGameStage()
 {
    return *(pimpl->stage);
 }
-
+///getting ID of AI
 int PLAYER_BASE::GetMyPlayerID()
 {
    return pimpl->playerName[0] - '0';

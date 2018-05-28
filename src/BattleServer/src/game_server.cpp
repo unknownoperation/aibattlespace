@@ -26,7 +26,7 @@ void GAME_SERVER::ReleaseSession (void)
    ai_connector[1].ReleaseConnection();
 }
 
-void GAME_SERVER::ServerLoop (void)
+void GAME_SERVER::ServerLoop (const std::string & path)
 {
    Json::Value init;
 
@@ -39,8 +39,9 @@ void GAME_SERVER::ServerLoop (void)
    // backend_connector.SendData(init);
    
    {
-       std::ofstream ofstr("..\\..\\..\\src\\ClientBackend\\backendPart\\static\\backendPart\\game_map .json");
-
+      std::cout << (path + std::string("game_map .json")) << std::endl;
+       std::ofstream ofstr(path + std::string("game_map .json"));
+       std::cout << path << "path";
        Json::StyledStreamWriter wrt;
 
        wrt.write(ofstr, init);
@@ -75,15 +76,12 @@ void GAME_SERVER::ServerLoop (void)
       game->RenderNextFrame();
 
       {
-         std::ofstream ofstr("..\\..\\..\\src\\ClientBackend\\backendPart\\static\\backendPart\\objects.json");
+         std::ofstream ofstr(path + std::string("objects.json"));
 
          Json::StyledStreamWriter wrt;
 
          wrt.write(ofstr, jsonFromServer);
       }
    }
-
-   // send json with result
-   // ...
    Sleep(2000); // While showing results
 }

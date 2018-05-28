@@ -7,7 +7,6 @@
 
 
 
-
 CELL_TYPE FIELD::Get (int i, int j) const
 {
    assert(i + j * width < field.size());

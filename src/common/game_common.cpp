@@ -11,7 +11,7 @@ GAME_STAGE ParseGameStage(std::string gameStage)
    }
    return GAME_STAGE::unknown;
 }
-
+///getting possible directions
 DIRECTION GetDirEnum(const std::string & str)
 {
    std::map<std::string, DIRECTION> directions;
@@ -25,7 +25,7 @@ DIRECTION GetDirEnum(const std::string & str)
 
    return (*(directions.find(str))).second;
 }
-
+///getting possible directions
 std::string GetDirStr(const DIRECTION & dir)
 {
    std::map<DIRECTION, std::string> directions;
@@ -48,7 +48,7 @@ UNIT::UNIT(PNT point, int id)
    this->id = id;
 }
 
-
+///chaging position of the player
 void UNIT::Move(DIRECTION dir, FIELD gameMap) // TODO check maybe need to invert Y
 {
    PNT newCoord = PNT(this->x, this->y);

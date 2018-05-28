@@ -8,7 +8,7 @@
 #include "field_base.h"
 #include "field.h"
 
-
+///class for containing parsed information
 class FIELD_MANAGER : public FIELD_BASE {
 public:
    void ParseinitialData(const Json::Value& data) override;

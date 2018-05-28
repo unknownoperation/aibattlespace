@@ -1,7 +1,7 @@
 #include <json\json.h>
 
 #include "field_pick.h"
-
+///parsing file with parameters of game field
 void FIELD_MANAGER::ParseinitialData(const Json::Value & data)
 {
    std::string tmp = Json::StyledWriter().write(data);
@@ -12,7 +12,7 @@ void FIELD_MANAGER::ParseinitialData(const Json::Value & data)
       field.Get(data["obstruction"][i]["position"][0].asInt(), data["obstruction"][i]["position"][1].asInt()) = CELL_TYPE::barrier;
    }
 }
-
+///parsing file with parameters of current positions and game stage
 void FIELD_MANAGER::ParseData(const Json::Value & data)
 {
    time = data["time"].asDouble();

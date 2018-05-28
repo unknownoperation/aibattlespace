@@ -1,128 +1,130 @@
-<html lang="en" ng-app>
+<!doctype html>
+<html lang="en">
   <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <title>AI Battle Space</title>
-    <style>
-	body{
-	display:block;          
-        margin:0 auto;
-	width: 459px;
-	}
-
-	form{                   
-	margin: 0 auto;
-	width: 459px; 
-	}
-
-	input{
-	width: 459px;
-	height: 40px;
-	background: #efefef;
-	padding: 10px;
-	border: 1px solid #dedede;
-	margin-top: 3px;
-	font-size: 0.9em;
-	color: #3a3a3a;
-	}      
-     </style>
 
   </head>
-	
-	<script>
-    function UploadFIle() {
-        alert("UploadFIle started");
-        playerName = document.UploadAIFrom.playerName.value;
-        if (playerName == "") {
-            alert("Please enter your name");
-            return;
-        }
+  <body>
+    
 
-        if(document.getElementById("file").files.length == 0) {
-            alert("Attach source code of your AI");
-            return;
-        }
-        SourceCode = document.getElementById("file").files[0];
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-        var gotData = "Player name: " + playerName +
-            "\nFile name: " + SourceCode.name;
-        alert(gotData);
+<div class="modal fade" id="LogInModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+     <h4 class="modal-title" id="myModalLabel"></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">      
+         <form method="post" name = "log_in" action="logIn">
+           <label for="exampleInputUsername">Username</label>
+           <input  name = "username" class="form-control" id="exampleInputUsername" aria-describedby="usernameHelp" placeholder="Enter name" required>
+           <br>
+           <label for="examplePassword">Password</label>
+           <input type = "password" name = "password" class="form-control" id="exampleInputPassword" aria-describedby="passwordHelp" placeholder="Enter password" required>
+           <br>
+          <div class="offset-sm-5 col-sm-12">
+            <button type="submit" class="btn btn-primary btn-md">
+                  Log In
+             </button>
+          </div>
 
-        // Fill sending data
-        var formData = new FormData();
-        formData.append('AIsource', SourceCode, playerName);
-
-        // Make request
-        var request = new XMLHttpRequest();
-        request.open("POST", "uploadFile", false);
-        request.send(formData);
-
-        // Show result
-        alert(request.responseText);
-        alert("UploadFIle ended");
-    }
-	</script>
-  
-  <body bgcolor="#87CEEB">
-
-  <p align = "center">
-   <font  size="11" color="blue" face="Tahoma" > AI Battle Space </font>
-  </p>
-    {% if logStatus %} <!--When logged in-->
-        <p align = "left">   
-        <font  size="4" color="black" face="Verdana" > Welcome, {{username}}! Let's play! Please, upload your AI. </font>
-        </p>
-        <form name = "watch_match" action = "watchMatch">
-            <input type = "submit" value = "Game"/>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <form name = "CheckIfWantToUploadAIFrom">
-            <input type = "submit" value ="Upload AI" onclick = "
-            if (document.UploadAIFrom.style.display == 'block')
-                document.UploadAIFrom.style.display = 'none';
-            else
-                document.UploadAIFrom.style.display = 'block';
-            return false;">
-        </form>
 
-        <form method="post" style="display: none;" name = "UploadAIFrom" enctype="multipart/form-data">
-            <b>Player name:</b>
-            <br>
-            <textarea name = "playerName" required rows = 1 cols = 20></textarea>
-            <br>
-            <b>Source code: </b>
-            <input  type = "file" id = "file" name = "FileName" multiple>
-            <br><br>
-            <input type = "button" value ="Send" onClick="UploadFIle();">
-            <input type = "reset" value = "Reset">
-        </form>
-
+<nav class="navbar navbar-expand-md navbar-light bg-primary">
+  <div class="container-fluid">  
+   <div class="navbar-header">                       
+                      <label class="btn col-xs-3">
+                        <a href="index" class="thumbnail" style="margin-bottom: 0;">
+                            {% load static %}
+                            <img src="{% static 'backendPart/images/whiteLogo.png' %}"
+                                 alt="Logo" style="width: 100px;height:70px;"/>
+                        </a>
+                      </label>
+                </a>
+            </div>      
+            <ul class="nav navbar-nav">
+            </ul>
+ <ul class="nav navbar-nav navbar-right">
+   {% if request.user.is_authenticated %} <!--When logged in-->
+                   
         <form method="post" name = "log_out" action="logOut">
-            <input type = "submit" value ="Log Out"/>
+        <button type="submit" class="btn btn-primary btn-lg">
+                  Log Out
+                 </button>
+
+
+
         </form>
-    {% else %} <!--When logged out-->
-     <p align = "left">   
-     <font  size="4" color="black" face="Verdana" > AI BattleSpace - platform for the competition of artificial
-     intelligences (AI). You can upload files with the source code of the user's AI to the web server and watch
-         the game in your browser. </font>
-     </p>
-        <form method="post" name = "log_in" action="logIn">
-            <b>Username:</b>
-            <input name = "username" required />
-            <br>
-            <b>Password: </b>
-            <input type = "password" name = "password" required/>
-            <br><br>
-            <input type = "submit" value ="Log In"/>
-        </form>
-        <br>
-        <form name = "sign_up" action = "registration">
-            <input type = "submit" value = "Sign Up"/>
-        </form>
+
+      {% else %} <!--When logged out-->
+
+               <div class="form-group row">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#LogInModal">
+                  Log In
+                 </button>   
+               <a href="registration"> <button type="button" class="btn btn-primary btn-lg" >
+                  Sign Up
+                 </button> </a>
+                </div>
+
+                                                 
      {% endif %}
-        <p align = "center">
-        <font  size="4" color="black" face="Verdana" >
-            {{ result }}</font>
-        </p>
+                               
+            </ul>
+        </div>
+</nav>       
+<br><br>
+<div class="container">
+    <h1 align="middle">AI BattleSpace </h1>
+    
+
+    
+
+
+   {% if request.user.is_authenticated %} <!--When logged in-->
+        <h3 align="middle"> Welcome, {{request.user.username}}! </h3>
+        <h3 align="middle"> Please, select game in game gallery and upload your AI.</h3>
+        <br>
+        <form name = "watch_match" action = "gameGallery">
+         <div class="offset-sm-5 col-sm-8">
+          <button type="submit" class="btn btn-primary btn-lg" >
+              Game gallery   
+                 </button>
+         </div>
+        </form>
+   {% else %} <!--When logged out-->
+     <h3 align="middle"> AI BattleSpace - platform for the competition of artificial intelligences (AI). </h3>
+     <h3 align="middle"> You can upload files with the source code of the user's AI to the web server </h3>
+     <h3 align="middle"> and watch the game in your browser. </h3>
+   {% endif %}
+	<form name = "user_guide.docx" action = "getUserGuide">
+		<div class="offset-sm-5 col-sm-8">
+			 <br>
+			<button type="submit" class="btn btn-primary btn-lg" >
+			  Get user guide
+			     </button>
+		</div>
+	</form>
     <!--
     Existing users:
     <ol>
@@ -139,5 +141,6 @@
     {% endfor %}
     </ol>
     -->
+  </div> 
   </body>
 </html>
